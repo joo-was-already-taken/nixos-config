@@ -15,33 +15,18 @@ require("config.globals")
 require("config.options")
 require("config.keymaps")
 
--- local opts = {
--- 	defaults = {
--- 		lazy = true,
--- 	},
--- 	-- install = {
--- 	--   colorscheme = { "your favorite colorscheme" },
--- 	-- },
--- 	-- rtp = {
--- 	-- 	disabled_plugins = {
--- 	-- 		"gzip",
--- 	-- 		"matchit",
--- 	-- 		"matchparen",
--- 	-- 		"netrw",
--- 	-- 		"netrwPlugin",
--- 	-- 		"tarPlugin",
--- 	-- 		"tohtml",
--- 	-- 		"tutor",
--- 	-- 		"zipPlugin",
--- 	-- 	},
--- 	-- },
--- 	change_detection {
--- 	  notify = true,
--- 	},
--- }
+local function concurrent_tasks()
+  local available_parallelism = 64;
+  if vim.uv ~= nil then
+    available_parallelism = vim.uv.available_prallelism()
+  end
+  return math.min(available_parallelism, 4)
+end
+
+local opts = {
+  concurrency = concurrent_tasks(),
+}
 
 require("lazy").setup({
 	{ import = "plugins" },
-})
-	-- { import = setup_name .. ".plugins.lsp" },
--- }, opts)
+}, opts)
