@@ -8,9 +8,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
-    plugins = [
-
-    ];
+    plugins = [];
 
     settings = {
       "$mod" = "SUPER";
