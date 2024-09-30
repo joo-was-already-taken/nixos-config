@@ -2,11 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, systemSettings, userSettings, ... }:
+{ config, pkgs, systemSettings, userSettings, ... }@args:
 
 {
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
+    # ../../system-modules/login-manager/sddm.nix
+    (import ../../system-modules/login-manager/tuigreet.nix (args // { session = "hyprland"; }))
   ];
 
   # Bootloader.
@@ -56,7 +58,6 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11

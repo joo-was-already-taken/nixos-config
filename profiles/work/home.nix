@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, userSettings, inputs, ... }:
 
 {
 
@@ -7,6 +7,7 @@
     ../../user-modules/apps/alacritty/alacritty.nix
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
+    ../../user-modules/wm/hyprland/hyprland.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

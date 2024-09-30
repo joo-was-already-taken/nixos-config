@@ -2,14 +2,22 @@
   description = "My first flake!";
 
   inputs = {
+    # core inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # user inputs
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
     systemSettings = {
       system = "x86_64-linux";
@@ -39,7 +47,7 @@
         inherit pkgs;
         modules = [ (profilePath + "/home.nix") ];
         extraSpecialArgs = {
-          inherit systemSettings userSettings;
+          inherit systemSettings userSettings inputs;
         };
       };
     };

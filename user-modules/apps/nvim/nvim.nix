@@ -9,7 +9,6 @@
     gcc
     # mason
     unzip
-    python3
 
     yaml-language-server
   ];
