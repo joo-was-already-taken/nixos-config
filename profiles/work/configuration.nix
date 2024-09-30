@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix"
+    (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
   ];
 
   # Bootloader.
