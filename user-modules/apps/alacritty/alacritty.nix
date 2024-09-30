@@ -22,8 +22,8 @@
         y = 10;
       };
       window.dimensions = {
-        columns = 160;
-        lines = 48;
+        columns = 120;
+        lines = 32;
       };
 
       font = let
