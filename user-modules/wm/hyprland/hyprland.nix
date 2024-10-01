@@ -5,6 +5,12 @@
     ../../apps/alacritty/alacritty.nix
   ];
 
+  home.packages = with pkgs; [
+    # for waybar, see [./waybar.css]
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+  fonts.fontconfig.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -24,6 +30,8 @@
   programs.waybar = {
     enable = true;
 
+    style = builtins.readFile ./waybar.css;
+
     settings = {
       mainBar = {
         reload_style_on_change = true;
@@ -34,7 +42,7 @@
         fixed-center = false;
 
         modules-left = [
-          "sway/workspaces"
+          "hyprland/workspaces"
           "sway/mode"
         ];
         modules-center = [ "sway/window" ];
@@ -58,6 +66,20 @@
             warning = 30;
             critical = 10;
           };
+        };
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            "1" = "";
+            "2" = "";
+            "3" = "";
+            "4" = "";
+            "5" = "";
+            active = "";
+            default = "";
+            urgent = "";
+          };
+          on-click = "activate";
         };
       };
     };
@@ -94,14 +116,14 @@
         "col.inactive_border" = "rgba(595959aa)";
 
         resize_on_border = false;
-        
+
         allow_tearing = false;
 
         layout = "dwindle";
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 0;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
 
@@ -180,13 +202,16 @@
         "$mod, E, exec, $fileManager"
         "$mod, V, togglefloating"
         "$mod, R, exec, $menu"
-        "$mod, P, pseudo"
+        # "$mod, P, pseudo"
         "$mod, J, togglesplit"
 
         "$mod, H, movefocus, l"
         "$mod, L, movefocus, r"
         "$mod, K, movefocus, u"
         "$mod, J, movefocus, d"
+
+        "$mod, N, workspace, +1"
+        "$mod, P, workspace, -1"
       ] ++ ( # generate workspace bindings for workspaces 1 - 9
           let
             bindWorkspace = ws: let

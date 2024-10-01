@@ -1,0 +1,12 @@
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "JetBrainsMonoNLNerdFont";
+  font-weight: medium;
+  font-size: 14px;
+  min-height: 0px;
+}
+
+window#waybar {
+  background: rgba(43, 43, 43, 0.5);
+}

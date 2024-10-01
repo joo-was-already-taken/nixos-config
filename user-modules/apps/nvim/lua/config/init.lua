@@ -16,11 +16,14 @@ require("config.options")
 require("config.keymaps")
 
 local function concurrent_tasks()
-  local available_parallelism = 64;
+  local available_parallelism = 4;
   if vim.uv ~= nil then
-    available_parallelism = vim.uv.available_prallelism()
+    available_parallelism = math.min(
+      available_prallelism,
+      vim.uv.available_prallelism(),
+    )
   end
-  return math.min(available_parallelism, 4)
+  return available_prallelism
 end
 
 local opts = {
