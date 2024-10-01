@@ -19,8 +19,8 @@ local function concurrent_tasks()
   local available_parallelism = 4;
   if vim.uv ~= nil then
     available_parallelism = math.min(
-      available_prallelism,
-      vim.uv.available_prallelism(),
+      available_parallelism,
+      vim.uv.available_parallelism()
     )
   end
   return available_prallelism
