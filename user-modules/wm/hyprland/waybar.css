@@ -2,11 +2,18 @@
   border: none;
   border-radius: 0px;
   font-family: "JetBrainsMonoNLNerdFont";
-  font-weight: medium;
   font-size: 14px;
   min-height: 0px;
 }
 
 window#waybar {
-  background: rgba(43, 43, 43, 0.5);
+  background: rgba(43, 43, 43, 0.7);
+}
+
+#window {
+  font-size: 5px;
+}
+
+#clock {
+  background-color: #64727D;
 }

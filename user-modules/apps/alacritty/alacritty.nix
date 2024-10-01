@@ -18,8 +18,8 @@
 
       window.opacity = 0.85;
       window.padding = {
-        x = 10;
-        y = 10;
+        x = 2;
+        y = 2;
       };
       window.dimensions = {
         columns = 120;

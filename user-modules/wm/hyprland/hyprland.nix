@@ -13,7 +13,10 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
     config.common.default = "*";
   };
 
@@ -43,12 +46,11 @@
 
         modules-left = [
           "hyprland/workspaces"
-          "sway/mode"
         ];
-        modules-center = [ "sway/window" ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
           "tray"
-          "pulseaudio"
+          # "pulseaudio"
           "network"
           "cpu"
           "memory"
@@ -57,10 +59,10 @@
           "battery"
           "clock"
         ];
-        pulseaudio = {
-          on-scroll-up = "pactl set-sink-volume @DEFAULT_SINK@ +1%";
-          on-scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -1%";
-        };
+        # pulseaudio = {
+        #   on-scroll-up = "pactl set-sink-volume @DEFAULT_SINK@ +1%";
+        #   on-scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -1%";
+        # };
         battery = {
           states = {
             warning = 30;
@@ -204,6 +206,11 @@
         "$mod, R, exec, $menu"
         # "$mod, P, pseudo"
         "$mod, J, togglesplit"
+
+        # sound controls
+        ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
+        ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
         "$mod, H, movefocus, l"
         "$mod, L, movefocus, r"
