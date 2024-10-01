@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix/release-24.05";
 
     # user inputs
     hyprland.url = "github:hyprwm/Hyprland";
@@ -17,39 +18,41 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  let
-    systemSettings = {
-      system = "x86_64-linux";
-      hostName = "nixos";
-      profile = "work";
-      host = "fifa10-laptop";
-    };
-    userSettings = {
-      userName = "joo";
-    };
-    lib = nixpkgs.lib;
-    pkgs = nixpkgs.legacyPackages.${systemSettings.system};
-    profilePath = ./. + "/profiles" + ("/" + systemSettings.profile);
-  in {
-    nixosConfigurations = {
-      ${systemSettings.hostName} = lib.nixosSystem {
-        system = systemSettings.system;
-        modules = [ (profilePath + "/configuration.nix") ];
-        specialArgs = {
-          inherit systemSettings userSettings;
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
+    let
+      systemSettings = {
+        system = "x86_64-linux";
+        hostName = "nixos";
+        profile = "work";
+        host = "fifa10-laptop";
+      };
+      userSettings = {
+        userName = "joo";
+      };
+      lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+      profilePath = ./. + "/profiles" + ("/" + systemSettings.profile);
+    in {
+      nixosConfigurations = {
+        ${systemSettings.hostName} = lib.nixosSystem {
+          system = systemSettings.system;
+          modules = [
+            stylix.nixosModules.stylix (profilePath + "/configuration.nix")
+          ];
+          specialArgs = {
+            inherit systemSettings userSettings;
+          };
         };
       };
-    };
 
-    homeConfigurations = {
-      ${userSettings.userName} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ (profilePath + "/home.nix") ];
-        extraSpecialArgs = {
-          inherit systemSettings userSettings inputs;
+      homeConfigurations = {
+        ${userSettings.userName} = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ (profilePath + "/home.nix") ];
+          extraSpecialArgs = {
+            inherit systemSettings userSettings inputs;
+          };
         };
       };
     };
-  };
 }

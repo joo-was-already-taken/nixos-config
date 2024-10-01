@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, inputs, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
 
@@ -15,6 +15,27 @@
   home.username = userSettings.userName;
   home.homeDirectory = "/home" + ("/" + userSettings.userName);
 
+  # stylix = {
+  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+  #   polarity = "dark";
+  #   image = ../../styling/wallpapers/tstudler_switzerland.jpg;
+  #
+  #   fonts = {
+  #     monospace = {
+  #       package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+  #       name = "JetBrains Mono";
+  #     };
+  #     serif = {
+  #       package = pkgs.dejavu_fonts;
+  #       name = "DejaVu Serif";
+  #     };
+  #     sansSerif = {
+  #       package = pkgs.dejavu_fonts;
+  #       name = "DejaVu Sans";
+  #     };
+  #   };
+  # };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -27,10 +48,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    hello
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -76,9 +93,9 @@
   #
   #  /etc/profiles/per-user/joo/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
+  # home.sessionVariables = {
+  #   EDITOR = "neovim";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
