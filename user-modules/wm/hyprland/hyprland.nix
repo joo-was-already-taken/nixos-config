@@ -1,12 +1,70 @@
 { pkgs, lib, inputs, ... }:
 
 {
-  # home.file.".config/hyprland" = {
-  #   source = ./.;
-  # };
+  imports = [
+    ../../apps/alacritty/alacritty.nix
+  ];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  services.hyprpaper = let
+    wallpaper = "~/nixos-config/styling/wallpapers/tstudler_switzerland.jpg";
+  in {
+    enable = true;
+    settings = {
+      preload = [ wallpaper ];
+      wallpaper = [ ",${wallpaper}" ];
+    };
+  };
+
+  programs.waybar = {
+    enable = true;
+
+    settings = {
+      mainBar = {
+        reload_style_on_change = true;
+        layer = "top";
+        position = "top";
+        height = 20;
+        spacing = 0;
+        fixed-center = false;
+
+        modules-left = [
+          "sway/workspaces"
+          "sway/mode"
+        ];
+        modules-center = [ "sway/window" ];
+        modules-right = [
+          "tray"
+          "pulseaudio"
+          "network"
+          "cpu"
+          "memory"
+          "temperature"
+          "backlight"
+          "battery"
+          "clock"
+        ];
+        pulseaudio = {
+          on-scroll-up = "pactl set-sink-volume @DEFAULT_SINK@ +1%";
+          on-scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -1%";
+        };
+        battery = {
+          states = {
+            warning = 30;
+            critical = 10;
+          };
+        };
+      };
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
 
     plugins = [];
 
@@ -17,7 +75,9 @@
       "$webBrowser" = "firefox";
       "$menu" = "wofi --show drun";
 
-      monitor = ", preferred, auto, auto";
+      exec-once = [
+        "waybar &"
+      ];
 
       env = [
         "XCURSOR_SIZE, 24"
@@ -84,7 +144,8 @@
 
       misc = {
         force_default_wallpaper = -1;
-        disable_hyprland_logo = false;
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
 
       input = {
