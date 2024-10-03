@@ -15,6 +15,30 @@
   home.username = userSettings.userName;
   home.homeDirectory = "/home" + ("/" + userSettings.userName);
 
+  stylix = {
+    enable = true;
+
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    polarity = "dark";
+    image = ../../styling/wallpapers/tstudler_switzerland.jpg;
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        name = "JetBrains Nerd Font Mono";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+    };
+  };
+
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.

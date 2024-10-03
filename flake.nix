@@ -8,7 +8,10 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix/release-24.05";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # user inputs
     hyprland.url = "github:hyprwm/Hyprland";
@@ -37,7 +40,8 @@
         ${systemSettings.hostName} = lib.nixosSystem {
           system = systemSettings.system;
           modules = [
-            stylix.nixosModules.stylix (profilePath + "/configuration.nix")
+            stylix.nixosModules.stylix
+            (profilePath + "/configuration.nix")
           ];
           specialArgs = {
             inherit systemSettings userSettings;
@@ -48,7 +52,10 @@
       homeConfigurations = {
         ${userSettings.userName} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ (profilePath + "/home.nix") ];
+          modules = [
+            stylix.homeManagerModules.stylix
+            (profilePath + "/home.nix")
+          ];
           extraSpecialArgs = {
             inherit systemSettings userSettings inputs;
           };

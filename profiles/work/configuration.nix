@@ -5,6 +5,8 @@
 { config, pkgs, systemSettings, userSettings, ... }@args:
 
 {
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     # ../../system-modules/login-manager/sddm.nix
@@ -116,28 +118,7 @@
     wget
   ];
 
-  stylix = {
-    enable = true;
-
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
-    polarity = "dark";
-    image = ../../styling/wallpapers/tstudler_switzerland.jpg;
-
-    fonts = {
-      monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrains Nerd Font Mono";
-      };
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-      };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-    };
-  };
+  stylix.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -165,7 +146,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
 }
