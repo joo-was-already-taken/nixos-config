@@ -4,7 +4,7 @@
 
   imports = [
     ../../user-modules/sh.nix
-    ../../user-modules/apps/alacritty/alacritty.nix
+    ../../user-modules/apps/alacritty.nix
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
     ../../user-modules/wm/hyprland/hyprland.nix

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../apps/alacritty/alacritty.nix
+    ../../apps/alacritty.nix
   ];
 
   home.packages = with pkgs; [

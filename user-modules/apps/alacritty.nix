@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, stylix, ... }:
 
 {
   home.packages = with pkgs; [
@@ -10,10 +10,6 @@
     enable = true;
 
     settings = {
-      import = [
-        ./themes/gruvbox_material_medium_dark.toml
-      ];
-
       scrolling.multiplier = 8;
 
       window.opacity = 0.85;
