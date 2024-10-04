@@ -14,15 +14,15 @@
     config.common.default = "*";
   };
 
-  services.hyprpaper = let
-    wallpaper = "~/nixos-config/styling/wallpapers/tstudler_switzerland.jpg";
-  in {
-    enable = true;
-    settings = {
-      preload = [ wallpaper ];
-      wallpaper = [ ",${wallpaper}" ];
-    };
-  };
+  # services.hyprpaper = let
+  #   wallpaper = "~/nixos-config/styling/wallpapers/tstudler_switzerland.jpg";
+  # in {
+  #   enable = true;
+  #   settings = {
+  #     preload = [ wallpaper ];
+  #     wallpaper = [ ",${wallpaper}" ];
+  #   };
+  # };
 
   programs.waybar = {
     enable = true;
