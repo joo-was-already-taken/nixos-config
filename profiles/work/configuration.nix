@@ -2,14 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, systemSettings, userSettings, ... }@args:
+{ config, pkgs, inputs, systemSettings, userSettings, ... }@args:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
-    # ../../system-modules/login-manager/sddm.nix
     (import ../../system-modules/login-manager/tuigreet.nix (args // { session = "hyprland"; }))
   ];
 
@@ -21,6 +20,13 @@
     device = "/dev/sda";
     useOSProber = true;
   };
+
+  # home-manager = {
+  #   useGlobalPkgs = true;
+  #   useUserPackages = true;
+  #   extraSpecialArgs = { inherit inputs userSettings; };
+  #   users.${userSettings.userName} = import ./home.nix;
+  # };
 
   # Default shell
   environment.shells = with pkgs; [ zsh ];
@@ -60,7 +66,7 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

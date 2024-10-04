@@ -27,10 +27,10 @@
   programs.waybar = {
     enable = true;
 
-    # style = config.lib.stylix.colors {
-    #   template = builtins.readFile ./waybar.css.mustache;
-    #   extension = ".css";
-    # };
+    style = config.lib.stylix.colors {
+      template = builtins.readFile ./waybar.css.mustache;
+      extension = ".css";
+    };
 
     settings = {
       mainBar = {
