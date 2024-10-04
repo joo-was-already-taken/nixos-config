@@ -9,8 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:danth/stylix/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     # user inputs
@@ -52,10 +53,7 @@
       homeConfigurations = {
         ${userSettings.userName} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [
-            stylix.homeManagerModules.stylix
-            (profilePath + "/home.nix")
-          ];
+          modules = [ (profilePath + "/home.nix") ];
           extraSpecialArgs = {
             inherit systemSettings userSettings inputs;
           };
