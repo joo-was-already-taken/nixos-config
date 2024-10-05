@@ -87,7 +87,7 @@
             size = 4;
             passes = 2;
 
-            vibrancy = 0.1696;
+            vibrancy = 0.4;
           };
         };
 
