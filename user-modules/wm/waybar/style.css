@@ -1,0 +1,71 @@
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "JetBrainsMonoNLNerdFont";
+  /* font-size: 14px; */
+  min-height: 0px;
+}
+
+window#waybar {
+  background: @bg;
+}
+
+#window {
+  font-size: 13px;
+  color: @fg;
+}
+
+#workspaces button {
+  color: @fg-dim;
+  font-size: 13px;
+  padding: 0 6px;
+}
+#workspaces button.active {
+  color: @fg;
+}
+
+#clock {
+  color: @fg;
+  font-weight: bold;
+}
+
+#keyboard-state label.capslock {
+  color: @fg-dim;
+}
+#keyboard-state label.capslock.locked {
+  color: @green;
+}
+
+#network {
+  color: @blue;
+}
+#cpu {
+  color: @purple;
+}
+#temperature {
+  color: @orange;
+}
+#memory {
+  color: @cyan;
+}
+
+#battery {
+  color: @green;
+}
+#battery.warning {
+  color: @orange;
+}
+#battery.critical {
+  color: @red;
+}
+
+#clock,
+#keyboard-state,
+#network,
+#cpu,
+#temperature,
+#memory,
+#battery {
+  padding: 0 6px;
+  font-size: 14px;
+}

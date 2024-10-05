@@ -9,6 +9,7 @@
 
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
+    ../../styling/stylix.nix
     (import ../../system-modules/login-manager/tuigreet.nix (args // { session = "hyprland"; }))
   ];
 
@@ -123,29 +124,6 @@
     git
     wget
   ];
-
-  stylix = {
-    enable = true;
-
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
-    polarity = "dark";
-    image = ../../styling/wallpapers/tstudler_switzerland.jpg;
-
-    fonts = {
-      monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrains Nerd Font Mono";
-      };
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-      };
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-    };
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

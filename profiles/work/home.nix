@@ -3,11 +3,13 @@
 {
 
   imports = [
+    ../../styling/stylix.nix
     ../../user-modules/sh.nix
     ../../user-modules/apps/alacritty.nix
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
     ../../user-modules/wm/hyprland/hyprland.nix
+    ../../user-modules/wm/waybar/waybar.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -27,6 +29,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    hello
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of

@@ -42,18 +42,18 @@
           system = systemSettings.system;
           modules = [
             stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
+            # home-manager.nixosModules.home-manager
             (profilePath + "/configuration.nix")
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${userSettings.userName}.imports = [
-                  (profilePath + "/home.nix")
-                ];
-                extraSpecialArgs = { inherit userSettings; };
-              };
-            }
+            # {
+            #   home-manager = {
+            #     useGlobalPkgs = true;
+            #     useUserPackages = true;
+            #     users.${userSettings.userName}.imports = [
+            #       (profilePath + "/home.nix")
+            #     ];
+            #     extraSpecialArgs = { inherit userSettings; };
+            #   };
+            # }
           ];
           specialArgs = {
             inherit systemSettings userSettings;
@@ -65,6 +65,7 @@
         ${userSettings.userName} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+            stylix.homeManagerModules.stylix
             (profilePath + "/home.nix")
           ];
           extraSpecialArgs = {
