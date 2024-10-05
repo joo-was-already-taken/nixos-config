@@ -38,11 +38,11 @@ in {
         modules-center = [ "hyprland/window" ];
         modules-right = [
           "keyboard-state"
-          # "pulseaudio"
           "network"
           "cpu"
           "temperature"
           "memory"
+          "pulseaudio"
           "battery"
           "clock"
         ];
@@ -81,6 +81,23 @@ in {
           interval = 5;
           tooltip-format = "{ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}";
           max-length = 20;
+        };
+        pulseaudio = {
+          format = "{icon}  {volume}%";
+          format-bluetooth = "{icon}  {volume}%";
+          format-muted = " {volume}%";
+          format-icons = {
+            "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+            "alsa_output.pci-0000_00_1f.3.analog-stereo-muted" = "";
+            headphones = "";
+            # handsfree = "";
+            headset = "";
+            phone = "";
+            phone-muted = "";
+            portable = "";
+            car = "";
+            default = ["" ""];
+          };
         };
         battery = {
           format = "{icon} {capacity}%";
