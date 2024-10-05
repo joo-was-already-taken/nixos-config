@@ -10,6 +10,7 @@
     ../../user-modules/apps/tmux/tmux.nix
     ../../user-modules/wm/hyprland/hyprland.nix
     ../../user-modules/wm/waybar/waybar.nix
+    ../../user-modules/wm/rofi/rofi.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

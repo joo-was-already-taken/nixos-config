@@ -80,7 +80,7 @@ in {
           format-wifi = " {essid} ({signalStrength}%)";
           interval = 5;
           tooltip-format = "{ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}";
-          max-length = 20;
+          max-length = 16;
         };
         pulseaudio = {
           format = "{icon}  {volume}%";

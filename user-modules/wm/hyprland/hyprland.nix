@@ -18,6 +18,7 @@ in {
 
   home.packages = with pkgs; [
     pulseaudio
+    rofi-wayland
   ];
 
   xdg.portal = {
@@ -50,7 +51,7 @@ in {
       "$terminal" = "alacritty";
       "$fileManager" = "";
       "$webBrowser" = "firefox";
-      "$menu" = "wofi --show drun";
+      "$menu" = "rofi -show drun -show-icons";
 
       exec-once = [
         "waybar &"
