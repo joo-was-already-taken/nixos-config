@@ -11,7 +11,6 @@
     ../../user-modules/wm/hyprland/hyprland.nix
     ../../user-modules/wm/waybar/waybar.nix
     ../../user-modules/wm/rofi/rofi.nix
-    ../../user-modules/wm/mako/mako.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
