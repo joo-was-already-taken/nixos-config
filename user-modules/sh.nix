@@ -32,6 +32,11 @@
       grep = "grep --color=auto";
       ip = "ip -color=auto";
     };
+
+    initExtra = ''
+      # accept autosuggestions with Ctrl+Y
+      bindkey '^Y' autosuggest-accept
+    '';
   };
 
   programs.starship = {
