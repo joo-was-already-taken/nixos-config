@@ -5,6 +5,7 @@
   imports = [
     ../../styling/stylix.nix
     ../../user-modules/sh.nix
+    ../../user-modules/apps/firefox.nix
     ../../user-modules/apps/alacritty.nix
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
