@@ -148,7 +148,7 @@
 
       bind = [
         "$mod, F, exec, $webBrowser"
-        "$mod, Q, exec, $terminal"
+        "$mod, return, exec, $terminal"
         "$mod, C, killactive"
         "$mod, M, exit"
         "$mod, E, exec, $fileManager"
