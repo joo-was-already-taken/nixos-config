@@ -13,15 +13,17 @@
     (import ../../system-modules/login-manager/tuigreet.nix (args // { session = "hyprland"; }))
   ];
 
-  # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-  stylix.targets.grub.enable = false;
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda";
-    useOSProber = true;
-  };
+  # # Bootloader.
+  # # boot.loader.systemd-boot.enable = true;
+  # # boot.loader.efi.canTouchEfiVariables = true;
+  # stylix.targets.grub.enable = false;
+  # boot.loader.grub = {
+  #   enable = true;
+  #   device = "nodev";
+  #   useOSProber = true;
+  # };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # home-manager = {
   #   useGlobalPkgs = true;

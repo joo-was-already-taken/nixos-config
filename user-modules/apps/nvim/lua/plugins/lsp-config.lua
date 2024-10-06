@@ -15,7 +15,7 @@ end
 local ensure_installed = {
 	-- "bashls",
 	"clangd",
-	"cmake", -- or "neocmake"
+	-- "cmake", -- or "neocmake"
 	-- "cssls",
 	-- "html",
 	-- "jsonls",

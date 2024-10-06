@@ -35,7 +35,7 @@ in {
         reload_style_on_change = true;
         layer = "top";
         position = "top";
-        height = 26;
+        height = 34;
         spacing = 0;
         fixed-center = true;
 
@@ -90,12 +90,12 @@ in {
           max-length = 16;
         };
         pulseaudio = {
-          format = "{icon}  {volume}%";
+          format = "{icon} {volume}%";
           format-bluetooth = "{icon}  {volume}%";
           format-muted = " {volume}%";
           format-icons = {
-            "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
-            "alsa_output.pci-0000_00_1f.3.analog-stereo-muted" = "";
+            # "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+            # "alsa_output.pci-0000_00_1f.3.analog-stereo-muted" = "";
             headphones = "";
             # handsfree = "";
             headset = "";

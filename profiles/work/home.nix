@@ -15,6 +15,13 @@
     ../../user-modules/wm/rofi/rofi.nix
   ];
 
+  # TODO: modularize
+  programs.git = {
+    enable = true;
+    userName = "joo-was-already-taken";
+    userEmail = "trackpointus@protonmail.com";
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = userSettings.userName;

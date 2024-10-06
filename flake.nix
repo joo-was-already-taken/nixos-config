@@ -28,7 +28,7 @@
         system = "x86_64-linux";
         hostName = "nixos";
         profile = "work";
-        host = "fifa10-laptop";
+        host = "laptop";
       };
       userSettings = {
         userName = "joo";

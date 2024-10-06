@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0px;
-  /* font-size: 14px; */
+  /* font-size: 17; */
   min-height: 0px;
 }
 
@@ -10,13 +10,13 @@ window#waybar {
 }
 
 #window {
-  font-size: 13px;
+  font-size: 15px;
   color: @fg;
 }
 
 #workspaces button {
   color: @fg-dim;
-  font-size: 13px;
+  font-size: 15px;
   padding: 0 6px;
 }
 #workspaces button.active {
@@ -66,7 +66,7 @@ window#waybar {
 }
 
 #clock,
-#keyboard-state,
+#keyboard-state label.capslock,
 #network,
 #cpu,
 #temperature,
@@ -74,5 +74,5 @@ window#waybar {
 #pulseaudio,
 #battery {
   padding: 0 6px;
-  font-size: 14px;
+  font-size: 15px;
 }
