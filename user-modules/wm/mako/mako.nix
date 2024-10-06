@@ -3,5 +3,5 @@
 {
   services.mako = {
     enable = true;
-  }
+  };
 }
