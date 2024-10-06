@@ -20,7 +20,14 @@ in {
 
     style = lib.strings.concatStringsSep "\n" (
       (lib.attrsets.mapAttrsToList (k: v: "@define-color ${k} ${v};") colors)
-      ++ [ (builtins.readFile ./style.css) ]
+      ++ [
+        ''
+          * {
+            font-family: "${config.stylix.fonts.monospace.name}";
+          }
+        ''
+        (builtins.readFile ./style.css)
+      ]
     );
 
     settings = {

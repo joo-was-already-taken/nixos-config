@@ -1,11 +1,6 @@
-{ pkgs, lib, stylix, ... }:
+{ lib, config, ... }:
 
 {
-  home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
-  fonts.fontconfig.enable = true;
-
   programs.alacritty = {
     enable = true;
 
@@ -22,7 +17,7 @@
       };
 
       font = let
-        family = "JetBrainsMonoNLNerdFont";
+        family = config.stylix.fonts.monospace.name;
       in lib.mkForce { # override stylix settings
         normal = {
           inherit family;
