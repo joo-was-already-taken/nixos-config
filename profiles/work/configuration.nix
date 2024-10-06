@@ -101,7 +101,7 @@
   users.users.${userSettings.userName} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "input" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
