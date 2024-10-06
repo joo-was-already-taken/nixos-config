@@ -1,5 +1,5 @@
 {
-  description = "My first flake!";
+  description = "My personal NixOS-and-HomeManager flake";
 
   inputs = {
     # core inputs
