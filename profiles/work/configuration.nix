@@ -16,6 +16,7 @@
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
+  stylix.targets.grub.enable = false;
   boot.loader.grub = {
     enable = true;
     device = "/dev/sda";
