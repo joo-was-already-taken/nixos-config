@@ -26,7 +26,7 @@
     let
       systemSettings = {
         system = "x86_64-linux";
-        hostName = "nixos";
+        hostName = "nixdell";
         profile = "work";
         host = "laptop";
       };
