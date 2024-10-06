@@ -46,6 +46,7 @@
 
     settings = {
       add_newline = true;
+      right_format = "$cmd_duration";
     };
   };
 }
