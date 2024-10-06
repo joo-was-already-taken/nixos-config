@@ -8,7 +8,7 @@ let
     orange = base09;
     yellow = base0A;
     green = base0B;
-    cyan = base0C;
+    aqua = base0C;
     blue = base0D;
     purple = base0E;
   };

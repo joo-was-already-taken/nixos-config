@@ -8,6 +8,12 @@
     polarity = "dark";
     image = ./wallpapers/tstudler_switzerland.jpg;
 
+    cursor = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+      size = 32;
+    };
+
     fonts = {
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };

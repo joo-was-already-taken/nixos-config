@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, lib, userSettings, ... }:
 
 {
 
@@ -21,6 +21,11 @@
     userName = "joo-was-already-taken";
     userEmail = "trackpointus@protonmail.com";
   };
+  # home.pointerCursor.package = lib.mkForce pkgs.capitaine-cursors-themed;
+  # home.pointerCursor.name = lib.mkForce "Capitaine Cursors (Gruvbox) - White";
+  # # home.pointerCursor.size = 24;
+  # home.pointerCursor.x11.enable = true;
+
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

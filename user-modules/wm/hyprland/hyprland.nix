@@ -1,17 +1,6 @@
 { pkgs, lib, config, ... }:
-let 
-  colors = with config.lib.stylix.colors.withHashtag; {
-    bg = base00;
-    fg = base06;
-    red = base08;
-    orange = base09;
-    yellow = base0A;
-    green = base0B;
-    cyan = base0C;
-    blue = base0D;
-    purple = base0E;
-  };
-in {
+
+{
   imports = [
     ../../apps/alacritty.nix
   ];
@@ -62,8 +51,8 @@ in {
       ];
 
       env = [
-        "XCURSOR_SIZE, 24"
-        "HYPRCURSOR_SIZE, 24"
+        "XCURSOR_SIZE, 32"
+        "HYPRCURSOR_SIZE, 32"
       ];
 
       general = {
@@ -128,6 +117,10 @@ in {
         force_default_wallpaper = -1;
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
+      };
+
+      cursor = {
+        inactive_timeout = 16;
       };
 
       input = {
