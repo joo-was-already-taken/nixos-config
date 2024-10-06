@@ -50,9 +50,11 @@
         ", preferred, auto, 1"
       ];
 
-      env = [
-        "XCURSOR_SIZE, 32"
-        "HYPRCURSOR_SIZE, 32"
+      env = let
+        cursorSize = builtins.toString config.stylix.cursor.size;
+      in [
+        "XCURSOR_SIZE, ${cursorSize}"
+        "HYPRCURSOR_SIZE, ${cursorSize}"
       ];
 
       general = {
