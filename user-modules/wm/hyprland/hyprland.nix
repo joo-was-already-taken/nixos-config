@@ -8,6 +8,8 @@
   home.packages = with pkgs; [
     pulseaudio
     rofi-wayland
+    wlr-randr
+    hyprshot
   ];
 
   xdg.portal = {
@@ -38,7 +40,7 @@
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
-      "$fileManager" = "";
+      "$fileManager" = "dolphin";
       "$webBrowser" = "librewolf";
       "$menu" = "rofi -show drun -show-icons";
 
@@ -159,6 +161,8 @@
         # "$mod, P, pseudo"
         "$mod, J, togglesplit"
 
+        ", Print, exec, hyprshot -m output"
+
         # sound controls
         ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
         ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
@@ -168,6 +172,11 @@
         "$mod, L, movefocus, r"
         "$mod, K, movefocus, u"
         "$mod, J, movefocus, d"
+
+        "$mod SHIFT, H, movewindow, l"
+        "$mod SHIFT, L, movewindow, r"
+        "$mod SHIFT, K, movewindow, u"
+        "$mod SHIFT, J, movewindow, d"
 
         "$mod, N, workspace, +1"
         "$mod, P, workspace, -1"

@@ -44,6 +44,7 @@ in {
         ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
+          "tray"
           "keyboard-state"
           "network"
           "cpu"

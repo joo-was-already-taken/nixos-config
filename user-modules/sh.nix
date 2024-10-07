@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     eza
+    sl
   ];
 
   programs.zsh = {
@@ -16,7 +17,7 @@
 
     history = {
       ignoreAllDups = true;
-      share = true; # share history between zsh sessions
+      share = false; # whether to share history between zsh sessions
       extended = true; # save timestamps
       save = 1000;
       size = 1000;

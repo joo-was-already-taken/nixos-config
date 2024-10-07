@@ -66,6 +66,7 @@ window#waybar {
 }
 
 #clock,
+#tray,
 #keyboard-state label.capslock,
 #network,
 #cpu,
