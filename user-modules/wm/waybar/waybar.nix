@@ -56,7 +56,7 @@ in {
         "hyprland/window" = {
           format = "{}";
           rewrite = {
-            "(.*) Mozilla Firefox" = "Mozilla Firefox";
+            "(.*) LibreWolf" = "LibreWolf";
           };
         };
         keyboard-state = {
