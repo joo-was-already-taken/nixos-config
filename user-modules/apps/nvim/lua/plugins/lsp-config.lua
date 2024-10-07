@@ -15,11 +15,12 @@ end
 local ensure_installed = {
 	"bashls",
 	"clangd",
-	"cssls",
+	-- "cssls",
 	"html",
 	"jsonls",
 	-- "tsserver",
 	-- "ltex",
+  "nil", -- nix
 	"lua_ls",
 	"marksman", -- md, markdown
 	-- "pylsp",

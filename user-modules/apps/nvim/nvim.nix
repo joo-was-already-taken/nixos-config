@@ -10,6 +10,7 @@
     # mason
     unzip
     nodejs_22
+    cargo
 
     yaml-language-server
   ];
