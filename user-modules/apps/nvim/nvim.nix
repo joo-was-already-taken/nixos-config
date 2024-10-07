@@ -25,8 +25,8 @@
     source = ./.;
     recursive = true;
   };
-  home.file.".config/nvim/lua/plugins/stylix.lua".source = config.lib.stylix.colors {
-    template = builtins.readFile ./lua/plugins/stylix.lua.mustache;
-    extension = ".lua";
-  };
+  # home.file.".config/nvim/lua/plugins/stylix.lua".source = config.lib.stylix.colors {
+  #   template = builtins.readFile ./lua/plugins/stylix.lua.mustache;
+  #   extension = ".lua";
+  # };
 }
