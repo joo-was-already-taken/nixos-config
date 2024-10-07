@@ -1,5 +1,5 @@
 { config, pkgs, lib, userSettings, ... }@args:
-let 
+let
   sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "nvim --remote -c 'Man!' -o -";
