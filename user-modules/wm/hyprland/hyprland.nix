@@ -39,7 +39,7 @@
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
       "$fileManager" = "";
-      "$webBrowser" = "firefox";
+      "$webBrowser" = "librewolf";
       "$menu" = "rofi -show drun -show-icons";
 
       exec-once = [

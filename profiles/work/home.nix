@@ -6,7 +6,7 @@
     ../../styling/stylix.nix
     ../../user-modules/sh.nix
     ../../user-modules/apps/qutebrowser/qutebrowser.nix
-    ../../user-modules/apps/firefox.nix
+    ../../user-modules/apps/librewolf.nix
     ../../user-modules/apps/alacritty.nix
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
@@ -46,6 +46,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    zathura
     hello
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
