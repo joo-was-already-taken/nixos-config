@@ -16,7 +16,7 @@
 
     history = {
       ignoreAllDups = true;
-      share = false; # do not share history between zsh sessions
+      share = true; # share history between zsh sessions
       extended = true; # save timestamps
       save = 1000;
       size = 1000;
