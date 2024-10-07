@@ -13,22 +13,21 @@ local value_difference = function(a, b)
 end
 
 local ensure_installed = {
-	-- "bashls",
+	"bashls",
 	"clangd",
-	-- "cmake", -- or "neocmake"
-	-- "cssls",
-	-- "html",
-	-- "jsonls",
-	-- -- "tsserver",
-	-- -- "ltex",
+	"cssls",
+	"html",
+	"jsonls",
+	-- "tsserver",
+	-- "ltex",
 	"lua_ls",
-	"marksman",
-	-- -- "pylsp",
-  -- "pyright",
+	"marksman", -- md, markdown
+	-- "pylsp",
+  "pyright", -- python
 	"rust_analyzer",
-	"taplo",
-	-- "lemminx",
-	-- "yamlls",
+	"taplo", -- toml
+	"lemminx", -- xml
+	"yamlls",
 }
 
 local mason_lspconfig_config = function()

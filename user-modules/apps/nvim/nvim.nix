@@ -9,6 +9,7 @@
     gcc
     # mason
     unzip
+    nodejs_22
 
     yaml-language-server
   ];
