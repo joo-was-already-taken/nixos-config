@@ -15,6 +15,8 @@
     ../../user-modules/wm/rofi/rofi.nix
   ];
 
+  nixpkgs.config.allowUnfreePredicate = _: true;
+
   # TODO: modularize
   programs.git = {
     enable = true;
