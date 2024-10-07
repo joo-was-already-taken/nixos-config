@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, sessionVariables, ... }:
 
 {
   home.packages = with pkgs; [
@@ -17,12 +17,14 @@
 
     history = {
       ignoreAllDups = true;
-      share = false; # whether to share history between zsh sessions
+      share = false; # share history between zsh sessions
       extended = true; # save timestamps
       save = 1000;
       size = 1000;
       path = "$HOME/.cache/zsh_history";
     };
+
+    inherit sessionVariables;
     
     shellAliases = {
       ls = "eza --icons";

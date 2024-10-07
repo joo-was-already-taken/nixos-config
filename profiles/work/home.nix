@@ -1,10 +1,14 @@
-{ config, pkgs, lib, userSettings, ... }:
-
-{
-
+{ config, pkgs, lib, userSettings, ... }@args:
+let 
+  sessionVariables = {
+    EDITOR = "nvim";
+    MANPAGER = "nvim --remote -c 'Man!' -o -";
+    FILEMANAGER = "dolphin";
+  };
+in {
   imports = [
     ../../styling/stylix.nix
-    ../../user-modules/sh.nix
+    (import ../../user-modules/sh.nix (args // { inherit sessionVariables; }))
     ../../user-modules/apps/dolphin.nix
     ../../user-modules/apps/qutebrowser/qutebrowser.nix
     ../../user-modules/apps/librewolf.nix
@@ -32,11 +36,6 @@
 
   home.username = userSettings.userName;
   home.homeDirectory = "/home" + ("/" + userSettings.userName);
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    FILEMANAGER = "dolphin";
-  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
