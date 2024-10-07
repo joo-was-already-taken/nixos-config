@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -20,8 +20,13 @@
     vimAlias = true;
     vimdiffAlias = true;
   };
+
   home.file.".config/nvim" = {
     source = ./.;
     recursive = true;
+  };
+  home.file.".config/nvim/lua/plugins/stylix.lua".source = config.lib.stylix.colors {
+    template = builtins.readFile ./lua/plugins/stylix.lua.mustache;
+    extension = ".lua";
   };
 }
