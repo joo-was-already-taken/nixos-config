@@ -11,6 +11,7 @@
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     ../../styling/stylix.nix
     (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "hyprland"; }))
+    # ../../system-modules/display-managers/sddm.nix
   ];
 
   # # Bootloader.
