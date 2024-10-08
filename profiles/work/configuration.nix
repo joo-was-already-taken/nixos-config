@@ -10,7 +10,7 @@
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     ../../styling/stylix.nix
-    (import ../../system-modules/login-manager/tuigreet.nix (args // { session = "hyprland"; }))
+    (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "hyprland"; }))
   ];
 
   # # Bootloader.
