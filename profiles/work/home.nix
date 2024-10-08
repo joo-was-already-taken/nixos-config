@@ -32,6 +32,11 @@ in {
   # home.pointerCursor.name = lib.mkForce "Capitaine Cursors (Gruvbox) - White";
   # # home.pointerCursor.size = 24;
   # home.pointerCursor.x11.enable = true;
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
 
   home.username = userSettings.userName;

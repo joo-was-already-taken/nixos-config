@@ -20,7 +20,7 @@ local ensure_installed = {
 	"jsonls",
 	-- "tsserver",
 	-- "ltex",
-  "nil", -- nix
+  "nil_ls", -- nix
 	"lua_ls",
 	"marksman", -- md, markdown
 	-- "pylsp",
