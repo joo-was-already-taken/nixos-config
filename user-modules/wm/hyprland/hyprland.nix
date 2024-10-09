@@ -161,6 +161,9 @@ in {
         "$mod, R, exec, $menu"
         # "$mod, P, pseudo"
         "$mod, J, togglesplit"
+        "$mod, O, fullscreen, 0" # fullscreen
+        "$mod, U, fullscreen, 1" # maximize
+        "$mod, I, togglefloating"
 
         ", Print, exec, hyprshot -m output"
 
