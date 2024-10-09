@@ -1,14 +1,10 @@
-{ pkgs, lib, config, systemSettings, ... }:
+{ pkgs, lib, config, systemSettings, sessionVariables, ... }:
 let
   brighntessDevice = if systemSettings.host == "laptop" then
     "intel_backlight"
   else
     builtins.throw "Cannot select backlight device: unknown host";
 in {
-  imports = [
-    ../../apps/alacritty.nix
-  ];
-
   home.packages = with pkgs; [
     pulseaudio
     rofi-wayland
@@ -44,9 +40,9 @@ in {
 
     settings = {
       "$mod" = "SUPER";
-      "$terminal" = "alacritty";
-      "$fileManager" = "dolphin";
-      "$webBrowser" = "librewolf";
+      "$terminal" = sessionVariables.TERMINAL;
+      "$fileManager" = sessionVariables.FILEMANAGER;
+      "$webBrowser" = sessionVariables.BROWSER;
       "$menu" = "rofi -show drun -show-icons";
 
       exec-once = [

@@ -4,6 +4,8 @@ let
     EDITOR = "nvim";
     MANPAGER = "nvim --remote -c 'Man!' -o -";
     FILEMANAGER = "dolphin";
+    TERMINAL = "alacritty";
+    BROWSER = "librewolf";
   };
 in {
   imports = [
@@ -15,7 +17,7 @@ in {
     ../../user-modules/apps/alacritty.nix
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
-    ../../user-modules/wm/hyprland/hyprland.nix
+    (import ../../user-modules/wm/hyprland/hyprland.nix (args // { inherit sessionVariables; }))
     ../../user-modules/wm/waybar/waybar.nix
     ../../user-modules/wm/rofi/rofi.nix
   ];
