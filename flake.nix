@@ -69,7 +69,7 @@
             (profilePath + "/home.nix")
           ];
           extraSpecialArgs = {
-            inherit userSettings;
+            inherit userSettings systemSettings;
           };
         };
       };

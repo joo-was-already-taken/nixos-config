@@ -1,6 +1,10 @@
-{ pkgs, lib, config, ... }:
-
-{
+{ pkgs, lib, config, systemSettings, ... }:
+let
+  brighntessDevice = if systemSettings.host == "laptop" then
+    "intel_backlight"
+  else
+    builtins.throw "Cannot select backlight device: unknown host";
+in {
   imports = [
     ../../apps/alacritty.nix
   ];
@@ -10,6 +14,7 @@
     rofi-wayland
     wlr-randr
     hyprshot
+    brightnessctl
   ];
 
   xdg.portal = {
@@ -167,6 +172,9 @@
         ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
         ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
         ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+        # brightness controls (backlight)
+        ", XF86MonBrightnessUP, exec, brightnessctl --device='${brighntessDevice}' set +10%"
+        ", XF86MonBrightnessDOWN, exec, brightnessctl --device='${brighntessDevice}' set 10%-"
 
         "$mod, H, movefocus, l"
         "$mod, L, movefocus, r"

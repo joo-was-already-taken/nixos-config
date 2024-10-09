@@ -1,4 +1,4 @@
-{ config, pkgs, lib, userSettings, ... }@args:
+{ config, pkgs, lib, userSettings, systemSettings, ... }@args:
 let
   sessionVariables = {
     EDITOR = "nvim";
