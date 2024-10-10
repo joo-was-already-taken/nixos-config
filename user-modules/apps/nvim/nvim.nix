@@ -1,18 +1,18 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     # telescope
     ripgrep
     fd
+
     # treesitter
     gcc
+
     # mason
     unzip
     nodejs_22
     cargo
-
-    yaml-language-server
   ];
 
   programs.neovim = {
