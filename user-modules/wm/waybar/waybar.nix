@@ -58,6 +58,8 @@ in {
           format = "{}";
           rewrite = {
             "(.*) LibreWolf" = "LibreWolf";
+            "(.*) Firefox" = "Firefox";
+            "(.*) qutebrowser" = "qutebrowser";
           };
         };
         keyboard-state = {
