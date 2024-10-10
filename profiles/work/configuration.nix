@@ -123,6 +123,19 @@
     wget
   ];
 
+  # uninstall nano
+  environment.defaultPackages = [ pkgs.nano ];
+
+  # environment variables (session variables)
+  environment.sessionVariables = {
+    XDG_CACHE_HOME  = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME   = "$HOME/.local/share";
+    XDG_STATE_HOME  = "$HOME/.local/state";
+
+    EDITOR = "vim";
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

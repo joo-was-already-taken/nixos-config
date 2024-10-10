@@ -36,7 +36,7 @@
       ip = "ip -color=auto";
     };
 
-    initExtra = ''
+    initExtra = /*bash*/ ''
       # accept autosuggestions with Ctrl+Y
       bindkey '^Y' autosuggest-accept
     '';
