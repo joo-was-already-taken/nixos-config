@@ -1,4 +1,4 @@
-{ config, pkgs, sessionVariables, ... }:
+{ pkgs, sessionVariables, ... }:
 
 {
   home.packages = with pkgs; [
