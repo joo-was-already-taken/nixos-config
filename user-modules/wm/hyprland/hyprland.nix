@@ -1,10 +1,6 @@
 { pkgs, lib, config, systemSettings, sessionVariables, ... }:
-let
-  brighntessDevice = if systemSettings.host == "laptop" then
-    "intel_backlight"
-  else
-    builtins.throw "Cannot select backlight device: unknown host";
-in {
+
+{
   home.packages = with pkgs; [
     pulseaudio
     rofi-wayland
@@ -174,8 +170,8 @@ in {
         ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
         ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
         # brightness controls (backlight)
-        ", XF86MonBrightnessUP, exec, brightnessctl --device='${brighntessDevice}' set +10%"
-        ", XF86MonBrightnessDOWN, exec, brightnessctl --device='${brighntessDevice}' set 10%-"
+        ", XF86MonBrightnessUP, exec, brightnessctl set +10%"
+        ", XF86MonBrightnessDOWN, exec, brightnessctl set 10%-"
 
         "$mod, H, movefocus, l"
         "$mod, L, movefocus, r"
