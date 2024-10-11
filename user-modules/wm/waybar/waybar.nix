@@ -1,7 +1,8 @@
-{ pkgs, config, lib, ... }:
+{ config, lib, ... }:
 let
   colors = with config.lib.stylix.colors.withHashtag; {
     bg = base00;
+    bg-bri = base01;
     fg-dim = base04;
     fg = base07;
     red = base08;
@@ -44,7 +45,6 @@ in {
         ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
-          "tray"
           "keyboard-state"
           "network"
           "cpu"
@@ -53,6 +53,7 @@ in {
           "pulseaudio"
           "battery"
           "clock"
+          "tray"
         ];
         "hyprland/window" = {
           format = "{}";

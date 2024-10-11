@@ -23,6 +23,15 @@ window#waybar {
   color: @fg;
 }
 
+#tray {
+  /* border-left: 2px solid @bg-bri; */
+  background-color: @bg-bri;
+  border-radius: 6px;
+  padding: 0 6px; 
+  margin: 5px;
+  /* font-size: 10px; */
+}
+
 #clock {
   color: @fg;
   font-weight: bold;
