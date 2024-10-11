@@ -23,6 +23,11 @@ window#waybar {
   color: @fg;
 }
 
+#submap {
+  color: @red;
+  padding: 0 12px;
+}
+
 #tray {
   /* border-left: 2px solid @bg-bri; */
   background-color: @bg-bri;

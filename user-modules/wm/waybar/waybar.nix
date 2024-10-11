@@ -42,6 +42,7 @@ in {
 
         modules-left = [
           "hyprland/workspaces"
+          "hyprland/submap"
         ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
@@ -62,6 +63,10 @@ in {
             "(.*) Firefox" = "Firefox";
             "(.*) qutebrowser" = "qutebrowser";
           };
+        };
+        "hyprland/submap" = {
+          format = "[{}]";
+          tooltip = true;
         };
         keyboard-state = {
           capslock = true;
