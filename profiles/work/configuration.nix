@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, systemSettings, userSettings, ... }@args:
+{ pkgs, systemSettings, userSettings, ... }@args:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -108,9 +108,15 @@
     extraGroups = [ "networkmanager" "wheel" "input" ];
     packages = with pkgs; [
       kdePackages.kate
+      # network-manager-applet
     #  thunderbird
     ];
   };
+
+  # programs.nm-applet = {
+  #   enable = true;
+  #   indicator = true;
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

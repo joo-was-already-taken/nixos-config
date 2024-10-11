@@ -40,13 +40,15 @@ in {
 
     settings = {
       "$mod" = "SUPER";
+      "$keysymMod" = "Super_L";
       "$terminal" = sessionVariables.TERMINAL;
       "$fileManager" = sessionVariables.FILEMANAGER;
       "$webBrowser" = sessionVariables.BROWSER;
       "$menu" = "rofi -show drun -show-icons";
 
       exec-once = [
-        "waybar &"
+        "waybar &" # TODO: make conditional
+        "nm-applet &" # TODO: make conditional
       ];
 
       monitor = [
@@ -68,7 +70,7 @@ in {
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         # "col.inactive_border" = "rgba(595959aa)";
 
-        resize_on_border = false;
+        resize_on_border = true;
 
         allow_tearing = false;
 
@@ -199,5 +201,18 @@ in {
             builtins.concatLists (builtins.genList (idx: bindWorkspace (idx + 1)) 9)
         );
     };
+
+    extraConfig = ''
+      # resize submap
+      bind = $mod, S, submap, resize
+      submap = resize
+      binde = , H, resizeactive, -24 0
+      binde = , L, resizeactive, 24 0
+      binde = , K, resizeactive, 0 -24
+      binde = , J, resizeactive, 0 24
+      bind = , escape, submap, reset
+      bind = , catchall, submap, reset
+      submap = reset
+    '';
   };
 }

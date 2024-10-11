@@ -116,6 +116,7 @@ in {
             warning = 30;
             critical = 10;
           };
+          interval = 30;
         };
         "hyprland/workspaces" = {
           format = "{icon}";

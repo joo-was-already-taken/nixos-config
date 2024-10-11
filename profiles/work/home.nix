@@ -55,6 +55,7 @@ in {
 
   home.packages = with pkgs; [
     zathura
+    networkmanagerapplet
   ];
 
   # Let Home Manager install and manage itself.
