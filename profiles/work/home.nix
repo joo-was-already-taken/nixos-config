@@ -30,6 +30,22 @@ in {
     userName = "joo-was-already-taken";
     userEmail = "trackpointus@protonmail.com";
   };
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "Breeze-Dark";
+  #     package = pkgs.libsForQt5.breeze-gtk;
+  #   };
+  #   gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+  # };
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    # style = {
+    #   name = "gtk2";
+    #   package = pkgs.libsForQt5.breeze-qt5;
+    # };
+  };
   # home.pointerCursor.package = lib.mkForce pkgs.capitaine-cursors-themed;
   # home.pointerCursor.name = lib.mkForce "Capitaine Cursors (Gruvbox) - White";
   # # home.pointerCursor.size = 24;

@@ -1,7 +1,8 @@
-{ pkgs, lib, config, systemSettings, sessionVariables, ... }:
+{ pkgs, lib, inputs, config, systemSettings, sessionVariables, ... }:
 
 {
   home.packages = with pkgs; [
+    pyprland
     pulseaudio
     rofi-wayland
     wlr-randr
@@ -13,7 +14,6 @@
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
     ];
     config.common.default = "*";
   };
@@ -28,9 +28,17 @@
     };
   };
 
+  home.file.".config/hypr/pyprland.toml".text = /*toml*/ ''
+    [layout_center]
+    margin = 60
+    offset = [0, 30]
+  '';
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
+    systemd.enable = true;
+    package = inputs.hyprland.packages.${systemSettings.system}.hyprland;
 
     plugins = [];
 
@@ -45,6 +53,7 @@
       exec-once = [
         "waybar &" # TODO: make conditional
         "nm-applet &" # TODO: make conditional
+        "pypr &"
       ];
 
       monitor = [
@@ -153,7 +162,7 @@
         "$mod, F, exec, $webBrowser"
         "$mod, return, exec, $terminal"
         "$mod, C, killactive"
-        "$mod, M, exit"
+        "$mod, Q, exit"
         "$mod, E, exec, $fileManager"
         "$mod, V, togglefloating"
         "$mod, R, exec, $menu"
@@ -162,6 +171,8 @@
         "$mod, O, fullscreen, 0" # fullscreen
         "$mod, U, fullscreen, 1" # maximize
         "$mod, I, togglefloating"
+
+        "$mod, M, exec, pypr layout_center toggle"
 
         ", Print, exec, hyprshot -m output"
 
