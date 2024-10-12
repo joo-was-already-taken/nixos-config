@@ -38,14 +38,14 @@ in {
   #   };
   #   gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
   # };
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    # style = {
-    #   name = "gtk2";
-    #   package = pkgs.libsForQt5.breeze-qt5;
-    # };
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk";
+  #   # style = {
+  #   #   name = "gtk2";
+  #   #   package = pkgs.libsForQt5.breeze-qt5;
+  #   # };
+  # };
   # home.pointerCursor.package = lib.mkForce pkgs.capitaine-cursors-themed;
   # home.pointerCursor.name = lib.mkForce "Capitaine Cursors (Gruvbox) - White";
   # # home.pointerCursor.size = 24;
@@ -72,6 +72,7 @@ in {
   home.packages = with pkgs; [
     zathura
     networkmanagerapplet
+    pavucontrol
   ];
 
   # Let Home Manager install and manage itself.

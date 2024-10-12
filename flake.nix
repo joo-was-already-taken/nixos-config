@@ -15,11 +15,12 @@
     };
 
     # user inputs
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
     # };
+    pyprland.url = "github:hyprland-community/pyprland";
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:

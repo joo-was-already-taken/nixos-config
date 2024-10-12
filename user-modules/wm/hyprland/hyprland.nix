@@ -1,8 +1,16 @@
-{ pkgs, lib, inputs, config, systemSettings, sessionVariables, ... }:
+{ pkgs, inputs, config, systemSettings, sessionVariables, ... }:
 
 {
   home.packages = with pkgs; [
-    pyprland
+    inputs.pyprland.packages.${systemSettings.system}.pyprland
+    # (pyprland.overrideAttrs {
+    #   src = fetchFromGitHub {
+    #     owner = "hyprland-community";
+    #     repo = "pyprland";
+    #     rev = "";
+    #     hash = "";
+    #   };
+    # })
     pulseaudio
     rofi-wayland
     wlr-randr
@@ -14,6 +22,8 @@
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+      # xdg-desktop-portal-kde # waybar doesn't work with this enabled
     ];
     config.common.default = "*";
   };
@@ -29,16 +39,21 @@
   };
 
   home.file.".config/hypr/pyprland.toml".text = /*toml*/ ''
+    [pyprland]
+    plugins = [
+      "layout_center",
+    ]
+
     [layout_center]
-    margin = 60
-    offset = [0, 30]
+    offset = [ 0, 14 ] # TODO: 34 should be the same as waybar's height
+    margin = [ 800, 37 ] # TODO: 34/2 + (20 should be the same as `gaps_out`)
   '';
 
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    package = inputs.hyprland.packages.${systemSettings.system}.hyprland;
+    # package = inputs.hyprland.packages.${systemSettings.system}.hyprland;
 
     plugins = [];
 
@@ -176,14 +191,6 @@
 
         ", Print, exec, hyprshot -m output"
 
-        # sound controls
-        ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
-        ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
-        ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
-        # brightness controls (backlight)
-        ", XF86MonBrightnessUP, exec, brightnessctl set +10%"
-        ", XF86MonBrightnessDOWN, exec, brightnessctl set 10%-"
-
         "$mod, H, movefocus, l"
         "$mod, L, movefocus, r"
         "$mod, K, movefocus, u"
@@ -207,6 +214,17 @@
           in
             builtins.concatLists (builtins.genList (idx: bindWorkspace (idx + 1)) 9)
         );
+
+      binde = [
+        # sound controls
+        ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
+        ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+
+        # brightness controls (backlight)
+        ", XF86MonBrightnessUP, exec, brightnessctl set +10%"
+        ", XF86MonBrightnessDOWN, exec, brightnessctl set 10%-"
+      ];
     };
 
     extraConfig = ''
