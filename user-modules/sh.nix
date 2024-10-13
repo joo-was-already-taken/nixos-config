@@ -65,8 +65,8 @@
       gc = "git commit";
       gch = "git checkout";
       gb = "git branch";
-      gclone-hub = "(){ git clone https://github.com/$1 }";
-      gclone-lab = "(){ git clone https://gitlab.com/$1 }";
+      gclone-hub = "() { git clone https://github.com/$1 }";
+      gclone-lab = "() { git clone https://gitlab.com/$1 }";
     };
 
     initExtra = /*bash*/ '' # jk it's zsh

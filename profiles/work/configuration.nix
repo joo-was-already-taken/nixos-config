@@ -107,7 +107,7 @@
     description = userSettings.userName;
     extraGroups = [ "networkmanager" "wheel" "input" ];
     packages = with pkgs; [
-      kdePackages.kate
+      kdePackages.kate # TODO
       # network-manager-applet
     #  thunderbird
     ];
@@ -129,8 +129,9 @@
     wget
   ];
 
-  # uninstall nano
-  environment.defaultPackages = [ pkgs.nano ];
+  # uninstall nano and xterm
+  programs.nano.enable = false;
+  services.xserver.desktopManager.xterm.enable = false;
 
   # environment variables (session variables)
   environment.sessionVariables = {

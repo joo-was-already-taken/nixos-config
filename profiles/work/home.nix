@@ -6,6 +6,9 @@ let
     FILEMANAGER = "dolphin";
     TERMINAL = "alacritty";
     BROWSER = "librewolf";
+
+    # TODO
+    NIXOS_OZONE_WL = "1";
   };
 in {
   imports = [
@@ -30,6 +33,17 @@ in {
     userName = "joo-was-already-taken";
     userEmail = "trackpointus@protonmail.com";
   };
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium.fhs;
+  };
+  # programs.vscode = {
+  #   enable = true;
+  #   # package = pkgs.vscodium.fhs;
+  #   extensions = with pkgs.vscode-extensions; [
+  #     vscodevim.vim
+  #   ];
+  # };
   # gtk = {
   #   enable = true;
   #   theme = {
@@ -73,6 +87,8 @@ in {
     zathura
     networkmanagerapplet
     pavucontrol
+    sqldeveloper # TODO: remove, added imperatively to nix store
+    # vscode
   ];
 
   # Let Home Manager install and manage itself.
