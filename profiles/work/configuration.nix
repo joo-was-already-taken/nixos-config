@@ -26,6 +26,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # blueman
+  services.blueman.enable = true;
+
   # home-manager = {
   #   useGlobalPkgs = true;
   #   useUserPackages = true;

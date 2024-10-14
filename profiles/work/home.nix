@@ -14,6 +14,7 @@ in {
   imports = [
     ../../styling/stylix.nix
     (import ../../user-modules/sh.nix (args // { inherit sessionVariables; }))
+    ../../user-modules/bluetooth.nix
     ../../user-modules/apps/dolphin.nix
     ../../user-modules/apps/qutebrowser/qutebrowser.nix
     ../../user-modules/apps/librewolf.nix
@@ -37,13 +38,6 @@ in {
     enable = true;
     package = pkgs.vscodium.fhs;
   };
-  # programs.vscode = {
-  #   enable = true;
-  #   # package = pkgs.vscodium.fhs;
-  #   extensions = with pkgs.vscode-extensions; [
-  #     vscodevim.vim
-  #   ];
-  # };
   # gtk = {
   #   enable = true;
   #   theme = {
@@ -87,8 +81,6 @@ in {
     zathura
     networkmanagerapplet
     pavucontrol
-    sqldeveloper # TODO: remove, added imperatively to nix store
-    # vscode
   ];
 
   # Let Home Manager install and manage itself.
