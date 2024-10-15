@@ -46,7 +46,7 @@ in {
       modules-right = [
         "tray"
         "keyboard-state"
-        "network"
+        # "network"
         "cpu"
         "temperature"
         "memory"
@@ -87,15 +87,15 @@ in {
         format = " {}%";
         max-length = 10;
       };
-      network = {
-        format-disconnected = " ";
-        format-ethernet = "󱘖 {ifname}";
-        format-linked = "󱘖 {ifname} (No IP)";
-        format-wifi = " {essid} ({signalStrength}%)";
-        interval = 5;
-        tooltip-format = "{ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}";
-        max-length = 16;
-      };
+      # network = {
+      #   format-disconnected = " ";
+      #   format-ethernet = "󱘖 {ifname}";
+      #   format-linked = "󱘖 {ifname} (No IP)";
+      #   format-wifi = " {essid} ({signalStrength}%)";
+      #   interval = 5;
+      #   tooltip-format = "{ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}";
+      #   max-length = 16;
+      # };
       pulseaudio = {
         format = "{icon} {volume}%";
         format-bluetooth = "{icon}  {volume}%";

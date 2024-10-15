@@ -1,11 +1,11 @@
-{ config, pkgs, lib, userSettings, systemSettings, ... }@args:
+{ pkgs, userSettings, ... }@args:
 let
   sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "nvim --remote -c 'Man!' -o -";
-    FILEMANAGER = "dolphin";
+    FILEMANAGER = "nemo";
     TERMINAL = "alacritty";
-    BROWSER = "librewolf";
+    BROWSER = "qutebrowser";
 
     # TODO
     NIXOS_OZONE_WL = "1";
@@ -15,7 +15,6 @@ in {
     ../../styling/stylix.nix
     (import ../../user-modules/sh.nix (args // { inherit sessionVariables; }))
     ../../user-modules/bluetooth.nix
-    ../../user-modules/apps/dolphin.nix
     ../../user-modules/apps/qutebrowser/qutebrowser.nix
     ../../user-modules/apps/librewolf.nix
     ../../user-modules/apps/alacritty.nix
@@ -81,7 +80,26 @@ in {
     zathura
     networkmanagerapplet
     pavucontrol
+    cinnamon.nemo
   ];
+
+  # stylix.targets.gtk.enable = false;
+  gtk = {
+    enable = true;
+    # theme = lib.mkForce { # override stylix
+    #   name = "Gruvbox-Green-Dark";
+    #   package = pkgs.gruvbox-gtk-theme.override {
+    #     colorVariants = [ "dark" ];
+    #     # themeVariants = [ "green" ];
+    #   };
+    # };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme.override {
+        color = "black";
+      };
+    };
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
