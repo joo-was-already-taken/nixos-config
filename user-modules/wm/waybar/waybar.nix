@@ -3,6 +3,7 @@ let
   colors = with config.lib.stylix.colors.withHashtag; {
     bg = base00;
     bg-bri = base01;
+    bg-very-bri = base02;
     fg-dim = base04;
     fg = base07;
     red = base08;
@@ -123,12 +124,25 @@ in {
         interval = 30;
       };
       "hyprland/workspaces" = {
+        all-outputs = true;
+        active-only = false;
         format = "{icon}";
         format-icons = {
-          active = "";
-          default = "";
-          urgent = "";
+          "1" = "I";
+          "2" = "II";
+          "3" = "III";
+          "4" = "IV";
+          "5" = "V";
+          "6" = "VI";
+          "7" = "VII";
+          "8" = "VIII";
+          "9" = "IX";
+          "10" = "X";
+          # active = "";
+          # default = "";
+          # urgent = "";
         };
+        persistent-workspaces."*" = 10;
         on-click = "activate";
       };
     };

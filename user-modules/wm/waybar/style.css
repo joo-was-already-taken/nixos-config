@@ -20,7 +20,13 @@ window#waybar {
   padding: 0 6px;
 }
 #workspaces button.active {
-  color: @fg;
+  color: @yellow;
+}
+#workspaces button.urgent {
+  color: @red;
+}
+#workspaces button.empty {
+  color: @bg-very-bri;
 }
 
 #submap {
