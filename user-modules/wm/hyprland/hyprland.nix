@@ -212,7 +212,7 @@
               "$mod SHIFT, code:1${toString idx}, movetoworkspace, ${toString ws}"
             ];
           in
-            builtins.concatLists (builtins.genList (idx: bindWorkspace (idx + 1)) 9)
+            builtins.concatLists (builtins.genList (idx: bindWorkspace (idx + 1)) 10)
         );
 
       binde = [

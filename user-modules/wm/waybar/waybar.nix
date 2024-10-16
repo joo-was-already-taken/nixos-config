@@ -126,6 +126,7 @@ in {
       "hyprland/workspaces" = {
         all-outputs = true;
         active-only = false;
+        show-special = true;
         format = "{icon}";
         format-icons = {
           "1" = "I";

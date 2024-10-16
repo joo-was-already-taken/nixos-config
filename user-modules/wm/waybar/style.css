@@ -19,7 +19,8 @@ window#waybar {
   font-size: 15px;
   padding: 0 6px;
 }
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.active.empty {
   color: @yellow;
 }
 #workspaces button.urgent {
