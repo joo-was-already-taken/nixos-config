@@ -8,7 +8,6 @@ in {
     home.packages = with pkgs; [
       inputs.pyprland.packages.${systemSettings.system}.pyprland
       pulseaudio
-      rofi-wayland
       wlr-randr
       hyprshot
       brightnessctl
@@ -59,7 +58,10 @@ in {
         "$terminal" = sessionVariables.TERMINAL;
         "$fileManager" = sessionVariables.FILEMANAGER;
         "$webBrowser" = sessionVariables.BROWSER;
-        "$menu" = "rofi -show drun -show-icons";
+        "$menu" = if config.modules.rofi.enable then
+          "rofi -show drun -show-icons"
+        else
+          builtins.throw "No menu enabled (rofi)";
 
         exec-once = [
           "waybar &" # TODO: make conditional

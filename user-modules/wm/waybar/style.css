@@ -6,84 +6,79 @@
 }
 
 window#waybar {
-  background: @bg;
+  background: @background;
 }
 
 #window {
   font-size: 15px;
-  color: @fg;
+  color: @windowName;
 }
 
 #workspaces button {
-  color: @fg-dim;
+  color: @inactiveWorkspace;
   font-size: 15px;
   padding: 0 6px;
 }
 #workspaces button.active,
 #workspaces button.active.empty {
-  color: @yellow;
+  color: @activeWorkspace;
 }
 #workspaces button.urgent {
-  color: @red;
+  color: @urgentWorkspace;
 }
 #workspaces button.empty {
-  color: @bg-very-bri;
+  color: @emptyWorkspace;
 }
 
 #submap {
-  color: @red;
+  color: @submap;
   padding: 0 12px;
 }
 
 #tray {
-  /* border-left: 2px solid @bg-bri; */
-  background-color: @bg-bri;
+  background-color: @tray;
   border-radius: 6px;
   padding: 0 6px; 
   margin: 5px;
-  /* font-size: 10px; */
 }
 
 #clock {
-  color: @fg;
+  color: @clock;
   font-weight: bold;
 }
 
 #keyboard-state label.capslock {
-  color: @fg-dim;
+  color: @keyboardStateInactive;
 }
 #keyboard-state label.capslock.locked {
-  color: @green;
+  color: @keyboardStateActive;
 }
 
-#network {
-  color: @blue;
-}
 #cpu {
-  color: @purple;
+  color: @cpu;
 }
 #temperature {
-  color: @orange;
+  color: @temperature;
 }
 #memory {
-  color: @aqua;
+  color: @memory;
 }
 
 #pulseaudio {
-  color: @yellow;
+  color: @sound;
 }
 #pulseaudio.muted {
-  color: @fg-dim;
+  color: @soundMuted;
 }
 
 #battery {
-  color: @green;
+  color: @battery;
 }
 #battery.warning {
-  color: @orange;
+  color: @batteryWarning;
 }
 #battery.critical {
-  color: @red;
+  color: @batteryCritical;
 }
 
 #clock,

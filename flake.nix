@@ -35,6 +35,7 @@
         userName = "joo";
       };
       lib = nixpkgs.lib;
+      myLib = import ./my-lib { inherit lib; };
       pkgs = nixpkgs.legacyPackages.${systemSettings.system};
       profilePath = ./. + "/profiles" + ("/" + systemSettings.profile);
     in {
@@ -70,7 +71,7 @@
             (profilePath + "/home.nix")
           ];
           extraSpecialArgs = {
-            inherit inputs userSettings systemSettings;
+            inherit myLib inputs userSettings systemSettings;
           };
         };
       };

@@ -1,9 +1,9 @@
-{ lib, ... }@args:
+{ ... }@args:
 
 {
   imports = [
     (import ./zsh.nix args)
   ];
 
-  modules.zsh.enable = lib.mkDefault true;
+  modules.zsh.enable = true;
 }

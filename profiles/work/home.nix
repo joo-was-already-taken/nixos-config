@@ -20,9 +20,8 @@ in {
     ../../user-modules/apps/alacritty.nix
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
-    (import ../../user-modules/wm/hyprland (args // { inherit sessionVariables; }))
-    ../../user-modules/wm/waybar/waybar.nix
-    ../../user-modules/wm/rofi
+    (import ../../user-modules/wm (args // { inherit sessionVariables; }))
+    ../../user-modules/wm/waybar
   ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;
