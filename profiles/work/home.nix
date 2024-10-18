@@ -21,7 +21,6 @@ in {
     ../../user-modules/apps/nvim/nvim.nix
     ../../user-modules/apps/tmux/tmux.nix
     (import ../../user-modules/wm (args // { inherit sessionVariables; }))
-    ../../user-modules/wm/waybar
   ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -77,7 +76,6 @@ in {
 
   home.packages = with pkgs; [
     zathura
-    networkmanagerapplet
     pavucontrol
     cinnamon.nemo
   ];

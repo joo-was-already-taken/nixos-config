@@ -2,7 +2,7 @@
 let
   moduleName = "hyprland";
 in {
-  options.modules.${moduleName}.enable = lib.mkEnableOption "hyprland";
+  options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
@@ -11,6 +11,7 @@ in {
       wlr-randr
       hyprshot
       brightnessctl
+      networkmanagerapplet
     ];
 
     xdg.portal = {
@@ -29,7 +30,7 @@ in {
       enable = true;
       settings = {
         preload = [ wallpaper ];
-        wallpaper = [ ",${wallpaper}" ];
+        wallpaper = [ ", ${wallpaper}" ];
       };
     };
 
@@ -64,8 +65,8 @@ in {
           builtins.throw "No menu enabled (rofi)";
 
         exec-once = [
-          "waybar &" # TODO: make conditional
-          "nm-applet &" # TODO: make conditional
+          (lib.mkIf config.modules.waybar.enable "waybar &")
+          "nm-applet &"
           "pypr &"
         ];
 
