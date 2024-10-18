@@ -21,6 +21,7 @@ in {
         path = ~/.config/git/config-university
     '';
 
+    # to update run `systemctl --user start gitconfig-init.service`
     systemd.user.services."gitconfig-init" = {
       Service.ExecStart = pkgs.writeShellScript "gitconfig-init" ''
         #!/run/current-system/sw/bin/bash
