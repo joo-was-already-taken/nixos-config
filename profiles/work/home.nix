@@ -1,4 +1,4 @@
-{ pkgs, userSettings, ... }@args:
+{ pkgs, config, userSettings, ... }@args:
 let
   sessionVariables = {
     EDITOR = "nvim";
@@ -6,10 +6,7 @@ let
     FILEMANAGER = "nemo";
     TERMINAL = "alacritty";
     BROWSER = "qutebrowser";
-
-    # TODO
-    NIXOS_OZONE_WL = "1";
-  };
+  } // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {});
 in {
   imports = [
     ../../styling/stylix.nix
