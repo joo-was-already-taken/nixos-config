@@ -15,11 +15,7 @@ in {
     ../../styling/stylix.nix
     (import ../../user-modules/sh (args // { inherit sessionVariables; }))
     ../../user-modules/bluetooth.nix
-    ../../user-modules/apps/qutebrowser/qutebrowser.nix
-    ../../user-modules/apps/librewolf.nix
-    ../../user-modules/apps/alacritty.nix
-    ../../user-modules/apps/nvim/nvim.nix
-    ../../user-modules/apps/tmux/tmux.nix
+    ../../user-modules/apps
     (import ../../user-modules/wm (args // { inherit sessionVariables; }))
   ];
 
