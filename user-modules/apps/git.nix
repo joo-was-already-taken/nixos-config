@@ -6,24 +6,29 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    programs.git = {
-      enable = true;
-      userName = "joo-was-already-taken";
-      userEmail = "trackpointus@protonmail.com";
+    # don't use `programs.git`, `extraConfig` doesn't preserve order
 
-      extraConfig = {
-        "includeIf \"gitdir:~/${universityDir}/\"".path = "~/${universityDir}/.gitconfig";
-      };
-    };
+    home.packages = with pkgs; [
+      git
+    ];
+
+    home.file.".config/git/config".text = ''
+      [user]
+        name = joo-was-already-taken
+        email = trackpointus@protonmail.com
+
+      [includeIf "gitdir:~/${universityDir}/"]
+        path = ~/.config/git/config-university
+    '';
 
     systemd.user.services."gitconfig-init" = {
       Service.ExecStart = pkgs.writeShellScript "gitconfig-init" ''
         #!/run/current-system/sw/bin/bash
-        echo "
+        echo -e "
         [user]
           name = Sebastian Wojciechowski
           email = $(cat ${config.sops.secrets.pw_email.path})
-        " > ~/${universityDir}/.gitconfig
+        " > ~/.config/git/config-university
       '';
     };
   };
