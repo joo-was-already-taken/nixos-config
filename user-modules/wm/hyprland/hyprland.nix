@@ -35,14 +35,14 @@ in {
     };
 
     home.file.".config/hypr/pyprland.toml".text = /*toml*/ ''
-  [pyprland]
-    plugins = [
-      "layout_center",
-    ]
+      [pyprland]
+      plugins = [
+        "layout_center",
+      ]
 
-  [layout_center]
-    offset = [ 0, 14 ] # TODO: 34 should be the same as waybar's height
-    margin = [ 800, 37 ] # TODO: 34/2 + (20 should be the same as `gaps_out`)
+      [layout_center]
+      offset = [ 0, 14 ] # TODO: 34 should be the same as waybar's height
+      margin = [ 800, 37 ] # TODO: 34/2 + (20 should be the same as `gaps_out`)
     '';
 
     wayland.windowManager.hyprland = {

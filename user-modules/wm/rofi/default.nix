@@ -16,7 +16,7 @@ in {
   options.modules.${moduleName} = {
     enable = lib.mkEnableOption "rofi-wayland";
     
-    colors = myLib.mkColorsOptions defaultColors;
+    colors = myLib.mkColorsOption defaultColors;
   };
 
   config = lib.mkIf config.modules.${moduleName}.enable {

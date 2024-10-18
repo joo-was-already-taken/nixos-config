@@ -1,7 +1,7 @@
 { lib, ... }:
 
 {
-  mkColorsOptions = defaultColors: let
+  mkColorsOption = defaultColors: let
     mapFn = name: val:
       lib.mkOption {
         default = val;
