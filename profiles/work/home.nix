@@ -1,4 +1,4 @@
-{ pkgs, config, userSettings, ... }@args:
+{ pkgs, config, userSettings, inputs, ... }@args:
 let
   sessionVariables = {
     EDITOR = "nvim";
@@ -9,6 +9,7 @@ let
   } // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {});
 in {
   imports = [
+    inputs.sops-nix.homeManagerModules.sops
     ../../styling/stylix.nix
     (import ../../user-modules/sh (args // { inherit sessionVariables; }))
     ../../user-modules/bluetooth.nix
@@ -18,12 +19,15 @@ in {
 
   nixpkgs.config.allowUnfreePredicate = _: true;
 
-  # TODO: modularize
-  programs.git = {
-    enable = true;
-    userName = "joo-was-already-taken";
-    userEmail = "trackpointus@protonmail.com";
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+
+    age.keyFile = "/home/${userSettings.userName}/.config/sops/age/keys.txt";
+    secrets.pw_email = {};
   };
+
+  # TODO: modularize
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium.fhs;

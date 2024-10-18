@@ -55,16 +55,16 @@
   i18n.defaultLocale = "en_DK.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ALL = "en_DK.UTF-8";
-    # LC_ADDRESS = "pl_PL.UTF-8";
-    # LC_IDENTIFICATION = "pl_PL.UTF-8";
-    # LC_MEASUREMENT = "pl_PL.UTF-8";
-    # LC_MONETARY = "pl_PL.UTF-8";
-    # LC_NAME = "pl_PL.UTF-8";
-    # LC_NUMERIC = "pl_PL.UTF-8";
-    # LC_PAPER = "pl_PL.UTF-8";
-    # LC_TELEPHONE = "pl_PL.UTF-8";
-    # LC_TIME = "en_DK.UTF-8";
+    # LC_ALL = "en_DK.UTF-8";
+    LC_ADDRESS = "pl_PL.UTF-8";
+    LC_IDENTIFICATION = "pl_PL.UTF-8";
+    LC_MEASUREMENT = "pl_PL.UTF-8";
+    LC_MONETARY = "pl_PL.UTF-8";
+    LC_NAME = "pl_PL.UTF-8";
+    LC_NUMERIC = "pl_PL.UTF-8";
+    LC_PAPER = "pl_PL.UTF-8";
+    LC_TELEPHONE = "pl_PL.UTF-8";
+    LC_TIME = "en_DK.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -82,6 +82,16 @@
 
   # Configure console keymap
   console.keyMap = "pl2";
+
+  services.openssh = {
+    enable = true;
+    hostKeys = [
+      {
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+    ];
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

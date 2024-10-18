@@ -7,6 +7,7 @@
     ./qutebrowser
     ./alacritty.nix
     ./librewolf.nix
+    ./git.nix
   ];
 
   modules = {
@@ -14,6 +15,7 @@
     tmux.enable = lib.mkDefault true;
     qutebrowser.enable = lib.mkDefault true;
     alacritty.enable = lib.mkDefault true;
+    git.enable = lib.mkDefault true;
 
     librewolf.enable = lib.mkDefault false;
   };
