@@ -1,7 +1,7 @@
 { lib, pkgs, config, ... }:
 let
   moduleName = "git";
-  universityDir = "wisdom/pw";
+  universityDir = "~/wisdom/pw";
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
@@ -18,7 +18,7 @@ in {
         name = joo-was-already-taken
         email = trackpointus@protonmail.com
 
-      [includeIf "gitdir:~/${universityDir}/"]
+      [includeIf "gitdir:${universityDir}/"]
         path = ~/.config/git/config-university
 
       [core]
