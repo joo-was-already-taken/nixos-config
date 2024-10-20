@@ -10,6 +10,7 @@ in {
 
     home.packages = with pkgs; [
       git
+      diff-so-fancy
     ];
 
     home.file.".config/git/config".text = ''
@@ -19,9 +20,22 @@ in {
 
       [includeIf "gitdir:~/${universityDir}/"]
         path = ~/.config/git/config-university
+
+      [core]
+        pager = diff-so-fancy | less -RF
+
+      [alias]
+        a = add .
+        st = status
+        d = diff
+        ds = diff --staged
+        ci = commit -v
+        ch = checkout
+        br = branch
+        last = log -1 HEAD
     '';
 
-    # to update run `systemctl --user start gitconfig-init.service`
+    # to update config-university run `systemctl --user start gitconfig-init.service`
     systemd.user.services."gitconfig-init" = {
       Service.ExecStart = pkgs.writeShellScript "gitconfig-init" ''
         #!/run/current-system/sw/bin/bash
