@@ -18,6 +18,11 @@ in {
       settings = {
         add_newline = true;
         right_format = "$cmd_duration";
+        nix_shell = { # remove 'impure' clatter and additional spaces
+          format = ''via [$symbol$state(\($name\))]($style) '';
+          symbol = "❄️";
+          impure_msg = "";
+        };
       };
     };
 
