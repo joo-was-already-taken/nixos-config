@@ -14,27 +14,11 @@
     # ../../system-modules/display-managers/sddm.nix
   ];
 
-  # # Bootloader.
-  # # boot.loader.systemd-boot.enable = true;
-  # # boot.loader.efi.canTouchEfiVariables = true;
-  # stylix.targets.grub.enable = false;
-  # boot.loader.grub = {
-  #   enable = true;
-  #   device = "nodev";
-  #   useOSProber = true;
-  # };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # blueman
   services.blueman.enable = true;
-
-  # home-manager = {
-  #   useGlobalPkgs = true;
-  #   useUserPackages = true;
-  #   extraSpecialArgs = { inherit inputs userSettings; };
-  #   users.${userSettings.userName} = import ./home.nix;
-  # };
 
   # Default shell
   environment.shells = [ pkgs.zsh ];
@@ -106,10 +90,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -120,20 +100,11 @@
     isNormalUser = true;
     description = userSettings.userName;
     extraGroups = [ "networkmanager" "wheel" "input" ];
-    packages = with pkgs; [
-      kdePackages.kate # TODO
-      # network-manager-applet
-    #  thunderbird
-    ];
+    packages = [];
   };
 
-  # programs.nm-applet = {
-  #   enable = true;
-  #   indicator = true;
-  # };
-
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
