@@ -7,6 +7,7 @@ in {
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
       inputs.pyprland.packages.${systemSettings.system}.pyprland
+      wl-clipboard
       pulseaudio
       wlr-randr
       hyprshot

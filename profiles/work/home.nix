@@ -12,6 +12,7 @@ in {
     ../../styling/home-style.nix
     inputs.sops-nix.homeManagerModules.sops
     (import ../../user-modules/sh (args // { inherit sessionVariables; }))
+    ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
     ../../user-modules/apps
     (import ../../user-modules/wm (args // { inherit sessionVariables; }))
