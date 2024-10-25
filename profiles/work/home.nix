@@ -14,6 +14,7 @@ in {
     (import ../../user-modules/sh (args // { inherit sessionVariables; }))
     ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
+    ../../user-modules/virtualization.nix
     ../../user-modules/apps
     (import ../../user-modules/wm (args // { inherit sessionVariables; }))
   ];
