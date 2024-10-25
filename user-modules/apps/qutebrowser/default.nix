@@ -8,6 +8,14 @@ in {
     stylix.targets.qutebrowser.enable = false;
     programs.qutebrowser = {
       enable = true;
+
+      aliases = {
+        darkmode = "set colors.webpage.darkmode.enabled";
+      };
+
+      settings = {
+        colors.webpage.darkmode.enabled = true;
+      };
     };
   };
 }
