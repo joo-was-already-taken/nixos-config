@@ -231,10 +231,10 @@ in {
       # resize submap
       bind = $mod, S, submap, resize
       submap = resize
-      binde = , H, resizeactive, -24 0
-      binde = , L, resizeactive, 24 0
-      binde = , K, resizeactive, 0 -24
-      binde = , J, resizeactive, 0 24
+      binde = , H, resizeactive, -48 0
+      binde = , L, resizeactive, 48 0
+      binde = , K, resizeactive, 0 -48
+      binde = , J, resizeactive, 0 48
       bind = , escape, submap, reset
       bind = , catchall, submap, reset
       submap = reset

@@ -29,10 +29,13 @@ in {
     secrets.pw_email = {};
   };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium.fhs;
-  };
+  # programs.vscode = {
+  #   enable = true;
+  #   package = pkgs.vscodium.fhs;
+  #   # extensions = with pkgs.vscode-extensions; [
+  #   #   vscodevim.vim
+  #   # ];
+  # };
 
   nix.gc = {
     automatic = true;
@@ -45,6 +48,7 @@ in {
     pavucontrol
     # file manager
     cinnamon.nemo
+    vscodium.fhs
   ];
 
   home.username = userSettings.userName;

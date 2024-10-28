@@ -87,6 +87,7 @@ in {
             "(.*) LibreWolf" = "LibreWolf";
             "(.*) Firefox" = "Firefox";
             "(.*) qutebrowser" = "qutebrowser";
+            "(.*) VSCodium" = "VSCodium";
           };
         };
         "hyprland/submap" = {
