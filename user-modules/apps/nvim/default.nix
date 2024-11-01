@@ -17,6 +17,7 @@ in {
       unzip
       nodejs_22
       cargo
+      rust-analyzer
     ];
 
     programs.neovim = {

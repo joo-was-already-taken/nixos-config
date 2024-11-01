@@ -37,6 +37,8 @@ in {
   #   # ];
   # };
 
+  modules.librewolf.enable = true;
+
   nix.gc = {
     automatic = true;
     frequency = "weekly";
@@ -49,6 +51,7 @@ in {
     # file manager
     cinnamon.nemo
     vscodium.fhs
+    firefox
   ];
 
   home.username = userSettings.userName;

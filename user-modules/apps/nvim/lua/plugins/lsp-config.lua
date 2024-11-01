@@ -25,7 +25,7 @@ local ensure_installed = {
 	"marksman", -- md, markdown
 	-- "pylsp",
   "pyright", -- python
-	"rust_analyzer",
+	-- "rust_analyzer", -- installed manually
 	"taplo", -- toml
 	"lemminx", -- xml
 	"yamlls",
@@ -101,18 +101,32 @@ local nvim_lspconfig_config = function()
 		},
 	})
 
-	-- lspconfig.pyright.setup({
-	-- 	capabilities = default_capabilities,
-	-- 	on_attach = on_attach,
-	-- 	settings = {
- --      python = {
- --        pythonPath = "/usr/bin/python3.12",
- --        -- analysis = {
- --        --   reportPrivateImportUsage = false,
- --        -- },
- --      },
-	-- 	},
-	-- })
+  -- lspconfig.pyright.setup({
+  -- 	capabilities = default_capabilities,
+  -- 	on_attach = on_attach,
+  -- 	settings = {
+  --      python = {
+  --        pythonPath = "/usr/bin/python3.12",
+  --        -- analysis = {
+  --        --   reportPrivateImportUsage = false,
+  --        -- },
+  --      },
+  -- 	},
+  -- })
+  --
+
+  -- install rust-analyzer manually
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "rust",
+    callback = function(args)
+      on_attach(nil, args.buf)
+      vim.lsp.start({
+        name = "rust-analyzer",
+        cmd = { "rust-analyzer" },
+        root_dir = vim.fs.dirname(vim.fs.find({ "Cargo.toml" }, { upward = true })[1])
+      })
+    end,
+  })
 end
 
 return {
