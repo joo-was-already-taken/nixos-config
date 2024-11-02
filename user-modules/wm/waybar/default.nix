@@ -1,4 +1,4 @@
-{ config, lib, myLib, ... }:
+{ config, pkgs, lib, myLib, ... }:
 let
   moduleName = "waybar";
   defaultColors = with config.lib.stylix.colors.withHashtag; rec {
@@ -36,11 +36,14 @@ let
 in {
   options.modules.${moduleName} = {
     enable = lib.mkEnableOption moduleName;
-    
+
     colors = myLib.mkColorsOption defaultColors;
   };
 
   config = lib.mkIf config.modules.${moduleName}.enable {
+    home.packages = [ pkgs.uair ];
+    home.file.".config/uair/uair.toml".source = ./uair.toml;
+
     stylix.targets.waybar.enable = false;
 
     programs.waybar = {
@@ -51,11 +54,11 @@ in {
           * {
             font-family: "${config.stylix.fonts.monospace.name}";
           }
-        '';
+          '';
       in lib.strings.concatStringsSep "\n" (
-        (lib.attrsets.mapAttrsToList (k: v: "@define-color ${k} ${v};") config.modules.${moduleName}.colors)
-        ++ [ font (builtins.readFile ./style.css) ]
-      );
+          (lib.attrsets.mapAttrsToList (k: v: "@define-color ${k} ${v};") config.modules.${moduleName}.colors)
+          ++ [ font (builtins.readFile ./style.css) ]
+        );
 
       settings.mainBar = {
         reload_style_on_change = true;
@@ -71,6 +74,7 @@ in {
         ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
+          "custom/uair"
           "tray"
           "keyboard-state"
           # "network"
@@ -93,6 +97,29 @@ in {
         "hyprland/submap" = {
           format = "[{}]";
           tooltip = true;
+        };
+        "custom/uair" = {
+          format = "{icon} {}";
+          format-icons =  [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+          tooltip = false;
+          return-type = "json";
+          interval = 1;
+          on-click = "uairctl toggle";
+          on-click-middle = "uairctl prev";
+          on-click-right = "uairctl reset";
+          exec-if = "which uairctl";
+          exec = ''uairctl fetch '{"text":"{name} {time} {percent}%","class":"{state}","percentage":{percent}}' || uair'';
         };
         keyboard-state = {
           capslock = true;
