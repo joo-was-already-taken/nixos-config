@@ -18,6 +18,9 @@ in {
         name = joo-was-already-taken
         email = trackpointus@protonmail.com
 
+      [init]
+        defaultBranch = trunk
+
       [includeIf "gitdir:${universityDir}/"]
         path = ~/.config/git/config-university
 
@@ -43,6 +46,8 @@ in {
         [user]
           name = Sebastian Wojciechowski
           email = $(cat ${config.sops.secrets.pw_email.path})
+        [init]
+          defaultBranch = main
         " > ~/.config/git/config-university
       '';
     };
