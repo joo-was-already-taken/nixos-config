@@ -1,4 +1,4 @@
-{ config, pkgs, lib, myLib, ... }:
+{ config, inputs, lib, myLib, systemSettings, ... }:
 let
   moduleName = "waybar";
   defaultColors = with config.lib.stylix.colors.withHashtag; rec {
@@ -41,8 +41,9 @@ in {
   };
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    home.packages = [ pkgs.uair ];
-    home.file.".config/uair/uair.toml".source = ./uair.toml;
+    home.packages = [
+      inputs.pomidoro.packages.${systemSettings.system}.default
+    ];
 
     stylix.targets.waybar.enable = false;
 
@@ -115,11 +116,11 @@ in {
           tooltip = false;
           return-type = "json";
           interval = 1;
-          on-click = "uairctl toggle";
-          on-click-middle = "uairctl prev";
-          on-click-right = "uairctl reset";
-          exec-if = "which uairctl";
-          exec = ''uairctl fetch '{"text":"{name} {time} {percent}%","class":"{state}","percentage":{percent}}' || uair'';
+          on-click = "pomidoro send toggle";
+          on-click-middle = "pomidoro send skip";
+          on-click-right = "pomidoro send reset";
+          exec-if = "which pomidoro";
+          exec = ''pomidoro send fetch '{ "text":"{{name}} {{time}} {{percent}}%","class":"{{state}}","percentage":{{percent}} }' '';
         };
         keyboard-state = {
           capslock = true;

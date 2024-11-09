@@ -24,6 +24,8 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
     pyprland.url = "github:hyprland-community/pyprland";
+
+    pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
