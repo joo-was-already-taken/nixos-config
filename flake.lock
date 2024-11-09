@@ -385,11 +385,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1731098332,
-        "narHash": "sha256-+6n+iZKx8ZhhtuE7oOSaS7QMgz3io1/e5rvUTFBHQm0=",
+        "lastModified": 1731161426,
+        "narHash": "sha256-kkTq9qnTmndv9uNV7ycvTxiPyqKtazXHHpMMrUYXVUs=",
         "owner": "joo-was-already-taken",
         "repo": "pomidoro",
-        "rev": "731767403c2d5ddaee198dc67495a16193d71ed3",
+        "rev": "1415fbe2557aa094b5dde9dbc23ebb32e569add6",
         "type": "github"
       },
       "original": {

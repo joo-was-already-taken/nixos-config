@@ -45,6 +45,24 @@ in {
       inputs.pomidoro.packages.${systemSettings.system}.default
     ];
 
+    home.file.".config/pomidoro/config.toml".text = /*toml*/ ''
+      paused_text = "paused"
+      paused_icon = "[paused]"
+      running_text = "running"
+      running_icon = ""
+      time_format = "%M:%S"
+      
+      [[sessions]]
+      name = "work"
+      icon = "📚"
+      duration = "25m"
+
+      [[sessions]]
+      name = "rest"
+      icon = "🌳"
+      duration = "5m"
+    '';
+
     stylix.targets.waybar.enable = false;
 
     programs.waybar = {
@@ -72,10 +90,10 @@ in {
         modules-left = [
           "hyprland/workspaces"
           "hyprland/submap"
+          "custom/pomidoro"
         ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
-          "custom/uair"
           "tray"
           "keyboard-state"
           # "network"
@@ -99,28 +117,28 @@ in {
           format = "[{}]";
           tooltip = true;
         };
-        "custom/uair" = {
+        "custom/pomidoro" = {
           format = "{icon} {}";
           format-icons =  [
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
           ];
           tooltip = false;
           return-type = "json";
           interval = 1;
           on-click = "pomidoro send toggle";
-          on-click-middle = "pomidoro send skip";
           on-click-right = "pomidoro send reset";
+          on-click-middle = "pomidoro send skip";
           exec-if = "which pomidoro";
-          exec = ''pomidoro send fetch '{ "text":"{{name}} {{time}} {{percent}}%","class":"{{state}}","percentage":{{percent}} }' '';
+          exec = ''pomidoro send fetch '{"text":"{{time}} {{session_icon}} {{clock_state_icon}}","class":"{{state}}","percentage":{{percent}}}' '';
         };
         keyboard-state = {
           capslock = true;
