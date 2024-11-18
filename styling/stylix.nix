@@ -1,5 +1,6 @@
 { pkgs, ... }:
 let
+  # choose your style
   style = import ./styles/gruvbox.nix;
 in {
   stylix = {
