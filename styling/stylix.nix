@@ -1,12 +1,13 @@
 { pkgs, ... }:
-
-{
+let
+  style = import ./styles/gruvbox.nix;
+in {
   stylix = {
     enable = true;
 
-    base16Scheme = ./colorschemes/gruvbox.yaml;
-    polarity = "dark";
-    image = ./wallpapers/tstudler_switzerland.jpg;
+    base16Scheme = style.colorscheme;
+    image = style.wallpaper;
+    polarity = style.polarity;
 
     cursor = {
       package = pkgs.capitaine-cursors;
