@@ -26,6 +26,10 @@ in {
 
       [core]
         pager = diff-so-fancy | less -RF
+        editor = nvim
+
+      [credential]
+        helper = cache --timeout=7200
 
       [alias]
         a = add .
