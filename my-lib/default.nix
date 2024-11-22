@@ -9,4 +9,6 @@
       };
   in
     builtins.mapAttrs mapFn defaultColors;
-}
+
+  fromYAML = str: {}; # TODO
+} 
