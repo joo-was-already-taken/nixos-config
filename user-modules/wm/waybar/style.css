@@ -85,6 +85,11 @@ window#waybar {
   padding: 0 72px;
 }
 
+#custom-fullscreen {
+  color: @fullscreen;
+  padding: 0 32px;
+}
+
 #clock,
 #tray,
 #keyboard-state label.capslock,

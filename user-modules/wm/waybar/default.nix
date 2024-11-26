@@ -13,6 +13,8 @@ let
 
     submap = base08;
 
+    fullscreen = base0C;
+
     windowName = foreground;
 
     clock = foreground;
@@ -90,6 +92,7 @@ in {
         modules-left = [
           "hyprland/workspaces"
           "hyprland/submap"
+          "custom/fullscreen"
           "custom/pomidoro"
         ];
         modules-center = [ "hyprland/window" ];
@@ -117,6 +120,16 @@ in {
           format = "[{}]";
           tooltip = true;
         };
+        "custom/fullscreen" = {
+          format = "[{}]";
+          exec-if = "which hyprctl";
+          exec = /*bash*/ ''
+            workspace_id=$(hyprctl monitors | sed -n '/^[[:space:]]*active workspace/s/.*(\(.*\))/\1/p')
+            has_fullscreen=$(hyprctl workspaces | sed -n "/^workspace.*($workspace_id)/,/^[[:space:]]*hasfullscreen/{/^[[:space:]]hasfullscreen/{s/^[^:]*: //p;q}}")
+            [[ $has_fullscreen = 1 ]] && echo 'fullscreen'
+          '';
+          interval = 2;
+        };
         "custom/pomidoro" = {
           format = "{icon} {}";
           format-icons =  [
@@ -138,7 +151,7 @@ in {
           on-click-right = "pomidoro send reset";
           on-click-middle = "pomidoro send skip";
           exec-if = "which pomidoro";
-          exec = ''pomidoro send fetch '{"text":"{{time}} {{session_icon}} {{clock_state_icon}}","class":"{{state}}","percentage":{{percent}}}' '';
+          # exec = ''pomidoro send fetch '{"text":"{{time}} {{session_icon}} {{clock_state_icon}}","class":"{{state}}","percentage":{{percent}}}' '';
         };
         keyboard-state = {
           capslock = true;
