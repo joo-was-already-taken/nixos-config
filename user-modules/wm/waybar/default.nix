@@ -95,7 +95,9 @@ in {
           "custom/fullscreen"
           "custom/pomidoro"
         ];
-        modules-center = [ "hyprland/window" ];
+        modules-center = [
+          "hyprland/window"
+        ];
         modules-right = [
           "tray"
           "keyboard-state"
@@ -129,7 +131,7 @@ in {
             has_fullscreen=$(hyprctl workspaces | sed -n "/^workspace.*($workspace_id)/,/^$prefix/{/^$prefix/{s/^[^:]*: //p;q}}")
             [[ $has_fullscreen = 1 ]] && echo 'fullscreen'
           '';
-          interval = 2;
+          interval = 1;
         };
         "custom/pomidoro" = {
           format = "{icon} {}";

@@ -19,6 +19,7 @@
 
   # blueman
   services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
 
   # Default shell
   environment.shells = [ pkgs.zsh ];
