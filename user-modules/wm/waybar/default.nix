@@ -125,7 +125,8 @@ in {
           exec-if = "which hyprctl";
           exec = /*bash*/ ''
             workspace_id=$(hyprctl monitors | sed -n '/^[[:space:]]*active workspace/s/.*(\(.*\))/\1/p')
-            has_fullscreen=$(hyprctl workspaces | sed -n "/^workspace.*($workspace_id)/,/^[[:space:]]*hasfullscreen/{/^[[:space:]]hasfullscreen/{s/^[^:]*: //p;q}}")
+            prefix='[[:space:]]*hasfullscreen'
+            has_fullscreen=$(hyprctl workspaces | sed -n "/^workspace.*($workspace_id)/,/^$prefix/{/^$prefix/{s/^[^:]*: //p;q}}")
             [[ $has_fullscreen = 1 ]] && echo 'fullscreen'
           '';
           interval = 2;
