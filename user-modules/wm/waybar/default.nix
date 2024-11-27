@@ -75,7 +75,7 @@ in {
           * {
             font-family: "${config.stylix.fonts.monospace.name}";
           }
-          '';
+        '';
       in lib.strings.concatStringsSep "\n" (
           (lib.attrsets.mapAttrsToList (k: v: "@define-color ${k} ${v};") config.modules.${moduleName}.colors)
           ++ [ font (builtins.readFile ./style.css) ]
@@ -155,6 +155,10 @@ in {
           on-click-middle = "pomidoro send skip";
           exec-if = "which pomidoro";
           # exec = ''pomidoro send fetch '{"text":"{{time}} {{session_icon}} {{clock_state_icon}}","class":"{{state}}","percentage":{{percent}}}' '';
+        };
+        tray = {
+          spacing = 5;
+          show-passive-items = true;
         };
         keyboard-state = {
           capslock = true;
