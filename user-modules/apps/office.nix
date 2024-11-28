@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, pkgs, config, ... }:
 let
   moduleName = "office";
 in {
@@ -13,5 +13,13 @@ in {
         selection-clipboard = "clipboard";
       };
     };
+
+    home.packages = with pkgs; [
+      libreoffice-qt
+      # spellcheckers for libreoffice
+      hunspell
+      hunspellDicts.en-us
+      hunspellDicts.pl_PL
+    ];
   };
 }
