@@ -54,6 +54,9 @@ in {
     cinnamon.nemo
     vscodium.fhs
     firefox
+
+    # tldr pages
+    tealdeer
   ];
 
   home.username = userSettings.userName;
