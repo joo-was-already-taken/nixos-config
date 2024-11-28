@@ -5,7 +5,8 @@
 }
 ```
 ------------
-My first NixOS and Home Manager configuration.
+My first NixOS and Home Manager configuration.  
+**Warning:** *This config may break and will break!*
 The project's structure is inspired by [librephoenix' config](https://github.com/librephoenix/nixos-config).
 It is broken up into five main directories: *user-modules*, *system-modules*, *profiles*, *hosts* and *styling*.
 - *user-modules/* - Modules imported by home manager
