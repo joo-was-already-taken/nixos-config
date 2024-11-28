@@ -6,7 +6,7 @@ let
   };
 in {
   imports = [
-    (import ../work/home.nix ( args // { inherit sessionVariables; }))
+    (import ../work/home.nix (args // { inherit sessionVariables; }))
   ];
 
   home.packages = with pkgs; [
@@ -14,5 +14,9 @@ in {
     mangohud
 
     protonup
+
+    # lutris
+    heroic
+    bottles
   ];
 }
