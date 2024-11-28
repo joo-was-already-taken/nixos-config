@@ -33,7 +33,7 @@
       systemSettings = {
         system = "x86_64-linux";
         hostName = "nixdell";
-        profile = "work";
+        profile = "personal";
         host = "laptop";
       };
       userSettings = {
