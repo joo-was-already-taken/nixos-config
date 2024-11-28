@@ -1,13 +1,11 @@
 { pkgs, lib, inputs, config, systemSettings, sessionVariables, ... }:
 let
   moduleName = "hyprland";
-  hyprlandPkg = inputs.hyprland.packages.${systemSettings.system}.hyprland;
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
-      # hyprlandPkg
       inputs.pyprland.packages.${systemSettings.system}.pyprland
       wl-clipboard
       pulseaudio
@@ -52,7 +50,6 @@ in {
       enable = true;
       xwayland.enable = true;
       systemd.enable = true;
-      # package = hyprlandPkg;
       plugins = [];
 
       settings = {
@@ -67,8 +64,9 @@ in {
           builtins.throw "No menu enabled (rofi)";
 
         exec-once = [
-          (lib.mkIf config.modules.waybar.enable "waybar &")
+          (lib.mkIf config.modules.waybar.enable "waybar")
           "nm-applet &"
+          "(sleep 2; blueman-tray) &"
           "pypr &"
         ];
 
