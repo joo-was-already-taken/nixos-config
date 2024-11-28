@@ -57,6 +57,8 @@ in {
 
     # tldr pages
     tealdeer
+
+    anki
   ];
 
   home.username = userSettings.userName;
