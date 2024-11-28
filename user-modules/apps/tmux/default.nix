@@ -5,9 +5,6 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    # # programs.tmux.enable = true;
-    # home.packages = [ pkgs.tmux ];
-    # home.file.".config/tmux".source = ./.;
     programs.tmux = {
       enable = true;
       

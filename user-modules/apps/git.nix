@@ -6,7 +6,7 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    # don't use `programs.git`, `extraConfig` doesn't preserve order
+    # don't use `programs.git`, `extraConfig` doesn't preserve the order
 
     home.packages = with pkgs; [
       git

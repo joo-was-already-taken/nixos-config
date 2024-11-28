@@ -1,4 +1,4 @@
-{ lib, pkgs, userSettings, session, ... }:
+{ pkgs, userSettings, session, ... }:
 
 {
   services.greetd = {
