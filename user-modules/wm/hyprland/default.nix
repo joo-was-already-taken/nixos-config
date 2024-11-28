@@ -1,11 +1,13 @@
 { pkgs, lib, inputs, config, systemSettings, sessionVariables, ... }:
 let
   moduleName = "hyprland";
+  hyprlandPkg = inputs.hyprland.packages.${systemSettings.system}.hyprland;
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
+      # hyprlandPkg
       inputs.pyprland.packages.${systemSettings.system}.pyprland
       wl-clipboard
       pulseaudio
@@ -50,8 +52,7 @@ in {
       enable = true;
       xwayland.enable = true;
       systemd.enable = true;
-      # package = inputs.hyprland.packages.${systemSettings.system}.hyprland;
-
+      # package = hyprlandPkg;
       plugins = [];
 
       settings = {

@@ -18,7 +18,7 @@
     };
 
     # user inputs
-    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
@@ -63,7 +63,7 @@
             # }
           ];
           specialArgs = {
-            inherit systemSettings userSettings;
+            inherit inputs systemSettings userSettings;
           };
         };
       };

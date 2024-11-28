@@ -1,22 +1,24 @@
-{ pkgs, config, userSettings, inputs, ... }@args:
+{ pkgs, config, userSettings, inputs, sessionVariables ? {}, ... }@args:
 let
-  sessionVariables = {
+  workSessionVars = {
     EDITOR = "nvim";
     MANPAGER = "nvim --remote -c 'Man!' -o -";
     FILEMANAGER = "nemo";
     TERMINAL = "alacritty";
     BROWSER = "qutebrowser";
-  } // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {});
+  }
+    // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {})
+    // sessionVariables;
 in {
   imports = [
     ../../styling/home-style.nix
     inputs.sops-nix.homeManagerModules.sops
-    (import ../../user-modules/sh (args // { inherit sessionVariables; }))
+    (import ../../user-modules/sh (args // { sessionVariables = workSessionVars; }))
     ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
     ../../user-modules/virtualization.nix
     ../../user-modules/apps
-    (import ../../user-modules/wm (args // { inherit sessionVariables; }))
+    (import ../../user-modules/wm (args // { sessionVariables = workSessionVars; }))
   ];
 
   # nixpkgs.config.allowUnfreePredicate = _: true;

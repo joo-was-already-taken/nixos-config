@@ -2,15 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, systemSettings, userSettings, ... }@args:
-
-{
+{ pkgs, inputs, systemSettings, userSettings, ... }@args:
+let
+  hyprlandPkgs = inputs.hyprland.packages.${systemSettings.system};
+in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     ../../styling/stylix.nix
-    (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "hyprland"; }))
+    (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
     # ../../system-modules/display-managers/sddm.nix
   ];
 
@@ -120,6 +121,12 @@
     git
     wget
   ];
+
+  programs.hyprland = {
+    enable = true;
+    package = hyprlandPkgs.hyprland;
+    portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
+  };
 
   # uninstall nano and xterm
   programs.nano.enable = false;
