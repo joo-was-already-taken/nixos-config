@@ -143,6 +143,8 @@ in {
           force_default_wallpaper = -1;
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
+
+          focus_on_activate = true;
         };
 
         cursor = {
@@ -153,6 +155,7 @@ in {
           kb_layout = "pl";
 
           follow_mouse = 1;
+          mouse_refocus = 0;
 
           sensitivity = 0;
 

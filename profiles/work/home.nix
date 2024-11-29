@@ -56,6 +56,8 @@ in {
     firefox
 
     obs-studio
+    openshot-qt
+    vlc
 
     # tldr pages
     tealdeer
