@@ -55,6 +55,8 @@ in {
     vscodium.fhs
     firefox
 
+    obs-studio
+
     # tldr pages
     tealdeer
 
