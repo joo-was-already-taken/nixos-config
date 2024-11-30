@@ -3,9 +3,8 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { pkgs, inputs, systemSettings, userSettings, ... }@args:
-let
-  hyprlandPkgs = inputs.hyprland.packages.${systemSettings.system};
-in {
+
+{
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [
@@ -122,7 +121,9 @@ in {
     wget
   ];
 
-  programs.hyprland = {
+  programs.hyprland = let
+    hyprlandPkgs = inputs.hyprland.packages.${systemSettings.system};
+  in {
     enable = true;
     package = hyprlandPkgs.hyprland;
     portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
