@@ -4,6 +4,7 @@
   inputs = {
     # core inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +25,7 @@
     pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, ... }@inputs:
     let
       systemSettings = {
         system = "x86_64-linux";
@@ -37,7 +38,15 @@
       };
       lib = nixpkgs.lib;
       myLib = import ./my-lib { inherit lib; };
-      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+      # pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+      pkgs = import nixpkgs {
+        system = systemSettings.system;
+        overlays = [
+          (final: prev: {
+            unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+          })
+        ];
+      };
       profilePath = ./. + "/profiles" + ("/" + systemSettings.profile);
     in {
       nixosConfigurations = {

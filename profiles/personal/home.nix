@@ -1,4 +1,4 @@
-{ pkgs, config, ... }@args:
+{ pkgs, config, systemSettings, ... }@args:
 let
   sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
@@ -15,7 +15,7 @@ in {
 
     protonup
 
-    heroic # for EpicGames and GOG games
+    unstable.heroic # for EpicGames and GOG games
     bottles # for Windows apps
     dosbox # for MS DOS apps
 

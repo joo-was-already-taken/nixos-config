@@ -13,6 +13,7 @@ in {
       hyprshot
       brightnessctl
       networkmanagerapplet
+      libnotify
     ];
 
     xdg.portal = {
@@ -23,6 +24,11 @@ in {
         # xdg-desktop-portal-kde # waybar doesn't work with this enabled
       ];
       config.common.default = "*";
+    };
+
+    services.mako = {
+      enable = true;
+      defaultTimeout = 4000;
     };
 
     services.hyprpaper = let
