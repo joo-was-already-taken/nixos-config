@@ -14,7 +14,7 @@ It is broken up into five main directories: *user-modules*, *system-modules*, *p
 - *profiles/* - Different profiles such as *work* or *personal*, that's where *configuration.nix* and *home.nix* live
 - *hosts/* - Directory for *hardware-configuration.nix* files
 - *styling/* - Directory with different styles utilizing [stylix](https://github.com/danth/stylix)
-In *flake.nix* you can specify which host and profile to use.
+In *flake.nix* you can specify which host and profile as well as username to use (this is a one-user system config).
 
 ### Highlights
 - WM: [Hyprland](https://hyprland.org)
