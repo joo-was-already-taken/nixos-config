@@ -1,4 +1,4 @@
-{ pkgs, config, systemSettings, ... }@args:
+{ pkgs, config, ... }@args:
 let
   sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
@@ -21,5 +21,6 @@ in {
 
     # games
     prismlauncher # minecraft
+    superTuxKart
   ];
 }
