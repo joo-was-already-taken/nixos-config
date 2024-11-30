@@ -58,6 +58,7 @@ in {
     obs-studio
     openshot-qt
     vlc
+    loupe
 
     # tldr pages
     tealdeer
