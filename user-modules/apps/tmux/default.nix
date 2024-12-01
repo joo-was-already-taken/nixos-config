@@ -5,6 +5,15 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
+    home.packages = [
+      # create a new coding session
+      (
+        lib.mkIf
+          config.modules.zsh.enable
+          (pkgs.writeScriptBin "tmux-new" (builtins.readFile ./scripts/tmux-new.zsh))
+      )
+    ];
+
     programs.tmux = let
       resurrectDirPath = "~/.tmux/resurrect/";
     in {
