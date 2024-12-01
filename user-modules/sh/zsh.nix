@@ -81,6 +81,22 @@ in {
         bindkey -rM vicmd '\ec'
         bindkey -rM viins '\ec'
         bindkey -rM emacs '\ec' # just in case, not that I'd use it
+
+        export DEFAULT_ZLE_LINE_INIT="$(which zle-line-init)"
+        set-pref() {
+          case "$#" in
+            0) eval "$DEFAULT_ZLE_LINE_INIT";;
+            1)
+              prefix="$1"
+              zle-line-init() { [ -n "$BUFFER" ] || LBUFFER="$prefix "; }
+              zle -N zle-line-init
+              ;;
+            *)
+              echo 'Error: Expected zero or one argument' >&2
+              return 1
+              ;;
+          esac
+        }
       '';
     };
   };
