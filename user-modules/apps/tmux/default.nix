@@ -1,18 +1,11 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, ... }@args:
 let
   moduleName = "tmux";
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    home.packages = [
-      # create a new coding session
-      (
-        lib.mkIf
-          config.modules.zsh.enable
-          (pkgs.writeScriptBin "tmux-new" (builtins.readFile ./scripts/tmux-new.zsh))
-      )
-    ];
+    home.packages = import ./scripts.nix args;
 
     programs.tmux = let
       resurrectDirPath = "~/.tmux/resurrect/";
@@ -24,7 +17,7 @@ in {
         vim-tmux-navigator
         {
           plugin = yank;
-          extraConfig = ''
+          extraConfig = /*bash*/ ''
             bind -T copy-mode-vi v send-keys -X begin-selection
             bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
             bind -T copy-mode-vi y send-keys -X copy-selection-and-cancel
@@ -32,7 +25,7 @@ in {
         }
         {
           plugin = resurrect;
-          extraConfig = ''
+          extraConfig = /*bash*/ ''
             set -g @resurrect-strategy-vim 'session'
             set -g @resurrect-strategy-nvim 'session'
             set -g @resurrect-capture-pane-contents 'on'
