@@ -15,6 +15,7 @@ in {
       plugins = with pkgs.tmuxPlugins; [
         sensible
         vim-tmux-navigator
+        open
         {
           plugin = yank;
           extraConfig = /*bash*/ ''
@@ -26,10 +27,17 @@ in {
         {
           plugin = resurrect;
           extraConfig = /*bash*/ ''
-            set -g @resurrect-strategy-vim 'session'
-            set -g @resurrect-strategy-nvim 'session'
-            set -g @resurrect-capture-pane-contents 'on'
+            set -g @resurrect-strategy-vim session
+            set -g @resurrect-strategy-nvim session
+            set -g @resurrect-capture-pane-contents on
             set -g @resurrect-dir ${resurrectDirPath}
+          '';
+        }
+        {
+          plugin = continuum;
+          extraConfig = /*bash*/ ''
+            set -g @continuum-restore on
+            set -g @continuum-save-interval 15
           '';
         }
       ];
