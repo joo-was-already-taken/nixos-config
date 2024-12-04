@@ -64,6 +64,7 @@ in {
     tealdeer
 
     anki
+    super-productivity
   ];
 
   home.username = userSettings.userName;
