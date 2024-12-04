@@ -11,6 +11,7 @@ in {
 
       aliases = {
         darkmode = "set colors.webpage.darkmode.enabled";
+        adblock = "set content.blocking.enabled";
       };
 
       settings = {
