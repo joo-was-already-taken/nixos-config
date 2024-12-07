@@ -65,6 +65,9 @@ in {
 
     anki
     super-productivity
+
+    # fonts
+    ipafont # japanese
   ];
 
   home.username = userSettings.userName;
