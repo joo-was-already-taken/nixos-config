@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, pkgs, config, ... }:
 let
   moduleName = "qutebrowser";
 in {
@@ -78,6 +78,7 @@ in {
 
     programs.qutebrowser = {
       enable = true;
+      package = pkgs.qutebrowser;
 
       aliases = {
         adblock = "set content.blocking.enabled";
