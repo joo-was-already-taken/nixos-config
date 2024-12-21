@@ -17,6 +17,7 @@ local config = function()
       "cmake",
       "c",
       "cpp",
+      "haskell",
     },
     auto_install = true,
     highlight = {
