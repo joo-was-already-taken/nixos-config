@@ -9,7 +9,7 @@ in {
     # don't use `programs.git`, `extraConfig` doesn't preserve the order
 
     home.packages = with pkgs; [
-      git
+      unstable.git
       diff-so-fancy
     ];
 
