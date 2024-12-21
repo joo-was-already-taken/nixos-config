@@ -1,6 +1,17 @@
 { pkgs, lib, inputs, config, systemSettings, sessionVariables, ... }:
 let
   moduleName = "hyprland";
+
+  changeKbLayout = pkgs.writeShellApplication {
+    name = "change-kb-layout";
+    runtimeInputs = with pkgs; [ libnotify ];
+    text = ''
+      keyboard='at-translated-set-2-keyboard'
+      hyprctl switchxkblayout "$keyboard" next
+      value="$(hyprctl devices | grep -i $keyboard -A 2 | tail -n1 | cut -f3-5 -d' ')"
+      notify-send "Keyboard layout: $value"
+    '';
+  };
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
@@ -158,7 +169,9 @@ in {
         };
 
         input = {
-          kb_layout = "pl";
+          kb_layout = "pl,de";
+          kb_variant = ",us"; # use sane german
+          # kb_options = "grp:win_space_toggle"; # already have a script for that
 
           follow_mouse = 1;
           mouse_refocus = 0;
@@ -194,6 +207,9 @@ in {
           "$mod, O, fullscreen, 0" # fullscreen
           "$mod, U, fullscreen, 1" # maximize
           "$mod, I, togglefloating"
+
+          # change keyboard layout
+          "$mod, space, exec, ${lib.getExe changeKbLayout}"
 
           "$mod, M, exec, pypr layout_center toggle"
 
