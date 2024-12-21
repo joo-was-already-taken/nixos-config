@@ -5,36 +5,28 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
   
   config = lib.mkIf config.modules.${moduleName}.enable {
-    home.packages = with pkgs; [
-      # telescope
-      ripgrep
-      fd
-
-      # treesitter
-      gcc
-
-      # mason
-      unzip
-      nodejs_22
-      cargo
-      rust-analyzer
-    ];
-
-    programs.neovim = {
+    programs.nixvim = {
       enable = true;
+      defaultEditor = true;
+      
+      colorschemes.gruvbox.enable = true;
 
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-    };
+      plugins = {
+        lualine.enable = true;
 
-    home.file.".config/nvim" = {
-      source = ./.;
-      recursive = true;
+        lsp = {
+          enable = true;
+          servers = {
+            nil_ls.enable = true;
+            # lua_ls.enable = true;
+            # rust_analyzer = {
+            #   enable = true;
+            #   installCargo = true;
+            #   installRustc = true;
+            # };
+          };
+        };
+      };
     };
-    # home.file.".config/nvim/lua/plugins/stylix.lua".source = config.lib.stylix.colors {
-    #   template = builtins.readFile ./lua/plugins/stylix.lua.mustache;
-    #   extension = ".lua";
-    # };
   };
 }

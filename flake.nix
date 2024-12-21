@@ -21,11 +21,17 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # user inputs
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     pyprland.url = "github:hyprland-community/pyprland";
     pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, stylix, ... }@inputs:
     let
       systemSettings = {
         system = "x86_64-linux";
@@ -79,6 +85,7 @@
           inherit pkgs;
           modules = [
             stylix.homeManagerModules.stylix
+            nixvim.homeManagerModules.nixvim
             (profilePath + "/home.nix")
           ];
           extraSpecialArgs = let
