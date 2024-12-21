@@ -52,8 +52,16 @@
     LC_TIME = "en_DK.UTF-8";
   };
 
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [ fcitx5-configtool fcitx5-mozc ];
+      waylandFrontend = true;
+    };
+    ibus.engines = with pkgs.ibus-engines; [ mozc ];
+  };
+
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
@@ -128,6 +136,9 @@
     package = hyprlandPkgs.hyprland;
     portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
   };
+  # make git work on hyprland
+  programs.seahorse.enable = true;
+
 
   # uninstall nano and xterm
   programs.nano.enable = false;
