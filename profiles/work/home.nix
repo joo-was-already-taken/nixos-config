@@ -1,4 +1,4 @@
-{ pkgs, config, userSettings, inputs, sessionVariables ? {}, ... }@args:
+{ pkgs, lib, config, userSettings, inputs, sessionVariables ? {}, ... }@args:
 let
   workSessionVars = {
     EDITOR = "nvim";
@@ -20,8 +20,6 @@ in {
     ../../user-modules/apps
     (import ../../user-modules/wm (args // { sessionVariables = workSessionVars; }))
   ];
-
-  # nixpkgs.config.allowUnfreePredicate = _: true;
 
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
@@ -68,6 +66,7 @@ in {
 
     # fonts
     ipafont # japanese
+    kochi-substitute # japanese
   ];
 
   home.username = userSettings.userName;
