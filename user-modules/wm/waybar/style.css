@@ -49,9 +49,11 @@ window#waybar {
 
 #keyboard-state label.capslock {
   color: @keyboardStateInactive;
+  padding: 0 24px;
 }
 #keyboard-state label.capslock.locked {
   color: @keyboardStateActive;
+  padding: 0 24px;
 }
 
 #cpu {
@@ -92,7 +94,6 @@ window#waybar {
 
 #clock,
 #tray,
-#keyboard-state label.capslock,
 #network,
 #cpu,
 #temperature,

@@ -99,8 +99,8 @@ in {
           "hyprland/window"
         ];
         modules-right = [
-          "tray"
           "keyboard-state"
+          "tray"
           # "network"
           "cpu"
           "temperature"
