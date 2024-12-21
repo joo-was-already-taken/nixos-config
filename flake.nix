@@ -42,6 +42,7 @@
       pkgs = import nixpkgs {
         system = systemSettings.system;
         overlays = [
+          # inputs.hyprland.overlays.hyprland-packages
           (final: prev: {
             unstable = nixpkgs-unstable.legacyPackages.${prev.system};
           })
@@ -80,8 +81,10 @@
             stylix.homeManagerModules.stylix
             (profilePath + "/home.nix")
           ];
-          extraSpecialArgs = {
-            inherit myLib inputs userSettings systemSettings;
+          extraSpecialArgs = let
+            systemConfig = self.nixosConfigurations.${systemSettings.hostName}.config;
+          in {
+            inherit myLib inputs userSettings systemSettings systemConfig;
           };
         };
       };
