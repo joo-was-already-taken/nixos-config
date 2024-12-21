@@ -6,6 +6,9 @@
     poetry
     python313
 
+    # go
+    go
+
     # haskell
     ghc
     
