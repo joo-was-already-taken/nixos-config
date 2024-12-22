@@ -52,7 +52,7 @@
         cmake
       ];
       settings = {
-        ident.enable = true;
+        ident.enable = false;
         highlight = {
           enable = true;
           additional_vim_regex_highlighting = true;
@@ -122,7 +122,7 @@
         mapping = {
           "<C-n>" = "cmp.mapping.select_next_item()";
           "<C-p>" = "cmp.mapping.select_prev_item()";
-          "<C-y>" = "cmp.mapping.confirm({ select = false })";
+          "<C-y>" = "cmp.mapping.confirm({ select = true })";
           "<C-q>" = "cmp.mapping.abort()";
         };
       };
@@ -180,9 +180,23 @@
     web-devicons.enable = true; # for neo-tree
   };
 
-  extraPlugins = with pkgs.vimPlugins; [
-    nvim-highlight-colors
+  extraPlugins = let
+    toLua = str: "lua << EOF\n${str}\nEOF\n";
+  in with pkgs.vimPlugins; [
     vim-obsession
+
+    {
+      plugin = nvim-highlight-colors;
+      config = toLua /*lua*/ ''
+        require("nvim-highlight-colors").setup({
+          render = "virtual",
+          virtual_symbol = "●",
+          virtual_symbol_prefix = " ",
+          virtual_symbol_suffix = "",
+          virtual_symbol_position = "eol",
+        })
+      '';
+    }
   ];
 
   extraConfigLua = /*lua*/ ''
