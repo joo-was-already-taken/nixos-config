@@ -63,6 +63,8 @@ in {
       keymaps = import ./keymaps.nix;
       plugins = (import ./plugins.nix args).plugins;
       extraPlugins = (import ./plugins.nix args).extraPlugins;
+
+      extraConfigLua = (import ./plugins.nix args).extraConfigLua;
     };
   };
 }

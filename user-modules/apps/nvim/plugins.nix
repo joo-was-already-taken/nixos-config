@@ -184,4 +184,10 @@
     nvim-highlight-colors
     vim-obsession
   ];
+
+  extraConfigLua = /*lua*/ ''
+    -- fix neo-tree border color
+    vim.cmd("highlight! link NeoTreeFloatTitle NeoTreeNormal")
+    vim.cmd("highlight! link NeoTreeFloatBorder NeoTreeNormal")
+  '';
 }
