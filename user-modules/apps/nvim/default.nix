@@ -5,6 +5,10 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
+    home.packages = with pkgs; [
+      ripgrep
+    ];
+
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
@@ -46,6 +50,7 @@ in {
         cmdheight = 1;
         scrolloff = 10;
         completeopt = "menuone,noinsert,noselect";
+        showtabline = 0; # never
         # Behaviour
         hidden = true;
         errorbells = false;
@@ -59,6 +64,21 @@ in {
         modifiable = true;
         encoding = "UTF-8";
       };
+
+      autoCmd = [
+        {
+          # Fix noice search popup border color
+          callback.__raw = ''
+            function()
+              local get_hl = function(hl) return vim.api.nvim_get_hl_by_name(hl, true) end
+              local fg = get_hl("NoiceCmdlinePopupBorderSearch").foreground
+              local bg = get_hl("NoiceCmdlinePopup").background
+              vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = fg, bg = bg })
+            end
+          '';
+          event = [ "VimEnter" ];
+        }
+      ];
 
       keymaps = import ./keymaps.nix;
       plugins = (import ./plugins.nix args).plugins;

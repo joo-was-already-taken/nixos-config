@@ -11,6 +11,15 @@ let
         action = "<cmd>Neotree git_status toggle reveal float<CR>";
         key = "<leader>g";
       }
+      # Notify
+      {
+        action.__raw = ''
+          function()
+            require("notify").dismiss({ silent = true, padding = true })
+          end
+        '';
+        key = "<leader>c";
+      }
 
       # Quitting
       {

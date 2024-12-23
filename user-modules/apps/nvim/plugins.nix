@@ -5,6 +5,7 @@
     nvim-autopairs.enable = true;
     comment.enable = true;
     ts-autotag.enable = true;
+    gitsigns.enable = true;
 
     telescope = {
       enable = true;
@@ -36,6 +37,7 @@
         gitignore
         python
         markdown
+        markdown_inline
         make
         regex
         toml
@@ -104,6 +106,7 @@
     lspsaga = {
       enable = true;
       lightbulb.enable = false;
+      symbolInWinbar.enable = false;
     };
 
     cmp = {
@@ -130,6 +133,13 @@
     cmp-nvim-lsp.enable = true;
     cmp-buffer.enable = true;
     cmp-path.enable = true;
+
+    noice.enable = true;
+    notify = {
+      enable = true;
+      topDown = false;
+      render = "compact";
+    };
 
     indent-blankline = {
       enable = true;
