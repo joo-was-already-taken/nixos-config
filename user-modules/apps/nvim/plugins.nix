@@ -67,6 +67,7 @@
       servers = {
         nil_ls.enable = true;
         lua_ls.enable = true;
+        bashls.enable = true;
         pyright.enable = true;
         gopls.enable = true;
         rust_analyzer = {
