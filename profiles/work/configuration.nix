@@ -61,6 +61,16 @@
     ibus.engines = with pkgs.ibus-engines; [ mozc ];
   };
 
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable WiFi printing
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -85,9 +95,6 @@
       }
     ];
   };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -125,6 +132,7 @@
     vim
     git
     wget
+    unzip
   ];
 
   programs.hyprland = let
