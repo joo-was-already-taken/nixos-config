@@ -64,6 +64,11 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # usb
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # Enable WiFi printing
   services.avahi = {
     enable = true;
