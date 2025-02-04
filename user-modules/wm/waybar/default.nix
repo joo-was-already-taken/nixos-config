@@ -31,15 +31,14 @@ let
     cpu = base0E;
 
     keyboardStateActive = base0B;
-    keyboardStateInactive = foregroundDim;
+    # keyboardStateInactive = foregroundDim;
 
     tray = base01;
   };
 in {
   options.modules.${moduleName} = {
     enable = lib.mkEnableOption moduleName;
-
-    colors = myLib.mkColorsOption defaultColors;
+    colors = myLib.mkHashColorsOption defaultColors;
   };
 
   config = lib.mkIf config.modules.${moduleName}.enable {

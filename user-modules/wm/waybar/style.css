@@ -48,7 +48,7 @@ window#waybar {
 }
 
 #keyboard-state label.capslock {
-  color: @keyboardStateInactive;
+  color: @background; /* TODO: find a cleaner way to do it */
   padding: 0 24px;
 }
 #keyboard-state label.capslock.locked {
