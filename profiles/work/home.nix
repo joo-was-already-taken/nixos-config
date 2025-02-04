@@ -73,6 +73,10 @@ in {
   };
 
   home.packages = with pkgs; [
+    neofetch
+
+    htop
+
     # sound input/output control
     pavucontrol
     # file manager
@@ -84,6 +88,8 @@ in {
     openshot-qt
     vlc
     loupe
+    termusic
+    calcure
 
     # tldr pages
     tealdeer
