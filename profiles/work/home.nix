@@ -80,7 +80,7 @@ in {
     # sound input/output control
     pavucontrol
     # file manager
-    cinnamon.nemo
+    nemo
     vscodium.fhs
     firefox
 

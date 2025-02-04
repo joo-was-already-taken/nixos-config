@@ -13,6 +13,6 @@
     ghc
     
     # prolog
-    swiProlog
+    swi-prolog
   ];
 }
