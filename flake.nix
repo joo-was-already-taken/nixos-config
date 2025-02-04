@@ -29,6 +29,9 @@
 
     pyprland.url = "github:hyprland-community/pyprland";
     pomidoro.url = "github:joo-was-already-taken/pomidoro";
+
+    zig-overlay.url = "github:mitchellh/zig-overlay";
+    zls-overlay.url = "github:zigtools/zls";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, stylix, ... }@inputs:
