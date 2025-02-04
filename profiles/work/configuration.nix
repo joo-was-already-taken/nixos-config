@@ -14,7 +14,10 @@
     # ../../system-modules/display-managers/sddm.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 8;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   # blueman
@@ -128,6 +131,13 @@
     packages = [];
   };
 
+  # programs.nix-ld = {
+  #   enable = true;
+  #   libraries = with pkgs; [
+  #     llm-ls
+  #   ];
+  # };
+
   # Allow unfree packages
   # nixpkgs.config.allowUnfree = true;
 
@@ -139,6 +149,11 @@
     wget
     unzip
   ];
+
+  # services.ollama = {
+  #   enable = true;
+  #   loadModels = [ "codeqwen" ];
+  # };
 
   programs.hyprland = let
     hyprlandPkgs = inputs.hyprland.packages.${systemSettings.system};
