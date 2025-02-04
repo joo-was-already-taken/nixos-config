@@ -263,6 +263,8 @@ in {
 
           "$mod, N, workspace, +1"
           "$mod, P, workspace, -1"
+          "$mod SHIFT, N, movetoworkspace, +1"
+          "$mod SHIFT, P, movetoworkspace, -1"
         ] ++ ( # generate workspace bindings for workspaces 1 - 9
             let
               bindWorkspace = ws: let
