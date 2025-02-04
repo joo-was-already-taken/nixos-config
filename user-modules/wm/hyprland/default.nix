@@ -37,6 +37,7 @@ in {
       brightnessctl
       networkmanagerapplet
       libnotify
+      nwg-displays # TODO
     ];
 
     xdg.portal = {
@@ -74,6 +75,10 @@ in {
       offset = [ 0, 14 ] # TODO: 34 should be the same as waybar's height
       margin = [ 800, 37 ] # TODO: 34/2 + (20 should be the same as `gaps_out`)
     '';
+
+    home.sessionVariables = {
+      HYPRSHOT_DIR = config.home.homeDirectory + "/Pictures/Screenshots";
+    };
 
     stylix.targets.hyprland.enable = false;
 
@@ -128,7 +133,7 @@ in {
 
           allow_tearing = false;
 
-          layout = "dwindle";
+          layout = "master";
         };
 
         decoration = {
@@ -175,6 +180,9 @@ in {
           disable_splash_rendering = true;
 
           focus_on_activate = true;
+
+          # make rofi open apps in workspaces they were launched in
+          initial_workspace_tracking = 1;
         };
 
         cursor = {
@@ -226,7 +234,10 @@ in {
 
           "$mod, M, exec, pypr layout_center toggle"
 
+          # Take a screenshot of an entire monitor
           ", Print, exec, hyprshot -m output"
+          # Take a screenshot of selected region
+          "Control_L&Control_R, Print, exec, hyprshot -m region"
 
           "$mod, H, movefocus, l"
           "$mod, L, movefocus, r"
