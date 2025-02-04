@@ -21,6 +21,21 @@ in {
     (import ../../user-modules/wm (args // { sessionVariables = workSessionVars; }))
   ];
 
+  xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "zathura.desktop";
+
+        "text/html" = "qutebrowser.desktop";
+        "x-scheme-handler/http" = "qutebrowser.desktop";
+        "x-scheme-handler/https" = "qutebrowser.desktop";
+        "x-scheme-handler/about" = "qutebrowser.desktop";
+        "x-scheme-handler/unknown" = "qutebrowser.desktop";
+      };
+    };
+  };
+
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";

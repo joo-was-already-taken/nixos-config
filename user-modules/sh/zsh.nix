@@ -65,6 +65,7 @@ in {
         mkdir = "mkdir --verbose --parents";
         grep = "grep --color=auto";
         ip = "ip -color=auto";
+        open = "xdg-open";
       };
 
       initExtra = /*bash*/ '' # jk it's zsh

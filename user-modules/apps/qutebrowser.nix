@@ -93,6 +93,14 @@ in {
           webpage.darkmode.enabled = false;
         } // config.modules.${moduleName}.colors;
       };
+
+    xdg = {
+      desktopEntries = {
+        qutebrowser = {
+          name = "qutebrowser";
+          exec = "${config.programs.qutebrowser.package}/bin/qutebrowser";
+        };
+      };
     };
   };
 }
