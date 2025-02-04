@@ -36,6 +36,18 @@ in {
     };
   };
 
+  services.gammastep = {
+    enable = true;
+    tray = true;
+    # dawnTime = "5:00-6:00";
+    # duskTime = "19:00-20:00";
+    latitude = 52.23;
+    longitude = 21.01;
+    settings.general = {
+      temp-night = lib.mkForce 3200;
+    };
+  };
+
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
