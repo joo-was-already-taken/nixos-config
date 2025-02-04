@@ -66,10 +66,20 @@ in {
 
   modules.librewolf.enable = true;
 
-  nix.gc = {
-    automatic = true;
-    frequency = "weekly";
-    options = "--delete-older-than 30d";
+  nix = {
+    # package = pkgs.nix;
+
+    gc = {
+      automatic = true;
+      frequency = "weekly";
+      options = "--delete-older-than 30d";
+    };
+
+    # TODO
+    # extraOptions = ''
+    #   keep-outputs = true
+    #   keep-derivations = true
+    # '';
   };
 
   home.packages = with pkgs; [
