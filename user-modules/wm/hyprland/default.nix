@@ -1,6 +1,11 @@
-{ pkgs, lib, inputs, config, systemSettings, sessionVariables, ... }:
+{ pkgs, lib, myLib, inputs, config, systemSettings, sessionVariables, ... }:
 let
   moduleName = "hyprland";
+  defaultColors = with config.lib.stylix.colors; {
+    activeBorder1 = base0D;
+    activeBorder2 = base0C;
+    inactiveBorder = base04;
+  };
 
   changeKbLayout = pkgs.writeShellApplication {
     name = "change-kb-layout";
@@ -13,7 +18,14 @@ let
     '';
   };
 in {
-  options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
+  options.modules.${moduleName} = {
+    enable = lib.mkEnableOption moduleName;
+    colors = myLib.mkColorsOption defaultColors;
+    invisibleInactiveBorder = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+    };
+  };
 
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
@@ -63,6 +75,8 @@ in {
       margin = [ 800, 37 ] # TODO: 34/2 + (20 should be the same as `gaps_out`)
     '';
 
+    stylix.targets.hyprland.enable = false;
+
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -103,8 +117,12 @@ in {
           gaps_out = 20;
           border_size = 2;
 
-          # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          # "col.inactive_border" = "rgba(595959aa)";
+          "col.active_border" = "rgb(${config.modules.${moduleName}.colors.activeBorder1})"
+            + " rgb(${config.modules.${moduleName}.colors.activeBorder2})"
+            + " 45deg";
+          "col.inactive_border" = "rgba(${config.modules.${moduleName}.colors.inactiveBorder}${
+            if config.modules.${moduleName}.invisibleInactiveBorder then "00" else "ff"
+          })";
 
           resize_on_border = true;
 
