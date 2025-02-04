@@ -18,7 +18,7 @@ let
             require("notify").dismiss({ silent = true, padding = true })
           end
         '';
-        key = "<leader>c";
+        key = "<leader>cn";
       }
 
       # Quitting
@@ -67,6 +67,12 @@ let
         action = ">gv";
         key = ">";
         mode = "v";
+      }
+
+      # LLM
+      {
+        action = "<cmd>LLMSuggestion<CR>";
+        key = "<leader>ls";
       }
     ];
 in silent

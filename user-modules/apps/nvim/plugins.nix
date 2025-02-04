@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, systemSettings, systemConfig, inputs, ... }:
 {
   plugins = {
     tmux-navigator.enable = true;
@@ -21,10 +21,30 @@
 
     lualine = {
       enable = true;
-      settings.options = {
-        globalstatus = true;
-        component_separators = "│";
-        section_separators = "";
+      settings = {
+        options = {
+          globalstatus = true;
+          component_separators = "│";
+          section_separators = "";
+        };
+        # shhh, there is nothing to see here, just plain ol' nix
+        # i don't know how to do this in nix :(
+        # i blame it on the docs
+        sections.lualine_b.__raw = ''
+          {
+            "branch",
+            "diff",
+            {
+              "diagnostics",
+              symbols = {
+                error = "E",
+                warn = "W",
+                info = "I",
+                hint = "H",
+              },
+            },
+          }
+        '';
       };
     };
 
@@ -52,6 +72,8 @@
         c
         cpp
         cmake
+        zig
+        java
       ];
       settings = {
         ident.enable = false;
@@ -75,6 +97,18 @@
           installCargo = true;
           installRustc = true;
         };
+        clangd.enable = true;
+        zls = {
+          enable = true;
+          package = let
+            zig = inputs.zig-overlay.packages.${systemSettings.system}.master;
+          in
+            inputs.zls-overlay.packages.${systemSettings.system}.zls.overrideAttrs (old: {
+              nativeInputs = [ zig ];
+            });
+        };
+
+        jdtls.enable = true;
       };
       keymaps = {
         silent = true;
@@ -89,8 +123,7 @@
           gt = "type_definition";
           gr = "references";
           gi = "implementation";
-          rn = "rename";
-          ca = "code_action";
+          "<leader>rn" = "rename";
         };
         extra = map (keymap: keymap // { options.silent = true; }) [
           {
@@ -100,6 +133,18 @@
           {
             action = "<cmd>Lspsaga show_line_diagnostics<CR><cmd>set wrap<CR>";
             key = "<leader>xd";
+          }
+          {
+            action = "<cmd>Lspsaga diagnostic_jump_next<CR>";
+            key = "<leader>xj";
+          }
+          {
+            action = "<cmd>Lspsaga diagnostic_jump_prev<CR>";
+            key = "<leader>xk";
+          }
+          {
+            action = "<cmd>Lspsaga code_action<CR>";
+            key = "<leader>ca";
           }
         ];
       };
@@ -157,6 +202,12 @@
       enable = true;
     };
 
+    cursorline = {
+      enable = true;
+      cursorline.enable = true;
+      cursorword.enable = false;
+    };
+
     neo-tree = {
       enable = true;
       extraOptions = {
@@ -197,6 +248,25 @@
   in with pkgs.vimPlugins; [
     vim-obsession
 
+    # {
+    #   plugin = llm-nvim;
+    #   config = toLua /*lua*/ ''
+    #     require("llm").setup({
+    #       backend = "ollama",
+    #       model = "codeqwen:7b",
+    #       url = "http://localhost:${builtins.toString systemConfig.services.ollama.port}",
+    #       accept_keymap = "<C-x>",
+    #       dismiss_keymap = "<leader>lx",
+    #       -- keymaps = {
+    #       --   complete = "<leader>lc",
+    #       --   chat = "<leader>lh",
+    #       --   accept = "<C-x>",
+    #       --   next = "<leader>ln",
+    #       --   prev = "<leader>lp",
+    #       -- },
+    #     })
+    #   '';
+    # }
     {
       plugin = nvim-highlight-colors;
       config = toLua /*lua*/ ''

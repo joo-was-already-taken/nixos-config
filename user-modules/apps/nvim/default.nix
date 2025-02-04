@@ -8,10 +8,17 @@ in {
     home.packages = with pkgs; [
       ripgrep
     ];
+    
+    # home.file.".config/clangd/config.yaml".text = /*yaml*/ ''
+    #   CompileFlags:
+    #     Add: [-std=c++23]
+    # '';
 
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
+
+      # nixpkgs.useGlobalPackages = true;
 
       enableMan = true;
       
