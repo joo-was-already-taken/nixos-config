@@ -5,14 +5,19 @@
 { pkgs, inputs, systemSettings, userSettings, ... }@args:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     ../../styling/stylix.nix
     (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
     # ../../system-modules/display-managers/sddm.nix
   ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+    auto-optimise-store = true
+  '';
 
   boot.loader.systemd-boot = {
     enable = true;
