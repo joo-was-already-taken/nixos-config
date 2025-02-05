@@ -60,14 +60,14 @@
     LC_TIME = "en_DK.UTF-8";
   };
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5 = {
-      addons = with pkgs; [ fcitx5-configtool fcitx5-mozc ];
-      waylandFrontend = true;
-    };
-    ibus.engines = with pkgs.ibus-engines; [ mozc ];
-  };
+  # i18n.inputMethod = {
+  #   enabled = "fcitx5";
+  #   fcitx5 = {
+  #     addons = with pkgs; [ fcitx5-configtool fcitx5-mozc ];
+  #     waylandFrontend = true;
+  #   };
+  #   ibus.engines = with pkgs.ibus-engines; [ mozc ];
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -120,9 +120,9 @@
     jack.enable = true;
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
