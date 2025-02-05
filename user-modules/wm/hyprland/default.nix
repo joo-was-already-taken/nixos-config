@@ -37,7 +37,6 @@ in {
       brightnessctl
       networkmanagerapplet
       libnotify
-      nwg-displays # TODO
     ];
 
     xdg.portal = {
