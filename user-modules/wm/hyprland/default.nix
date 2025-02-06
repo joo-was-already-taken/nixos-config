@@ -241,6 +241,7 @@ in {
           "$mod, O, fullscreen, 0" # fullscreen
           "$mod, U, fullscreen, 1" # maximize
           "$mod, I, togglefloating"
+          "$mod, Y, fullscreenstate, 0 3"
 
           # change keyboard layout
           "$mod, space, exec, ${lib.getExe changeKbLayout}"
