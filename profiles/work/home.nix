@@ -9,16 +9,18 @@ let
   }
     // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {})
     // sessionVariables;
+
+  styleSettings = import ../../styling/current-settings.nix;
 in {
   imports = [
     ../../styling/home-style.nix
     inputs.sops-nix.homeManagerModules.sops
-    (import ../../user-modules/sh (args // { sessionVariables = workSessionVars; }))
+    (import ../../user-modules/sh <| args // { sessionVariables = workSessionVars; })
     ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
     ../../user-modules/virtualization.nix
-    ../../user-modules/apps
-    (import ../../user-modules/wm (args // { sessionVariables = workSessionVars; }))
+    (import ../../user-modules/apps <| args // { inherit styleSettings; })
+    (import ../../user-modules/wm <| args // { sessionVariables = workSessionVars; })
   ];
 
   xdg = {

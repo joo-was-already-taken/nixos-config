@@ -1,12 +1,11 @@
 { pkgs, ... }:
 let
-  # choose your style
-  style = import ./styles/gruvbox.nix;
+  style = import ./current-settings.nix;
 in {
   stylix = {
     enable = true;
 
-    base16Scheme = style.colorscheme;
+    base16Scheme = style.colors;
     image = style.wallpaper;
     polarity = style.polarity;
 

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, styleSettings, ... }@args:
 let
   moduleName = "nvim";
 in {
@@ -22,7 +22,11 @@ in {
 
       enableMan = true;
       
-      colorschemes.gruvbox.enable = true;
+      # colorschemes.gruvbox.enable = true;
+      colorschemes.base16 = {
+        enable = true;
+        colorscheme = styleSettings.withHash.editorColors;
+      };
 
       clipboard = {
         register = "unnamedplus";

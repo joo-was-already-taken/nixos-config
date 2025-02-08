@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, myLib, ... }@args:
 
 {
-  imports = [
+  imports = myLib.importAll args [
     ./nvim
     ./tmux
     ./alacritty.nix
