@@ -216,7 +216,7 @@ in {
           interval = 30;
         };
         "hyprland/workspaces" = {
-          all-outputs = true;
+          all-outputs = false;
           active-only = false;
           show-special = true;
           format = "{icon}";

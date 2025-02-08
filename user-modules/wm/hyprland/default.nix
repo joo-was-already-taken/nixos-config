@@ -9,12 +9,26 @@ let
 
   changeKbLayout = pkgs.writeShellApplication {
     name = "change-kb-layout";
-    runtimeInputs = with pkgs; [ libnotify ];
+    runtimeInputs = with pkgs; [
+      # hyprland
+      libnotify
+    ];
     text = ''
       keyboard='at-translated-set-2-keyboard'
       hyprctl switchxkblayout "$keyboard" next
       value="$(hyprctl devices | grep -i $keyboard -A 2 | tail -n1 | cut -f3-5 -d' ')"
       notify-send "Keyboard layout: $value"
+    '';
+  };
+  toggleMainDisplay = pkgs.writeShellApplication {
+    name = "toggle-main-display";
+    runtimeInputs = with pkgs; [
+      # hyprland
+      wlr-randr
+    ];
+    text = ''
+      display="$(wlr-randr | head -n1 | awk '{print $1}')"
+      hyprctl dispatch dpms toggle "$display"
     '';
   };
 in {
@@ -68,12 +82,14 @@ in {
     home.file.".config/hypr/pyprland.toml".text = /*toml*/ ''
       [pyprland]
       plugins = [
-        "layout_center",
+        "shift_monitors"
       ]
-
-      [layout_center]
-      offset = [ 0, 14 ] # TODO: 34 should be the same as waybar's height
-      margin = [ 800, 37 ] # TODO: 34/2 + (20 should be the same as `gaps_out`)
+      # plugins = [
+      #   "workspaces_follow_focus"
+      # ]
+      #
+      # [workspaces_follow_focus]
+      # max_workspaces = 0
     '';
 
     home.sessionVariables = {
@@ -88,7 +104,9 @@ in {
       systemd.enable = true;
       plugins = [];
 
-      settings = {
+      settings = let
+        numWorkspaces = 10;
+      in {
         "$mod" = "SUPER";
         "$keysymMod" = "Super_L";
         "$terminal" = sessionVariables.TERMINAL;
@@ -182,14 +200,16 @@ in {
 
           focus_on_activate = true;
 
-          # make rofi open apps in workspaces they were launched in
           initial_workspace_tracking = 1;
         };
 
         workspace = [
           "w[tv1], gapsout:0, gapsin:0"
           "f[1], gapsout:0, gapsin:0"
-        ];
+        ]/* ++ (
+          let genWorkspace = ws: "${toString (ws + 1)}, persistent:true";
+          in builtins.genList genWorkspace numWorkspaces
+        )*/;
 
         windowrulev2 = [
           # "suppressevent maximize, class:.*"
@@ -243,10 +263,11 @@ in {
           "$mod, I, togglefloating"
           "$mod, Y, fullscreenstate, 0 3"
 
+          "$mod, M, exec, pypr shift_monitors +1"
+          "$mod, backslash, exec, ${lib.getExe toggleMainDisplay}"
+
           # change keyboard layout
           "$mod, space, exec, ${lib.getExe changeKbLayout}"
-
-          "$mod, M, exec, pypr layout_center toggle"
 
           # Take a screenshot of an entire monitor
           ", Print, exec, hyprshot -m output"
@@ -276,7 +297,7 @@ in {
                 "$mod SHIFT, code:1${toString idx}, movetoworkspace, ${toString ws}"
               ];
             in
-              builtins.concatLists (builtins.genList (idx: bindWorkspace (idx + 1)) 10)
+              builtins.concatLists (builtins.genList (idx: bindWorkspace (idx + 1)) numWorkspaces)
           );
 
         binde = [
