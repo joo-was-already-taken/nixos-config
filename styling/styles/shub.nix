@@ -6,8 +6,8 @@ in rec {
   # colorscheme = ../colorschemes/gruvbox.yaml;
   # editorColors = import ../editor-colors/shub.nix;
   # polarity = "dark";
-  colors = colorschemes.gruvbox;
-  editorColors = colorschemes.gruvbox;
+  colors = colorschemes.shub;
+  editorColors = colorschemes.shub;
   withHash = {
     colors = addHash colors;
     editorColors = addHash editorColors;

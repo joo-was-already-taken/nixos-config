@@ -19,4 +19,23 @@
     base0E = "d485ad"; # purple
     base0F = "d65d0e"; # brown
   };
+
+  shub = {
+    base00 = "262626"; # ----
+    base01 = "3a3a3a"; # ---
+    base02 = "4e4e4e"; # --
+    base03 = "8a8a8a"; # -
+    base04 = "949494"; # +
+    base05 = "dab997"; # ++
+    base06 = "d5c4a1"; # +++
+    base07 = "ebdbb2"; # ++++
+    base08 = "d68477"; # red
+    base09 = "eaa54f"; # orange
+    base0A = "ecb94a"; # yellow
+    base0B = "c1b94d"; # green
+    base0C = "a5b690"; # aqua/cyan
+    base0D = "a4b6a8"; # blue
+    base0E = "d49ca9"; # purple
+    base0F = "d68d52"; # brown
+  };
 }
