@@ -32,7 +32,7 @@ in {
         helper = cache --timeout=7200
 
       [alias]
-        a = add .
+        a = add
         st = status
         d = diff
         ds = diff --staged
