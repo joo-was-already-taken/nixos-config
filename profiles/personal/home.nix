@@ -22,5 +22,9 @@ in {
     # games
     prismlauncher # minecraft
     superTuxKart
+
+
+    # music
+    unstable.tidal-dl
   ];
 }

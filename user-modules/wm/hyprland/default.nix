@@ -122,7 +122,7 @@ in {
           "nm-applet &"
           "(sleep 2; blueman-tray) &"
           "pypr &"
-          "swayidle -w timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'"
+          # "swayidle -w timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'"
         ];
 
         monitor = [

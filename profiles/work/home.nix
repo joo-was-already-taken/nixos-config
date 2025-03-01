@@ -47,7 +47,7 @@ in {
     longitude = 21.01;
     settings.general = {
       temp-day = lib.mkForce 5700;
-      temp-night = lib.mkForce 3600;
+      temp-night = lib.mkForce 3300;
     };
   };
 
