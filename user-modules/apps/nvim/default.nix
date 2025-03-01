@@ -62,6 +62,8 @@ in {
         scrolloff = 10;
         completeopt = "menuone,noinsert,noselect";
         showtabline = 0; # never
+        listchars = "trail:·"; # trailing whitespace
+        list = true;
         # Behaviour
         hidden = true;
         errorbells = false;

@@ -74,6 +74,7 @@
         cmake
         zig
         java
+        yuck
       ];
       settings = {
         ident.enable = false;
@@ -90,7 +91,12 @@
         nil_ls.enable = true;
         lua_ls.enable = true;
         bashls.enable = true;
-        pyright.enable = true;
+        basedpyright = {
+          enable = true;
+          package = pkgs.unstable.basedpyright;
+          settings.python.pythonPath = "python3.13";
+        };
+        marksman.enable = true;
         gopls.enable = true;
         rust_analyzer = {
           enable = true;
