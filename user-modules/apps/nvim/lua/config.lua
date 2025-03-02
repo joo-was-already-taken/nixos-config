@@ -90,17 +90,15 @@ end, opts)
 keymap.set("n", "<leader>h", "<cmd>noh<CR>", opts)
 
 
--- -- REQUIRE
--- local function require_from(dir)
---   local files = vim.fn.readdir(dir)
---   for _, file in ipairs(files) do
---     local lua_pattern = "%.lua$"
---     if file:match(lua_pattern) then
---       require(file:gsub(lua_pattern, ""))
---     end
---   end
--- end
---
--- require("options")
--- require("keymaps")
--- require_from("plugins")
+-- REQUIRE
+local function load_from(dir)
+  local files = vim.fn.readdir(dir)
+  for _, file in ipairs(files) do
+    if file:match("%.lua$") then
+      local chunk, _ = loadfile(dir .. "/" .. file)
+      if chunk then chunk() end
+    end
+  end
+end
+
+load_from(vim.fn.stdpath("config") .. "/lua/plugins")
