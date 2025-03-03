@@ -31,11 +31,11 @@
     base07 = "ebdbb2"; # ++++
     base08 = "d68477"; # red
     base09 = "eaa54f"; # orange
-    base0A = "f5b428"; # yellow
+    base0A = "e5ab63"; # yellow
     base0B = "c1b94d"; # green
     base0C = "a5b690"; # aqua/cyan
     base0D = "a4b6a8"; # blue
-    base0E = "d49ca9"; # purple
+    base0E = "bf8d9c"; # purple
     base0F = "d68d52"; # brown
   };
 }
