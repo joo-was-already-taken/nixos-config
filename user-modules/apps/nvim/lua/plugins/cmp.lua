@@ -21,6 +21,7 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
+    { name = "render-markdown" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },

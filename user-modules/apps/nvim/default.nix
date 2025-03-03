@@ -32,11 +32,15 @@ in {
         lua = str: "lua << EOF\n${str}\nEOF\n";
       in with pkgs.vimPlugins; [
         tmux-navigator
-        nvim-autopairs
         comment-nvim
         nvim-ts-autotag
         gitsigns-nvim
         vim-obsession
+
+        {
+          plugin = nvim-autopairs;
+          config = lua ''require("nvim-autopairs").setup({})'';
+        }
 
         # plugins/telescope.lua
         telescope-nvim
@@ -127,10 +131,38 @@ in {
             tree-sitter-java
           ]));
           config = lua /*lua*/ ''
-            require("nvim-treesitter").setup({
+            require("nvim-treesitter.configs").setup({
+              auto_install = false,
               highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = true,
+                additional_vim_regex_highlighting = false,
+              },
+              indent = { enable = true },
+              context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
+              },
+            })
+          '';
+        }
+
+        {
+          plugin = render-markdown-nvim;
+          config = with config.lib.stylix.colors.withHashtag; lua ''
+            -- TODO: add headings backgrounds
+            -- vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "${base0B}" })
+            -- vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "${base0E}" })
+            -- vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "${base08}" })
+            -- vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "${base0D}" })
+            -- vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "${base0C}" })
+            require("render-markdown").setup({
+              render_modes = true,
+              code = {
+                width = "block",
+                min_width = 70,
+                left_pad = 2,
+                right_pad = 2,
+                language_pad = 0,
               },
             })
           '';
