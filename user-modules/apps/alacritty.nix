@@ -5,6 +5,8 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
+    stylix.targets.alacritty.enable = true;
+
     programs.alacritty = {
       enable = true;
 
@@ -21,6 +23,9 @@ in {
           columns = 120;
           lines = 32;
         };
+
+        colors.primary.foreground = lib.mkForce
+          config.lib.stylix.colors.withHashtag.base06;
 
         font = let
           family = config.stylix.fonts.monospace.name;

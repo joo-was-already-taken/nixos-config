@@ -25,7 +25,6 @@ in {
         nil
         lua-language-server
       ];
-
       extraLuaConfig = /*lua*/ ''
         require("config")
       '';
@@ -63,12 +62,14 @@ in {
                 gitsigns = true,
                 neotree = true,
                 treesitter = true,
+                telescope = { enabled = true },
                 native_lsp = { enabled = true },
               },
               highlight_overrides = {
                 macchiato = function(macchiato)
                   return {
                     LineNr = { fg = macchiato.sky },
+
                   }
                 end
               },
