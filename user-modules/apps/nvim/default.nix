@@ -10,6 +10,8 @@ in {
       recursive = true;
     };
 
+    stylix.targets.neovim.enable = false;
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -36,6 +38,47 @@ in {
         nvim-ts-autotag
         gitsigns-nvim
         vim-obsession
+
+        # {
+        #   plugin = tokyonight-nvim;
+        #   config = lua /*lua*/ ''
+        #     require("tokyonight").setup({
+        #       style = "storm",
+        #     })
+        #     vim.cmd("colorscheme tokyonight-storm")
+        #   '';
+        # }
+        {
+          plugin = catppuccin-nvim;
+          config = lua /*lua*/ ''
+            require("catppuccin").setup({
+              flavour = "macchiato",
+              transparent_background = false,
+              show_end_of_buffer = true,
+              term_colors = true,
+              background = {
+                dark = "macchiato",
+                light = "latte",
+              },
+              default_integrations = true,
+              integrations = {
+                cmp = true,
+                gitsigns = true,
+                neotree = true,
+                treesitter = true,
+                native_lsp = { enabled = true },
+              },
+              custom_highlights = {
+
+              },
+            })
+            vim.cmd.colorscheme("catppuccin")
+            -- local colors = require("catppuccin.palettes").get_palette "macchiato"
+            -- for k, v in pairs(colors) do
+            --   print(k .. ", " .. v)
+            -- end
+          '';
+        }
 
         {
           plugin = nvim-autopairs;
@@ -75,16 +118,16 @@ in {
         # plugins/notify.lua
         nvim-notify
 
-        {
-          plugin = indent-blankline-nvim;
-          config = lua ''
-            vim.api.nvim_set_hl(0, "MyIblIndent", { fg = "${config.lib.stylix.colors.withHashtag.base01}" })
-            require("ibl").setup({
-              scope = { enabled = false },
-              indent = { highlight = { "MyIblIndent" } },
-            })
-          '';
-        }
+        # {
+        #   plugin = indent-blankline-nvim;
+        #   config = lua ''
+        #     vim.api.nvim_set_hl(0, "MyIblIndent", { fg = "${config.lib.stylix.colors.withHashtag.base01}" })
+        #     require("ibl").setup({
+        #       scope = { enabled = false },
+        #       indent = { highlight = { "MyIblIndent" } },
+        #     })
+        #   '';
+        # }
 
         # plugins/neotree.lua
         neo-tree-nvim

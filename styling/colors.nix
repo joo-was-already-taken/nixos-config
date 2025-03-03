@@ -38,4 +38,23 @@
     base0E = "bf8d9c"; # purple
     base0F = "d68d52"; # brown
   };
+
+  tokyonight = {
+    base00 = "1d202f"; # ----
+    base01 = "292e42"; # ---
+    base02 = "434960"; # --
+    base03 = "606782"; # -
+    base04 = "868eae"; # +
+    base05 = "a9b1d6"; # ++
+    base06 = "c0caf5"; # +++
+    base07 = "d1d8f9"; # ++++
+    base08 = "f7768e"; # red
+    base09 = "ff9e64"; # orange
+    base0A = "e0af68"; # yellow
+    base0B = "9ece6a"; # green
+    base0C = "7dcfff"; # aqua/cyan
+    base0D = "7aa2f7"; # blue
+    base0E = "bb9af7"; # purple
+    base0F = "b2a2a1"; # brown
+  };
 }

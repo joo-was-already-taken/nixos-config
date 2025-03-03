@@ -1,2 +1,2 @@
 # choose your style
-import ./styles/shub.nix
+import ./styles/tokyonight.nix

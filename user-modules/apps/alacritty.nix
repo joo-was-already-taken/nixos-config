@@ -9,6 +9,8 @@ in {
       enable = true;
 
       settings = {
+        env.TERM = "xterm-256color";
+
         scrolling.multiplier = 8;
 
         window.padding = {

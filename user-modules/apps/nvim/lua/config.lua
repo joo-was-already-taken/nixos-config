@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.cmd.colorscheme("catppuccin")
+
 -- OPTIONS
 local opt = vim.opt
 
@@ -20,6 +22,7 @@ opt.hlsearch = true
 opt.number = true
 opt.relativenumber = true
 opt.termguicolors = true
+opt.background = "dark"
 opt.signcolumn = "yes"
 opt.cmdheight = 1
 opt.scrolloff = 10
