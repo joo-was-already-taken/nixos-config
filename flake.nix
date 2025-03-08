@@ -21,17 +21,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # user inputs
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     pyprland.url = "github:hyprland-community/pyprland";
     pomidoro.url = "github:joo-was-already-taken/pomidoro";
-
-    zig-overlay.url = "github:mitchellh/zig-overlay";
-    zls-overlay.url = "github:zigtools/zls";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, stylix, ... }@inputs:
