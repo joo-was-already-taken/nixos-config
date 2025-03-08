@@ -45,7 +45,6 @@ in {
     # to update config-university run `systemctl --user start gitconfig-init.service`
     systemd.user.services."gitconfig-init" = {
       Service.ExecStart = pkgs.writeShellScript "gitconfig-init" ''
-        #!/run/current-system/sw/bin/bash
         echo -e "
         [user]
           name = Sebastian Wojciechowski
@@ -55,5 +54,9 @@ in {
         " > ~/.config/git/config-university
       '';
     };
-  };
+    # automatically run the above service
+    home.activation.addGitConfig = lib.hm.dag.entryAfter [ "writeBoundary" "reloadSystemd" ] ''
+      run ${pkgs.systemd}/bin/systemctl $VERBOSE_ARG --user start gitconfig-init.service
+    '';
+    };
 }
