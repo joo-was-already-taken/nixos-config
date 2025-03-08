@@ -4,6 +4,10 @@ let
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
+  imports = [
+    ./notes.nix
+  ];
+
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.file.".config/nvim/lua" = {
       source = ./lua;
@@ -21,6 +25,7 @@ in {
       extraPackages = with pkgs; [
         wl-clipboard
         ripgrep
+        python313Packages.pylatexenc
 
         nil
         lua-language-server
@@ -34,13 +39,18 @@ in {
       in with pkgs.vimPlugins; [
         tmux-navigator
         nvim-ts-autotag
-        gitsigns-nvim
         vim-obsession
 
         {
+          plugin = gitsigns-nvim;
+          config = lua /*lua*/ ''
+            require("gitsigns").setup({})
+          '';
+        }
+        {
           plugin = comment-nvim;
           config = lua /*lua*/ ''
-            require("Comment").setup()
+            require("Comment").setup({})
           '';
         }
 
@@ -68,13 +78,17 @@ in {
               highlight_overrides = {
                 macchiato = function(macchiato)
                   return {
-                    LineNr = { fg = macchiato.sky },
-
+                    LineNr = { fg = macchiato.lavender },
+                    CursorLineNr = { fg = macchiato.sky },
                   }
                 end
               },
             })
             vim.cmd.colorscheme("catppuccin")
+            -- local macchiato = require("catppuccin.palettes").get_palette "macchiato"
+            -- for k, v in pairs(macchiato) do
+            --   print(k .. ", " .. v)
+            -- end
           '';
         }
 
@@ -154,6 +168,7 @@ in {
             tree-sitter-python
             tree-sitter-markdown
             tree-sitter-markdown_inline
+            tree-sitter-latex
             tree-sitter-make
             tree-sitter-regex
             tree-sitter-toml
@@ -187,27 +202,11 @@ in {
           '';
         }
 
-        {
-          plugin = render-markdown-nvim;
-          config = with config.lib.stylix.colors.withHashtag; lua ''
-            -- TODO: add headings backgrounds
-            -- vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "${base0B}" })
-            -- vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "${base0E}" })
-            -- vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "${base08}" })
-            -- vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "${base0D}" })
-            -- vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "${base0C}" })
-            require("render-markdown").setup({
-              render_modes = true,
-              code = {
-                width = "block",
-                min_width = 70,
-                left_pad = 2,
-                right_pad = 2,
-                language_pad = 0,
-              },
-            })
-          '';
-        }
+        # plugins/markdown.lua
+        render-markdown-nvim
+        obsidian-nvim
+        markdown-preview-nvim
+        no-neck-pain-nvim
       ];
     };
   };

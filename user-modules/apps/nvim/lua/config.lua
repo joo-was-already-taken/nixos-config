@@ -27,6 +27,8 @@ opt.signcolumn = "yes"
 opt.cmdheight = 1
 opt.scrolloff = 10
 opt.completeopt = "menuone,noinsert,noselect"
+opt.cursorline = true
+opt.cursorlineopt = "number"
 -- Behaviour
 opt.hidden = true
 opt.errorbells = false
@@ -45,52 +47,61 @@ opt.encoding = "UTF-8"
 
 
 -- KEYMAPS
-local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
+local function keymap_set(mode, new, prev)
+  local opts = { noremap = true, silent = true }
+  vim.keymap.set(mode, new, prev, opts)
+end
 
 -- Exiting
-keymap.set("n", "<leader>qq", "<cmd>qa<CR>", opts)
-keymap.set("n", "<leader>qw", "<cmd>wa<CR><cmd>qa<CR>", opts)
+keymap_set("n", "<leader>qq", "<cmd>qa<CR>")
+keymap_set("n", "<leader>qw", "<cmd>wa<CR><cmd>qa<CR>")
 
 -- Navigation
-keymap.set({ "n", "v" }, "<C-d>", "<C-d>zz", opts)
-keymap.set({ "n", "v" }, "<C-u>", "<C-u>zz", opts)
+keymap_set({ "n", "v" }, "<C-d>", "<C-d>zz")
+keymap_set({ "n", "v" }, "<C-u>", "<C-u>zz")
+keymap_set({ "n", "v" }, "<C-f>", "<C-f>zz")
+keymap_set({ "n", "v" }, "<C-b>", "<C-b>zz")
 
 -- Window and Pane Navigation
-keymap.set("n", "<C-h>", "<C-w>h", opts)
-keymap.set("n", "<C-l>", "<C-w>l", opts)
-keymap.set("n", "<C-j>", "<C-w>j", opts)
-keymap.set("n", "<C-k>", "<C-w>k", opts)
-keymap.set("t", "<C-h>", "<cmd>wincmd h<CR>", opts)
-keymap.set("t", "<C-l>", "<cmd>wincmd l<CR>", opts)
-keymap.set("t", "<C-j>", "<cmd>wincmd j<CR>", opts)
-keymap.set("t", "<C-k>", "<cmd>wincmd k<CR>", opts)
-keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", opts)
-keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
-keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", opts)
-keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
+keymap_set("n", "<C-h>", "<C-w>h")
+keymap_set("n", "<C-l>", "<C-w>l")
+keymap_set("n", "<C-j>", "<C-w>j")
+keymap_set("n", "<C-k>", "<C-w>k")
+keymap_set("t", "<C-h>", "<cmd>wincmd h<CR>")
+keymap_set("t", "<C-l>", "<cmd>wincmd l<CR>")
+keymap_set("t", "<C-j>", "<cmd>wincmd j<CR>")
+keymap_set("t", "<C-k>", "<cmd>wincmd k<CR>")
+keymap_set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>")
+keymap_set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
+keymap_set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>")
+keymap_set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
 
 -- Window Management
-keymap.set("n", "<leader>s-", "<cmd>split<CR>", opts)
-keymap.set("n", "<leader>s|", "<cmd>vsplit<CR>", opts)
+keymap_set("n", "<leader>s-", "<cmd>split<CR>")
+keymap_set("n", "<leader>s|", "<cmd>vsplit<CR>")
+keymap_set("n", "<leader>s+", "<C-w>+")
+keymap_set("n", "<leader>s-", "<C-w>-")
+keymap_set("n", "<leader>s>", "<C-w>>")
+keymap_set("n", "<leader>s<", "<C-w><")
+keymap_set("n", "<leader>s=", "<C-w>=")
 
 -- Indenting
-keymap.set("v", "<", "<gv", opts)
-keymap.set("v", ">", ">gv", opts)
+keymap_set("v", "<", "<gv")
+keymap_set("v", ">", ">gv")
 
 -- Editing
-keymap.set("n", "<leader>o", "o<ESC>", opts)
-keymap.set("n", "<leader>O", "O<ESC>", opts)
+keymap_set("n", "<leader>o", "o<ESC>")
+keymap_set("n", "<leader>O", "O<ESC>")
 
 -- Delete trailing whitespace
-keymap.set("n", "<leader>wt", function()
+keymap_set("n", "<leader>wt", function()
   local cursor = vim.fn.getpos(".")
   pcall(function() vim.cmd([[%s/\s\+$//e]]) end)
   vim.fn.setpos(".", cursor)
-end, opts)
+end)
 
 -- Clear search highlight
-keymap.set("n", "<leader>h", "<cmd>noh<CR>", opts)
+keymap_set("n", "<leader>h", "<cmd>noh<CR>")
 
 
 -- REQUIRE
