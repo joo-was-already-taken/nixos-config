@@ -99,15 +99,15 @@
   # Configure console keymap
   console.keyMap = "pl2";
 
-  services.openssh = {
-    enable = true;
-    hostKeys = [
-      {
-        path = "/etc/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-      }
-    ];
-  };
+  # services.openssh = {
+  #   enable = true;
+  #   hostKeys = [
+  #     {
+  #       path = "/etc/ssh/ssh_host_ed25519_key";
+  #       type = "ed25519";
+  #     }
+  #   ];
+  # };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -175,9 +175,6 @@
     package = hyprlandPkgs.hyprland;
     portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
   };
-  # make git work on hyprland
-  programs.seahorse.enable = true;
-
 
   # uninstall nano and xterm
   programs.nano.enable = false;

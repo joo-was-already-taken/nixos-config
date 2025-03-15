@@ -1,4 +1,4 @@
-{ pkgs, lib, myLib, inputs, config, systemSettings, sessionVariables, ... }:
+{ pkgs, lib, myLib, inputs, config, systemSettings, systemConfig, sessionVariables, ... }:
 let
   moduleName = "hyprland";
   defaultColors = with config.lib.stylix.colors; {
@@ -102,7 +102,12 @@ in {
       enable = true;
       xwayland.enable = true;
       systemd.enable = true;
-      plugins = [];
+      # TODO: uncomment after 25.05 home-manager version
+      # package = null;
+      # portalPackage = null;
+      # plugins = [
+      #   inputs.hyprland-plugins.packages.${systemSettings.system}.hyprexpo
+      # ];
 
       settings = let
         numWorkspaces = 10;
@@ -322,13 +327,30 @@ in {
         # resize submap
         bind = $mod, S, submap, resize
         submap = resize
-        binde = , H, resizeactive, -48 0
-        binde = , L, resizeactive, 48 0
-        binde = , K, resizeactive, 0 -48
-        binde = , J, resizeactive, 0 48
+        binde = , H, resizeactive, -60 0
+        binde = , L, resizeactive, 60 0
+        binde = , K, resizeactive, 0 -60
+        binde = , J, resizeactive, 0 60
         bind = , escape, submap, reset
+        bind = Control_L, bracketleft, submap, reset
         bind = , catchall, submap, reset
         submap = reset
+
+        # group submap
+        bind = $mod, G, submap, group
+        submap = group
+        bind = , G, exec, hyprctl dispatch submap reset; hyprctl dispatch togglegroup
+        bind = , H, exec, hyprctl dispatch submap reset; hyprctl dispatch moveintogroup l
+        bind = , L, exec, hyprctl dispatch submap reset; hyprctl dispatch moveintogroup r
+        bind = , K, exec, hyprctl dispatch submap reset; hyprctl dispatch moveintogroup u
+        bind = , J, exec, hyprctl dispatch submap reset; hyprctl dispatch moveintogroup d
+        bind = , O, exec, hyprctl dispatch submap reset; hyprctl dispatch moveoutofgroup
+        bind = , N, exec, hyprctl dispatch submap reset; hyprctl dispatch movegroupwindow n
+        bind = , P, exec, hyprctl dispatch submap reset; hyprctl dispatch movegroupwindow b
+        bind = , escape, submap, reset
+        bind = Control_L, bracketleft, submap, reset
+        bind = , catchall, submap, reset
+        submap = group
       '';
     };
   };
