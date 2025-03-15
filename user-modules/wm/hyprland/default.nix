@@ -212,6 +212,13 @@ in {
         )*/;
 
         windowrulev2 = [
+          "float, class:pavucontrol"
+          "float, class:blueman, title:Bluetooth Devices"
+          "size 1000 750, class:blueman, title:Bluetooth Devices"
+          "float, class:.*, title:WLR Layout"
+          "center, class:.*, title:WLR Layout"
+          # "size 1000 750, class:wlrlui, title:WLR Layout"
+
           # "suppressevent maximize, class:.*"
           "bordersize 0, floating:0, onworkspace:w[tv1]"
           "rounding 0, floating:0, onworkspace:w[tv1]"
