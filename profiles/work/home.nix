@@ -67,8 +67,6 @@ in {
   #   # ];
   # };
 
-  modules.librewolf.enable = true;
-
   nix = {
     gc = {
       automatic = true;
@@ -78,6 +76,9 @@ in {
   };
 
   home.packages = with pkgs; [
+    openrazer-daemon
+    polychromatic
+
     neofetch
 
     htop

@@ -130,6 +130,8 @@
     enableGraphical = true;
   };
 
+  hardware.openrazer.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -137,7 +139,7 @@
   users.users.${userSettings.userName} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "openrazer" ];
     packages = [];
   };
 
@@ -158,6 +160,7 @@
     git
     wget
     unzip
+    openrazer-daemon
   ];
 
   # services.ollama = {
