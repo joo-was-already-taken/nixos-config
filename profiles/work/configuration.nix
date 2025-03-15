@@ -181,7 +181,10 @@
 
   # uninstall nano and xterm
   programs.nano.enable = false;
-  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver = {
+    desktopManager.xterm.enable = false;
+    excludePackages = [ pkgs.xterm ];
+  };
 
   # environment variables (session variables)
   environment.sessionVariables = {
