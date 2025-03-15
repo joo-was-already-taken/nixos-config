@@ -10,7 +10,6 @@ let
   changeKbLayout = pkgs.writeShellApplication {
     name = "change-kb-layout";
     runtimeInputs = with pkgs; [
-      # hyprland
       libnotify
     ];
     text = ''
@@ -52,6 +51,7 @@ in {
       networkmanagerapplet
       libnotify
       swayidle
+      wlr-layout-ui
     ];
 
     xdg.portal = {
@@ -235,7 +235,7 @@ in {
           sensitivity = 0;
 
           touchpad = {
-            natural_scroll = false;
+            natural_scroll = true;
           };
         };
 
@@ -254,7 +254,6 @@ in {
           "$mod, C, killactive"
           "$mod, Q, exit"
           "$mod, E, exec, $fileManager"
-          "$mod, V, togglefloating"
           "$mod, R, exec, $menu"
           # "$mod, P, pseudo"
           "$mod, J, togglesplit"
