@@ -16,6 +16,7 @@ require("render-markdown").setup({
     right_pad = 2,
     language_pad = 0,
   },
+  latex = { enable = false },
 })
 
 require("obsidian").setup({

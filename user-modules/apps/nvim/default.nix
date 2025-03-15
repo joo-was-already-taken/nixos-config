@@ -25,7 +25,6 @@ in {
       extraPackages = with pkgs; [
         wl-clipboard
         ripgrep
-        python313Packages.pylatexenc
 
         nil
         lua-language-server
