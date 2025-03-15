@@ -90,6 +90,8 @@ keymap_set("v", "<", "<gv")
 keymap_set("v", ">", ">gv")
 
 -- Editing
+keymap_set("i", "<C-bs>", "<C-w>")
+keymap_set("i", "<C-h>", "<C-w>")
 keymap_set("n", "<leader>o", "o<ESC>")
 keymap_set("n", "<leader>O", "O<ESC>")
 
@@ -99,10 +101,6 @@ keymap_set("n", "<leader>wt", function()
   pcall(function() vim.cmd([[%s/\s\+$//e]]) end)
   vim.fn.setpos(".", cursor)
 end)
-
--- Clear search highlight
-keymap_set("n", "<leader>h", "<cmd>noh<CR>")
-
 
 -- REQUIRE
 local function load_from(dir)

@@ -101,6 +101,8 @@ in {
         telescope-nvim
         # plugins/lualine.lua
         lualine-nvim
+        # plugins/harpoon.lua
+        harpoon2
 
         # plugins/lsp.lua
         nvim-lspconfig
