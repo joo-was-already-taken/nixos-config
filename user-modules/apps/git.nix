@@ -25,6 +25,7 @@ in {
         path = ~/.config/git/config-university
 
       [core]
+        askPass = ""
         pager = diff-so-fancy | less -RF
         editor = nvim
 
