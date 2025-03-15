@@ -25,7 +25,7 @@
     pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, ... }@inputs:
     let
       systemSettings = {
         system = "x86_64-linux";
@@ -79,7 +79,6 @@
           inherit pkgs;
           modules = [
             stylix.homeManagerModules.stylix
-            nixvim.homeManagerModules.nixvim
             (profilePath + "/home.nix")
           ];
           extraSpecialArgs = let
