@@ -217,6 +217,11 @@ in {
         )*/;
 
         windowrulev2 = [
+          "float, title:Alacritty"
+          "size 1300 800, title:Alacritty"
+
+          "float, class:nemo"
+          "size 1300 800, class:nemo"
           "float, class:pavucontrol"
           "float, class:blueman, title:Bluetooth Devices"
           "size 1000 750, class:blueman, title:Bluetooth Devices"
