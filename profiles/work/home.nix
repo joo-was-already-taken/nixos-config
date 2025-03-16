@@ -23,6 +23,8 @@ in {
     (import ../../user-modules/wm <| args // { sessionVariables = workSessionVars; })
   ];
 
+  modules.vscode.java.enable = true; # :(
+
   xdg = {
     mimeApps = {
       enable = true;
@@ -87,7 +89,6 @@ in {
     pavucontrol
     # file manager
     nemo
-    vscodium.fhs
     firefox
 
     obs-studio
