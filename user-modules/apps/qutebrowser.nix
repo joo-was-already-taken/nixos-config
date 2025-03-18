@@ -94,14 +94,14 @@ in {
         } // config.modules.${moduleName}.colors;
       };
 
-      extraConfig = /*python*/ ''
-        import os
-        default_file_manager = os.environ.get('FILEMANAGER', 'nemo')
-        c.fileselect.handler = 'external'
-        c.fileselect.single_file.command = [default_file_manager]
-        c.fileselect.multiple_files.command = [default_file_manager]
-        c.fileselect.folder.command = [default_file_manager]
-      '';
+      # extraConfig = /*python*/ ''
+      #   import os
+      #   default_file_manager = os.environ.get('FILEMANAGER', 'nemo')
+      #   c.fileselect.handler = 'external'
+      #   c.fileselect.single_file.command = [default_file_manager]
+      #   c.fileselect.multiple_files.command = [default_file_manager]
+      #   c.fileselect.folder.command = [default_file_manager]
+      # '';
     };
 
     xdg = {
