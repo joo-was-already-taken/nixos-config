@@ -12,7 +12,7 @@ in {
     home.packages = with pkgs; [
       # find-it-faster dependencies
       fzf ripgrep bat
-    ] ++ (if javaEnabled then [ jdk maven ] else []);
+    ] ++ lib.lists.optionals javaEnabled [ jdk maven ];
 
     stylix.targets.vscode.enable = false;
 
@@ -30,30 +30,28 @@ in {
           version = "0.0.39";
           sha256 = "sha256-Rr1EKYSYmY52FfG4ClSQyikr0fd4cFKjphNxpzhiraw=";
         }
-      ] ++ (
-        if javaEnabled then [
+      ] ++ lib.lists.optionals javaEnabled [
           redhat.java
           vscjava.vscode-gradle
           vscjava.vscode-maven
           vscjava.vscode-java-test
           vscjava.vscode-java-debug
           vscjava.vscode-java-dependency
-        ] else []
-      );
+      ];
 
       userSettings = {
-        "telemetry.telemetryLevel" = "off";
-        "redhat.telemetry.enabled" = false;
+        telemetry.telemetryLevel = "off";
+        redhat.telemetry.enabled = false;
 
-        "editor.bracketPairColorization.enabled" = false;
-        "editor.lineNumbers" = "relative";
-        "editor.acceptSuggestionOnEnter" = "off";
-        "editor.minimap.enabled" = false;
+        editor.bracketPairColorization.enabled = false;
+        editor.lineNumbers = "relative";
+        editor.acceptSuggestionOnEnter = "off";
+        editor.minimap.enabled = false;
 
-        "workbench.colorTheme" = "Catppuccin Macchiato";
-        "catppuccin.accentColor" = "blue";
+        workbench.colorTheme = "Catppuccin Macchiato";
+        catppuccin.accentColor = "blue";
 
-        "vim.normalModeKeyBindings" = [
+        vim.normalModeKeyBindings = [
           {
             before = [ "<C-d>" ];
             after = [ "<C-d>" "z" "z" ];
@@ -63,7 +61,7 @@ in {
             after = [ "<C-u>" "z" "z" ];
           }
         ];
-        "vim.visualModeKeyBindings" = [
+        vim.visualModeKeyBindings = [
           {
             before = [ "<" ];
             after = [ "<" "g" "v" ];
