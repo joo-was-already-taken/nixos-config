@@ -102,6 +102,8 @@ in {
         lualine-nvim
         # plugins/harpoon.lua
         harpoon2
+        # plugins/conform.lua
+        conform-nvim
 
         # plugins/lsp.lua
         nvim-lspconfig
