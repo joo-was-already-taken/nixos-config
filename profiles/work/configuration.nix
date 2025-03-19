@@ -69,6 +69,13 @@
   #   ibus.engines = with pkgs.ibus-engines; [ mozc ];
   # };
 
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
