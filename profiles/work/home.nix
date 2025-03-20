@@ -24,6 +24,7 @@ in {
   ];
 
   modules.vscode.java.enable = true; # :(
+  modules.vscode.jupyter.enable = true;
 
   xdg = {
     mimeApps = {

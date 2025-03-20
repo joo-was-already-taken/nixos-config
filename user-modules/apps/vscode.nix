@@ -2,10 +2,12 @@
 let
   moduleName = "vscode";
   javaEnabled = config.modules.${moduleName}.java.enable;
+  jupyterEnabled = config.modules.${moduleName}.jupyter.enable;
 in {
   options.modules.${moduleName} = {
     enable = lib.mkEnableOption moduleName;
-    java.enable = lib.mkEnableOption "${moduleName}.java";
+    java.enable = lib.mkEnableOption "java development envirenment";
+    jupyter.enable = lib.mkEnableOption "jupyter notebook";
   };
 
   config = lib.mkIf config.modules.${moduleName}.enable {
@@ -31,12 +33,15 @@ in {
           sha256 = "sha256-Rr1EKYSYmY52FfG4ClSQyikr0fd4cFKjphNxpzhiraw=";
         }
       ] ++ lib.lists.optionals javaEnabled [
-          redhat.java
-          vscjava.vscode-gradle
-          vscjava.vscode-maven
-          vscjava.vscode-java-test
-          vscjava.vscode-java-debug
-          vscjava.vscode-java-dependency
+        redhat.java
+        vscjava.vscode-gradle
+        vscjava.vscode-maven
+        vscjava.vscode-java-test
+        vscjava.vscode-java-debug
+        vscjava.vscode-java-dependency
+      ] ++ lib.lists.optionals jupyterEnabled [
+        ms-toolsai.jupyter
+        ms-python.python
       ];
 
       userSettings = {

@@ -22,6 +22,7 @@
     vscode = {
       enable = lib.mkDefault true;
       java.enable = lib.mkDefault false;
+      jupyter.enable = lib.mkDefault false;
     };
 
     librewolf.enable = lib.mkDefault false;

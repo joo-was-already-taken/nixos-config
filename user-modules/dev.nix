@@ -3,6 +3,11 @@
 {
   home.packages = with pkgs; [
     # python
-    python313
+    (python312.withPackages (pyPkgs: with pyPkgs; [
+      numpy
+      scipy
+      matplotlib
+      ipykernel
+    ]))
   ];
 }
