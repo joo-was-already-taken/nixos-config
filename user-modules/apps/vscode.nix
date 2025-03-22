@@ -56,6 +56,8 @@ in {
         workbench.colorTheme = "Catppuccin Macchiato";
         catppuccin.accentColor = "blue";
 
+        notebook.lineNumbers = "on";
+
         vim.normalModeKeyBindings = [
           {
             before = [ "<C-d>" ];

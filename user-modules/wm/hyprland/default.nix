@@ -13,9 +13,10 @@ let
       libnotify
     ];
     text = ''
-      keyboard='at-translated-set-2-keyboard'
-      hyprctl switchxkblayout "$keyboard" next
-      value="$(hyprctl devices | grep -i $keyboard -A 2 | tail -n1 | cut -f3-5 -d' ')"
+      for kb in $(hyprctl devices | awk '/Keyboard at/ {getline; print $1}'); do
+        hyprctl switchxkblayout "$kb" next
+      done
+      value="$(hyprctl devices | grep -i at-translated-set-2-keyboard -A 2 | tail -n1 | cut -f3-5 -d' ')"
       notify-send "Keyboard layout: $value"
     '';
   };

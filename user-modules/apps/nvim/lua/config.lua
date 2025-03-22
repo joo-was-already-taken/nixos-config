@@ -113,4 +113,5 @@ local function load_from(dir)
   end
 end
 
+require("insert_command")
 load_from(vim.fn.stdpath("config") .. "/lua/plugins")
