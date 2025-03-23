@@ -95,6 +95,11 @@ keymap_set("i", "<C-h>", "<C-w>")
 keymap_set("n", "<leader>o", "o<ESC>")
 keymap_set("n", "<leader>O", "O<ESC>")
 
+keymap_set("v", "<leader>wc", function()
+  local wc = vim.fn.wordcount().visual_words
+  vim.notify("Word count: " .. tostring(wc), vim.log.levels.INFO)
+end)
+
 -- Delete trailing whitespace
 keymap_set("n", "<leader>wt", function()
   local cursor = vim.fn.getpos(".")
