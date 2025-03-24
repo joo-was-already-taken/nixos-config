@@ -1,4 +1,4 @@
-{ pkgs, lib, myLib, inputs, config, systemSettings, systemConfig, sessionVariables, ... }:
+{ pkgs, lib, myLib, inputs, config, systemSettings, sessionVariables, ... }:
 let
   moduleName = "hyprland";
   defaultColors = with config.lib.stylix.colors; {
@@ -29,6 +29,17 @@ let
     text = ''
       display="$(wlr-randr | head -n1 | awk '{print $1}')"
       hyprctl dispatch dpms toggle "$display"
+    '';
+  };
+  toggleFloating = pkgs.writeShellApplication {
+    name = "hypr-toggle-floating";
+    text = ''
+      hyprctl dispatch togglefloating
+      floating=$(hyprctl activewindow | awk '/floating:/ {print $2}')
+      if [ "$floating" == "1" ]; then
+        hyprctl dispatch resizeactive exact 1300 800
+        hyprctl dispatch centerwindow 1
+      fi
     '';
   };
 in {
@@ -218,17 +229,15 @@ in {
         )*/;
 
         windowrulev2 = [
-          "float, title:Alacritty"
-          "size 1300 800, title:Alacritty"
+          # "float, class:.*"
+          "size 1300 800, class:.*"
 
+          "float, title:Alacritty"
           "float, class:nemo"
-          "size 1300 800, class:nemo"
           "float, class:pavucontrol"
           "float, class:blueman, title:Bluetooth Devices"
-          "size 1000 750, class:blueman, title:Bluetooth Devices"
           "float, class:.*, title:WLR Layout"
           "center, class:.*, title:WLR Layout"
-          # "size 1000 750, class:wlrlui, title:WLR Layout"
 
           # "suppressevent maximize, class:.*"
           "bordersize 0, floating:0, onworkspace:w[tv1]"
@@ -277,7 +286,7 @@ in {
           "$mod, J, togglesplit"
           "$mod, O, fullscreen, 0" # fullscreen
           "$mod, U, fullscreen, 1" # maximize
-          "$mod, I, togglefloating"
+          "$mod, I, exec, ${lib.getExe toggleFloating}"
           "$mod, Y, fullscreenstate, 0 3"
 
           "$mod, M, exec, pypr shift_monitors +1"
@@ -327,16 +336,20 @@ in {
           ", XF86MonBrightnessUP, exec, brightnessctl set +10%"
           ", XF86MonBrightnessDOWN, exec, brightnessctl set 10%-"
         ];
+
+        bindm = [
+          "$mod, mouse:272, movewindow"
+        ];
       };
 
       extraConfig = ''
         # resize submap
         bind = $mod, S, submap, resize
         submap = resize
-        binde = , H, resizeactive, -60 0
-        binde = , L, resizeactive, 60 0
-        binde = , K, resizeactive, 0 -60
-        binde = , J, resizeactive, 0 60
+        binde = , H, resizeactive, -80 0
+        binde = , L, resizeactive, 80 0
+        binde = , K, resizeactive, 0 -80
+        binde = , J, resizeactive, 0 80
         bind = , escape, submap, reset
         bind = Control_L, bracketleft, submap, reset
         bind = , catchall, submap, reset
