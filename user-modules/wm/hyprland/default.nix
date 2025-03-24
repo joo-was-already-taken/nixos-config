@@ -45,7 +45,7 @@ in {
     home.packages = with pkgs; [
       inputs.pyprland.packages.${systemSettings.system}.pyprland
       wl-clipboard
-      pulseaudio
+      pulsemixer
       wlr-randr
       hyprshot
       brightnessctl
@@ -319,9 +319,9 @@ in {
 
         binde = [
           # sound controls
-          ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
-          ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
-          ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+          ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5 --max-volume 155"
+          ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"
+          ", XF86AudioMute, exec, pulsemixer --toggle-mute"
 
           # brightness controls (backlight)
           ", XF86MonBrightnessUP, exec, brightnessctl set +10%"
