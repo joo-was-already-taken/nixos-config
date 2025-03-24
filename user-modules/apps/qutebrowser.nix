@@ -87,7 +87,7 @@ in {
 
       settings = {
         content.blocking.enabled = true;
-        scrolling.bar = "when-searching";
+        scrolling.bar = "always";
         tabs.max_width = 240;
         colors = {
           webpage.darkmode.enabled = false;
