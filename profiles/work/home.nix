@@ -91,7 +91,6 @@ in {
     pavucontrol
     # file manager
     nemo
-    firefox
 
     obs-studio
     openshot-qt
