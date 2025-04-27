@@ -90,10 +90,6 @@ in {
           command = "workbench.action.previousEditor";
         }
         {
-          key = "ctrl+c";
-          command = "workbench.action.closeActiveEditor";
-        }
-        {
           key = "ctrl+enter";
           command = "workbench.action.terminal.focus";
         }
