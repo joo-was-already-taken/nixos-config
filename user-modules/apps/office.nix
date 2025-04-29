@@ -11,6 +11,7 @@ in {
       enable = true;
       options = {
         selection-clipboard = "clipboard";
+        first-page-column = "2";
       };
     };
 
@@ -20,6 +21,7 @@ in {
       hunspell
       hunspellDicts.en-us
       hunspellDicts.pl_PL
+      hunspellDicts.de_DE
     ];
 
     xdg = {
