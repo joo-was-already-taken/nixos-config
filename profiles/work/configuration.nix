@@ -167,6 +167,7 @@
     vim
     git
     wget
+    zip
     unzip
     openrazer-daemon
   ];
