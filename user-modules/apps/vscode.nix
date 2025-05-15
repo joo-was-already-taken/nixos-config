@@ -48,6 +48,8 @@ in {
         telemetry.telemetryLevel = "off";
         redhat.telemetry.enabled = false;
 
+        git.openRepositoryInParentFolders = "never";
+
         editor.bracketPairColorization.enabled = false;
         editor.lineNumbers = "relative";
         editor.acceptSuggestionOnEnter = "off";
