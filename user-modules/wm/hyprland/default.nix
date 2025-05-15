@@ -7,6 +7,7 @@ let
     inactiveBorder = base04;
   };
 
+  floatingWindowSize = "1300 800";
   changeKbLayout = pkgs.writeShellApplication {
     name = "change-kb-layout";
     runtimeInputs = with pkgs; [
@@ -37,7 +38,7 @@ let
       hyprctl dispatch togglefloating
       floating=$(hyprctl activewindow | awk '/floating:/ {print $2}')
       if [ "$floating" == "1" ]; then
-        hyprctl dispatch resizeactive exact 1300 800
+        hyprctl dispatch resizeactive exact ${floatingWindowSize}
         hyprctl dispatch centerwindow 1
       fi
     '';
@@ -230,13 +231,18 @@ in {
 
         windowrulev2 = [
           # "float, class:.*"
-          "size 1300 800, class:.*"
+          # "size ${floatingWindowSize}, class:.*"
 
           "float, title:Alacritty"
+          "size ${floatingWindowSize}, title:Alacritty*"
           "float, class:nemo"
+          "size ${floatingWindowSize}, class:nemo*"
           "float, class:pavucontrol"
+          "size ${floatingWindowSize}, class:pavucontrol*"
           "float, class:blueman, title:Bluetooth Devices"
+          "size ${floatingWindowSize}, title:Bluetooth Devices*"
           "float, class:.*, title:WLR Layout"
+          "size ${floatingWindowSize}, title:WLR Layout*"
           "center, class:.*, title:WLR Layout"
 
           # "suppressevent maximize, class:.*"
