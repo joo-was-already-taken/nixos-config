@@ -80,12 +80,15 @@ in {
   };
 
   home.packages = with pkgs; [
+    cpulimit
+
     openrazer-daemon
     polychromatic
 
     neofetch
 
     htop
+    pdfgrep
 
     # sound input/output control
     pavucontrol
@@ -93,7 +96,7 @@ in {
     nemo
 
     obs-studio
-    openshot-qt
+    # openshot-qt
     vlc
     loupe
     termusic
