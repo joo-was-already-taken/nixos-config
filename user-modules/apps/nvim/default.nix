@@ -39,6 +39,7 @@ in {
         tmux-navigator
         nvim-ts-autotag
         vim-obsession
+        yuck-vim
 
         {
           plugin = gitsigns-nvim;

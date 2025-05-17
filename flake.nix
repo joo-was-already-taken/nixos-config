@@ -92,5 +92,12 @@
           };
         };
       };
+
+      devShells.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          nil
+          lua-language-server
+        ];
+      };
     };
 }

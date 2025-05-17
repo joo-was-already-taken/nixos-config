@@ -1,0 +1,95 @@
+;; (deflisten focusedwindow-listen `hyprctl activewindow -j | jq -r '.title'; hypr-listen activewindow`)
+(deflisten submap-listen :initial "" "hypr-listen submap")
+(deflisten fullscreen-listen "hypr-fullscreenmode; hypr-listen fullscreen")
+(defpoll volume-poll :interval "500ms" "pulsemixer --get-volume | cut -d ' ' -f1")
+(defpoll volumemute-poll :interval "500ms" "pulsemixer --get-mute")
+(defpoll brightness-poll :interval "500ms" "brightnessctl get")
+(defpoll time-poll :interval "1s" "date +%H:%M")
+(defpoll battery-poll :interval "1s" "battery")
+(defvar show-sidestuff false)
+
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "100%"
+                      :height "2px"
+                      :anchor "top center")
+  :exclusive true
+  (bar))
+
+(defwidget bar []
+  (centerbox :orientation "h"
+    (hyprstate)
+    ""
+    (sidestuff)))
+
+(defwidget hyprstate []
+  (box :space-evenly false
+    (workspaces)
+    (label :text submap-listen)
+    (label :text {fullscreen-listen == "1" ? "fullscreen" : ""})))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 5
+    (button :onclick "hyprctl dispatch workspace 1" 1)
+    (button :onclick "hyprctl dispatch workspace 2" 2)
+    (button :onclick "hyprctl dispatch workspace 3" 3)
+    (button :onclick "hyprctl dispatch workspace 4" 4)
+    (button :onclick "hyprctl dispatch workspace 5" 5)
+    (button :onclick "hyprctl dispatch workspace 6" 6)
+    (button :onclick "hyprctl dispatch workspace 7" 7)
+    (button :onclick "hyprctl dispatch workspace 8" 8)
+    (button :onclick "hyprctl dispatch workspace 9" 9)))
+
+(defwidget sidestuff []
+  (box :space-evenly false
+       :halign "end"
+    (box :class "visible-sidestuff"
+      (volume)
+      (brightness))
+    (eventbox :onhover "${EWW_CMD} update show-sidestuff=true"
+              :onhoverlost "${EWW_CMD} update show-sidestuff=false"
+      (box :space-evenly false
+           :halign "end"
+        (revealer :transition "slideleft"
+                  :reveal show-sidestuff
+                  :duration "140ms"
+          (box :space-evenly false
+            (systray :class "tray")
+            (battery)))
+        (label :class "clock"
+               :text time-poll)))))
+
+(defwidget volume []
+  (button :tooltip "Volume: ${volume-poll}"
+          :onclick "pulsemixer --toggle-mute"
+    (box :class "volume"
+         :space-evenly false
+      (label :text {volumemute-poll == "1" ? "" : ""})
+      (scale :active false
+             :value volume-poll
+             :min 0
+             :max 150))))
+
+(defwidget brightness []
+  (box :tooltip "Backlight ${brightness-poll / 1000}"
+       :class "brightness"
+       :space-evenly false
+    (label :text "")
+    (scale :active false
+           :value {brightness-poll / 1000}
+           :min 0
+           :max 100)))
+
+(defwidget battery []
+  (label :class "battery"
+         :justify "center"
+         :text {battery-poll.icon}
+         :tooltip "Battery: ${battery-poll.percentage}%
+Status: ${battery-poll.status}"))

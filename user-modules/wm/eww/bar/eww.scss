@@ -1,0 +1,68 @@
+* { all: unset; }
+
+.workspaces {
+  button {
+    padding: 0.4em;
+    font-size: 0.9em;
+    /* height: 0.5em; */
+
+    &:hover {
+      background-color: rgba(100, 100, 100, 50);
+    }
+  }
+}
+
+.visible-sidestuff {
+  background-color: #333;
+  padding-left: 8px;
+}
+
+scale trough {
+  min-width: 70px;
+  min-height: 7px;
+  border-radius: 3px;
+  background-color: #000;
+
+  highlight {
+    border-radius: 3px;
+  }
+}
+
+.volume {
+  padding-right: 12px;
+  > label {
+    padding-right: 14px;
+    font-size: 0.9em;
+  }
+  > scale trough highlight {
+    background-color: #888;
+  }
+}
+
+.brightness {
+  > label {
+    padding-right: 12px;
+    font-size: 0.9em;
+  }
+  > scale trough highlight {
+    background-color: #888;
+  }
+}
+
+.tray {
+  background-color: #444;
+}
+
+.battery {
+  padding-left: 5px;
+  padding-right: 12px;
+}
+
+.clock {
+  background-color: #444;
+  padding: 0px 10px;
+}
+
+tooltip {
+  background-color: #000;
+}
