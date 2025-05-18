@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 EVENT="$1"
 SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"

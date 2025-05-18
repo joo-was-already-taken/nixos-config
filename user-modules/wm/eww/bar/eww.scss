@@ -17,33 +17,47 @@
   padding-left: 8px;
 }
 
-scale trough {
+scale> trough {
   min-width: 70px;
   min-height: 7px;
   border-radius: 3px;
   background-color: #000;
 
-  highlight {
+  > highlight {
     border-radius: 3px;
   }
 }
 
-.volume {
-  padding-right: 12px;
+@mixin scale-style($label-padding, $font-size: 0.9em) {
   > label {
-    padding-right: 14px;
-    font-size: 0.9em;
+    padding-right: $label-padding;
+    font-size: $font-size;
   }
+}
+
+.volume {
+  padding-right: 14px;
+
+  @include scale-style($label-padding: 14px);
+
   > scale trough highlight {
     background-color: #888;
   }
 }
 
 .brightness {
-  > label {
-    padding-right: 12px;
-    font-size: 0.9em;
+  padding-right: 10px;
+
+  @include scale-style($label-padding: 12px);
+
+  > scale trough highlight {
+    background-color: #888;
   }
+}
+
+.battery {
+  @include scale-style($label-padding: 6px, $font-size: 1.15em);
+
   > scale trough highlight {
     background-color: #888;
   }

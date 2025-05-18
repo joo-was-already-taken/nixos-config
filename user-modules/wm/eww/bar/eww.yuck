@@ -51,8 +51,10 @@
   (box :space-evenly false
        :halign "end"
     (box :class "visible-sidestuff"
+         :space-evenly false
       (volume)
-      (brightness))
+      (brightness)
+      (battery))
     (eventbox :onhover "${EWW_CMD} update show-sidestuff=true"
               :onhoverlost "${EWW_CMD} update show-sidestuff=false"
       (box :space-evenly false
@@ -60,9 +62,7 @@
         (revealer :transition "slideleft"
                   :reveal show-sidestuff
                   :duration "140ms"
-          (box :space-evenly false
-            (systray :class "tray")
-            (battery)))
+          (systray :class "tray"))
         (label :class "clock"
                :text time-poll)))))
 
@@ -78,18 +78,22 @@
              :max 150))))
 
 (defwidget brightness []
-  (box :tooltip "Backlight ${brightness-poll / 1000}"
+  (box :tooltip "Backlight: ${brightness-poll} / 96000"
        :class "brightness"
        :space-evenly false
     (label :text "")
     (scale :active false
-           :value {brightness-poll / 1000}
+           :value brightness-poll
            :min 0
-           :max 100)))
+           :max 96000)))
 
 (defwidget battery []
-  (label :class "battery"
-         :justify "center"
-         :text {battery-poll.icon}
-         :tooltip "Battery: ${battery-poll.percentage}%
-Status: ${battery-poll.status}"))
+  (box :class "battery"
+       :space-evenly false
+       :tooltip "Battery: ${battery-poll.percentage}%
+Status: ${battery-poll.status}"
+    (label :text "")
+    (scale :active false
+           :value {battery-poll.percentage}
+           :min 0
+           :max 100)))

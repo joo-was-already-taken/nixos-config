@@ -93,9 +93,10 @@
         };
       };
 
-      devShells.default = pkgs.mkShell {
+      devShells.${systemSettings.system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           nil
+          bash-language-server
           lua-language-server
         ];
       };

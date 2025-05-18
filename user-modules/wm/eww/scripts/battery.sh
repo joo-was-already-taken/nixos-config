@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 BATTERY_DIR=/sys/class/power_supply/BAT0/
 percentage="$(cat "$BATTERY_DIR/capacity")"
 status="$(cat "$BATTERY_DIR/status")"
 
 icon() {
-  [ "$status" = 'Charging' ] && echo '' && exit
+  [ "$status" = 'Charging' ] && { echo ''; exit; }
   icons=('' '' '' '' '' '' '' '' '' '')
   iconslen="${#icons[@]}"
   ((idx = percentage / iconslen))
