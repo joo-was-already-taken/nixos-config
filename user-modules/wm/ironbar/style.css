@@ -1,0 +1,16 @@
+* {
+  all: unset;
+}
+
+#bar {
+  font-family: "IosevkaTermSlab Nerd Font";
+  font-size: 16px;
+}
+
+.clock {
+  padding: 0 12px;
+  background-color: #aaa;
+  color: #222;
+  font-size: 1.2em;
+  font-weight: 700;
+}

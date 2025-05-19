@@ -69,6 +69,8 @@
   #   ibus.engines = with pkgs.ibus-engines; [ mozc ];
   # };
 
+  services.upower.enable = true;
+
   virtualisation.containers.enable = true;
   virtualisation.podman = {
     enable = true;

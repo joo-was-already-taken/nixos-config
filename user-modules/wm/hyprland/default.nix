@@ -136,6 +136,7 @@ in {
 
         exec-once = [
           (lib.mkIf config.modules.waybar.enable "waybar")
+          (lib.mkIf config.modules.ironbar.enable "ironbar")
           "nm-applet &"
           "(sleep 2; blueman-tray) &"
           # "pypr &"
