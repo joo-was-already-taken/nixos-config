@@ -3,29 +3,24 @@
 
   inputs = {
     # core inputs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix.url = "github:Mic92/sops-nix";
 
+    # TODO: change to release-25.05 when it comes out
     stylix = {
-      url = "github:danth/stylix/release-24.11";
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
     # user inputs
-    pyprland.url = "github:hyprland-community/pyprland";
+    # pyprland.url = "github:hyprland-community/pyprland";
     pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
 
@@ -42,11 +37,9 @@
       };
       lib = nixpkgs.lib;
       myLib = import ./my-lib { inherit lib; };
-      # pkgs = nixpkgs.legacyPackages.${systemSettings.system};
       pkgs = import nixpkgs {
         system = systemSettings.system;
         overlays = [
-          # inputs.hyprland.overlays.hyprland-packages
           (final: prev: {
             unstable = nixpkgs-unstable.legacyPackages.${prev.system};
           })

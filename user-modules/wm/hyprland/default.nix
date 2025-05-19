@@ -55,7 +55,7 @@ in {
 
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
-      inputs.pyprland.packages.${systemSettings.system}.pyprland
+      # inputs.pyprland.packages.${systemSettings.system}.pyprland
       wl-clipboard
       pulsemixer
       wlr-randr
@@ -67,15 +67,15 @@ in {
       wlr-layout-ui
     ];
 
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gtk
-        # xdg-desktop-portal-kde # waybar doesn't work with this enabled
-      ];
-      config.common.default = "*";
-    };
+    # xdg.portal = {
+    #   enable = true;
+    #   extraPortals = with pkgs; [
+    #     xdg-desktop-portal-hyprland
+    #     xdg-desktop-portal-gtk
+    #     # xdg-desktop-portal-kde # waybar doesn't work with this enabled
+    #   ];
+    #   config.common.default = "*";
+    # };
 
     services.mako = {
       enable = true;
@@ -92,18 +92,18 @@ in {
       };
     };
 
-    home.file.".config/hypr/pyprland.toml".text = /*toml*/ ''
-      [pyprland]
-      plugins = [
-        "shift_monitors"
-      ]
-      # plugins = [
-      #   "workspaces_follow_focus"
-      # ]
-      #
-      # [workspaces_follow_focus]
-      # max_workspaces = 0
-    '';
+    # home.file.".config/hypr/pyprland.toml".text = /*toml*/ ''
+    #   [pyprland]
+    #   plugins = [
+    #     "shift_monitors"
+    #   ]
+    #   # plugins = [
+    #   #   "workspaces_follow_focus"
+    #   # ]
+    #   #
+    #   # [workspaces_follow_focus]
+    #   # max_workspaces = 0
+    # '';
 
     home.sessionVariables = {
       HYPRSHOT_DIR = config.home.homeDirectory + "/Pictures/Screenshots";
@@ -115,9 +115,8 @@ in {
       enable = true;
       xwayland.enable = true;
       systemd.enable = true;
-      # TODO: uncomment after 25.05 home-manager version
-      # package = null;
-      # portalPackage = null;
+      package = null;
+      portalPackage = null;
       # plugins = [
       #   inputs.hyprland-plugins.packages.${systemSettings.system}.hyprexpo
       # ];
@@ -139,7 +138,7 @@ in {
           (lib.mkIf config.modules.waybar.enable "waybar")
           "nm-applet &"
           "(sleep 2; blueman-tray) &"
-          "pypr &"
+          # "pypr &"
           # "swayidle -w timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'"
         ];
 
@@ -295,7 +294,7 @@ in {
           "$mod, I, exec, ${lib.getExe toggleFloating}"
           "$mod, Y, fullscreenstate, 0 3"
 
-          "$mod, M, exec, pypr shift_monitors +1"
+          # "$mod, M, exec, pypr shift_monitors +1"
           "$mod, backslash, exec, ${lib.getExe toggleMainDisplay}"
 
           # change keyboard layout
