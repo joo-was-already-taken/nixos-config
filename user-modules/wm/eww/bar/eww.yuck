@@ -1,4 +1,6 @@
 ;; (deflisten focusedwindow-listen `hyprctl activewindow -j | jq -r '.title'; hypr-listen activewindow`)
+(deflisten workspaces-listen :initial "[]" "hypr-workspaces all")
+(deflisten workspaces-nonempty-listen :initial "[]" "hypr-workspaces non-empty")
 (deflisten submap-listen :initial "" "hypr-listen submap")
 (deflisten fullscreen-listen "hypr-fullscreenmode; hypr-listen fullscreen")
 (defpoll volume-poll :interval "500ms" "pulsemixer --get-volume | cut -d ' ' -f1")
@@ -37,15 +39,8 @@
        :space-evenly true
        :halign "start"
        :spacing 5
-    (button :onclick "hyprctl dispatch workspace 1" 1)
-    (button :onclick "hyprctl dispatch workspace 2" 2)
-    (button :onclick "hyprctl dispatch workspace 3" 3)
-    (button :onclick "hyprctl dispatch workspace 4" 4)
-    (button :onclick "hyprctl dispatch workspace 5" 5)
-    (button :onclick "hyprctl dispatch workspace 6" 6)
-    (button :onclick "hyprctl dispatch workspace 7" 7)
-    (button :onclick "hyprctl dispatch workspace 8" 8)
-    (button :onclick "hyprctl dispatch workspace 9" 9)))
+    (for workspace in workspaces-listen
+      (button :onclick "hyprctl dispatch workspace 1" 1))))
 
 (defwidget sidestuff []
   (box :space-evenly false

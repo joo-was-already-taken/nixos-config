@@ -14,8 +14,14 @@ in {
       pkgs.jq
       scripts.hyprFullscreenMode
       scripts.hyprListen
+      scripts.hyprWorkspaces
       scripts.battery
+
+      # fonts
+      pkgs.nerd-fonts.iosevka-term-slab
     ];
+
+    fonts.fontconfig.enable = true;
 
     home.file.".config/eww" = {
       source = ./bar;

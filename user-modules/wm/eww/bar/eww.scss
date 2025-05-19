@@ -1,4 +1,7 @@
-* { all: unset; }
+* {
+  all: unset;
+  font-family: "IosevkaTermSlab Nerd Font";
+}
 
 .workspaces {
   button {
@@ -17,7 +20,7 @@
   padding-left: 8px;
 }
 
-scale> trough {
+scale trough {
   min-width: 70px;
   min-height: 7px;
   border-radius: 3px;
@@ -73,8 +76,10 @@ scale> trough {
 }
 
 .clock {
+  font-weight: bold;
+  font-size: 1.1em;
   background-color: #444;
-  padding: 0px 10px;
+  padding: 0px 8px;
 }
 
 tooltip {

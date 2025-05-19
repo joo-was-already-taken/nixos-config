@@ -9,6 +9,11 @@ rec {
     runtimeInputs = [ pkgs.socat hyprFullscreenMode ];
     text = builtins.readFile ./hypr-listen.sh;
   };
+  hyprWorkspaces = pkgs.writeShellApplication {
+    name = "hypr-workspaces";
+    runtimeInputs = [ pkgs.socat ];
+    text = builtins.readFile ./hypr-workspaces.sh;
+  };
   battery = pkgs.writeShellApplication {
     name = "battery";
     text = builtins.readFile ./battery.sh;
