@@ -26,28 +26,7 @@ in {
 
         colors.primary.foreground = lib.mkForce
           config.lib.stylix.colors.withHashtag.base06;
-
-        font = let
-          family = config.stylix.fonts.monospace.name;
-        in lib.mkForce { # override stylix settings
-          normal = {
-            inherit family;
-            style = "Medium";
-          };
-          bold = {
-            inherit family;
-            style = "Bold";
-          };
-          italic = {
-            inherit family;
-            style = "MediumItalic";
-          };
-          bold_italic = {
-            inherit family;
-            style = "BoldItalic";
-          };
-        };
-      }; # settings
+      };
     };
   };
 }

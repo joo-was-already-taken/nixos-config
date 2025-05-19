@@ -117,7 +117,7 @@
   # };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -177,13 +177,7 @@
   #   loadModels = [ "codeqwen" ];
   # };
 
-  programs.hyprland = let
-    hyprlandPkgs = inputs.hyprland.packages.${systemSettings.system};
-  in {
-    enable = true;
-    package = hyprlandPkgs.hyprland;
-    portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
-  };
+  programs.hyprland.enable = true;
 
   # uninstall nano and xterm
   programs.nano.enable = false;

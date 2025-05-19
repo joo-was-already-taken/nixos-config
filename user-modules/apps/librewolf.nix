@@ -5,6 +5,11 @@ in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
   config = lib.mkIf config.modules.${moduleName}.enable {
+    stylix.targets.librewolf = {
+      enable = true;
+      profileNames = [ "default" ];
+    };
+
     programs.librewolf = {
       enable = true;
 
