@@ -79,7 +79,7 @@ in {
 
     services.mako = {
       enable = true;
-      defaultTimeout = 4000;
+      settings.default-timeout = 4000;
     };
 
     services.hyprpaper = let

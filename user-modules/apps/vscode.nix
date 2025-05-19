@@ -22,95 +22,97 @@ in {
       enable = true;
       package = pkgs.vscodium;
 
-      extensions = with pkgs.vscode-extensions; [
-        catppuccin.catppuccin-vsc
-        vscodevim.vim
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "find-it-faster";
-          publisher = "tomrijndorp";
-          version = "0.0.39";
-          sha256 = "sha256-Rr1EKYSYmY52FfG4ClSQyikr0fd4cFKjphNxpzhiraw=";
-        }
-      ] ++ lib.lists.optionals javaEnabled [
-        redhat.java
-        vscjava.vscode-gradle
-        vscjava.vscode-maven
-        vscjava.vscode-java-test
-        vscjava.vscode-java-debug
-        vscjava.vscode-java-dependency
-      ] ++ lib.lists.optionals jupyterEnabled [
-        ms-toolsai.jupyter
-        ms-python.python
-      ];
-
-      userSettings = {
-        telemetry.telemetryLevel = "off";
-        redhat.telemetry.enabled = false;
-
-        git.openRepositoryInParentFolders = "never";
-
-        editor.bracketPairColorization.enabled = false;
-        editor.lineNumbers = "relative";
-        editor.acceptSuggestionOnEnter = "off";
-        editor.minimap.enabled = false;
-
-        workbench.colorTheme = "Catppuccin Macchiato";
-        catppuccin.accentColor = "blue";
-
-        notebook.lineNumbers = "on";
-
-        vim.normalModeKeyBindings = [
+      profiles.default = {
+        extensions = with pkgs.vscode-extensions; [
+          catppuccin.catppuccin-vsc
+          vscodevim.vim
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
-            before = [ "<C-d>" ];
-            after = [ "<C-d>" "z" "z" ];
+            name = "find-it-faster";
+            publisher = "tomrijndorp";
+            version = "0.0.39";
+            sha256 = "sha256-Rr1EKYSYmY52FfG4ClSQyikr0fd4cFKjphNxpzhiraw=";
           }
-          {
-            before = [ "<C-u>" ];
-            after = [ "<C-u>" "z" "z" ];
-          }
+        ] ++ lib.lists.optionals javaEnabled [
+          redhat.java
+          vscjava.vscode-gradle
+          vscjava.vscode-maven
+          vscjava.vscode-java-test
+          vscjava.vscode-java-debug
+          vscjava.vscode-java-dependency
+        ] ++ lib.lists.optionals jupyterEnabled [
+          ms-toolsai.jupyter
+          ms-python.python
         ];
-        vim.visualModeKeyBindings = [
+
+        userSettings = {
+          telemetry.telemetryLevel = "off";
+          redhat.telemetry.enabled = false;
+
+          git.openRepositoryInParentFolders = "never";
+
+          editor.bracketPairColorization.enabled = false;
+          editor.lineNumbers = "relative";
+          editor.acceptSuggestionOnEnter = "off";
+          editor.minimap.enabled = false;
+
+          workbench.colorTheme = "Catppuccin Macchiato";
+          catppuccin.accentColor = "blue";
+
+          notebook.lineNumbers = "on";
+
+          vim.normalModeKeyBindings = [
+            {
+              before = [ "<C-d>" ];
+              after = [ "<C-d>" "z" "z" ];
+            }
+            {
+              before = [ "<C-u>" ];
+              after = [ "<C-u>" "z" "z" ];
+            }
+          ];
+          vim.visualModeKeyBindings = [
+            {
+              before = [ "<" ];
+              after = [ "<" "g" "v" ];
+            }
+            {
+              before = [ ">" ];
+              after = [ ">" "g" "v" ];
+            }
+          ];
+        };
+
+        keybindings = [
           {
-            before = [ "<" ];
-            after = [ "<" "g" "v" ];
+            key = "ctrl+l";
+            command = "workbench.action.nextEditor";
           }
           {
-            before = [ ">" ];
-            after = [ ">" "g" "v" ];
+            key = "ctrl+h";
+            command = "workbench.action.previousEditor";
+          }
+          {
+            key = "ctrl+enter";
+            command = "workbench.action.terminal.focus";
+          }
+          {
+            key = "ctrl+y";
+            command = "acceptSelectedSuggestion";
+            when = "suggestWidgetVisible && textInputFocus";
+          }
+          {
+            key = "ctrl+n";
+            command = "selectNextSuggestion";
+            when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+          }
+          {
+            key = "ctrl+p";
+            command = "selectPrevSuggestion";
+            when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
           }
         ];
       };
-
-      keybindings = [
-        {
-          key = "ctrl+l";
-          command = "workbench.action.nextEditor";
-        }
-        {
-          key = "ctrl+h";
-          command = "workbench.action.previousEditor";
-        }
-        {
-          key = "ctrl+enter";
-          command = "workbench.action.terminal.focus";
-        }
-        {
-          key = "ctrl+y";
-          command = "acceptSelectedSuggestion";
-          when = "suggestWidgetVisible && textInputFocus";
-        }
-        {
-          key = "ctrl+n";
-          command = "selectNextSuggestion";
-          when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
-        }
-        {
-          key = "ctrl+p";
-          command = "selectPrevSuggestion";
-          when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
-        }
-      ];
     };
   };
 }

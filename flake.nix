@@ -75,7 +75,7 @@
         ${userSettings.userName} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            stylix.homeManagerModules.stylix
+            stylix.homeModules.stylix
             (profilePath + "/home.nix")
           ];
           extraSpecialArgs = let
