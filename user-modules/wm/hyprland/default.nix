@@ -287,7 +287,7 @@ in {
           "$mod, C, killactive"
           "$mod, Q, exit"
           "$mod, E, exec, $fileManager"
-          "$mod, R, exec, $menu"
+          "$mod, D, exec, $menu"
           # "$mod, P, pseudo"
           "$mod, J, togglesplit"
           "$mod, O, fullscreen, 0" # fullscreen
