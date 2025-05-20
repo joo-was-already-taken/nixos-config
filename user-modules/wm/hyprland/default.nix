@@ -135,9 +135,10 @@ in {
           builtins.throw "No menu enabled (rofi)";
 
         exec-once = [
-          (lib.mkIf config.modules.waybar.enable "waybar")
+          (lib.mkIf config.modules.waybar.enable "waybar &")
           "nm-applet &"
-          "(sleep 2; blueman-tray) &"
+          "(sleep 1; blueman-tray) &"
+          (lib.mkIf config.modules.alacritty.enable "alacritty -e zsh -c 'neofetch; zsh' &")
           # "pypr &"
           # "swayidle -w timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'"
         ];
@@ -232,8 +233,8 @@ in {
           # "float, class:.*"
           # "size ${floatingWindowSize}, class:.*"
 
-          "float, title:Alacritty"
-          "size ${floatingWindowSize}, title:Alacritty*"
+          # "float, title:Alacritty"
+          # "size ${floatingWindowSize}, title:Alacritty*"
           "float, class:nemo"
           "size ${floatingWindowSize}, class:nemo*"
           "float, class:pavucontrol"
