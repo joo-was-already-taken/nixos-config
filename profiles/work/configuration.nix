@@ -181,6 +181,8 @@
   # };
 
   programs.hyprland.enable = true;
+  programs.dconf.enable = true;
+  security.polkit.enable = true;
 
   # uninstall nano and xterm
   programs.nano.enable = false;
