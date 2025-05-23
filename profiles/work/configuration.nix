@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, inputs, systemSettings, userSettings, ... }@args:
+{ pkgs, systemSettings, userSettings, ... }@args:
 
 {
   imports = [
@@ -19,11 +19,14 @@
     auto-optimise-store = true
   '';
 
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 8;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 8;
+    };
+    efi.canTouchEfiVariables = true;
+    timeout = 2;
   };
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # blueman
   services.blueman.enable = true;
@@ -180,6 +183,8 @@
   # };
 
   programs.hyprland.enable = true;
+  programs.dconf.enable = true;
+  security.polkit.enable = true;
 
   # uninstall nano and xterm
   programs.nano.enable = false;
