@@ -1,4 +1,4 @@
-{ pkgs, lib, myLib, inputs, config, systemSettings, sessionVariables, ... }:
+{ pkgs, lib, myLib, config, systemConfig, sessionVariables, ... }:
 let
   moduleName = "hyprland";
   defaultColors = with config.lib.stylix.colors; {
@@ -66,16 +66,6 @@ in {
       swayidle
       wlr-layout-ui
     ];
-
-    # xdg.portal = {
-    #   enable = true;
-    #   extraPortals = with pkgs; [
-    #     xdg-desktop-portal-hyprland
-    #     xdg-desktop-portal-gtk
-    #     # xdg-desktop-portal-kde # waybar doesn't work with this enabled
-    #   ];
-    #   config.common.default = "*";
-    # };
 
     services.mako = {
       enable = true;

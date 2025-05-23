@@ -13,7 +13,7 @@ in {
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
       ironbar
-      nerd-fonts.iosevka-term-slab
+      nerd-fonts.jetbrains-mono
     ];
 
     fonts.fontconfig.enable = true;
@@ -21,7 +21,7 @@ in {
     home.file.".config/ironbar/style.css".source = ./style.css;
     home.file.".config/ironbar/config.json".text = builtins.toJSON {
       position = "top";
-      height = 28;
+      height = 24;
       start = [ { type = "workspaces"; } ];
       center = [
         {
@@ -34,17 +34,19 @@ in {
         { type = "volume"; }
         { type = "network_manager"; }
         {
+          # CPU percentage
           type = "label";
-          label = '' {{poll:5000:top -bn2 | grep -m 1 '%Cpu' | awk '{printf("%.1f", 100 - $8)}'}}%'';
+          label = '' {{poll:5000:top -bn2 | awk '/^%Cpu/ {printf("%.1f\n", 100 - $8); exit}'}}%'';
         }
         {
+          # Memory usage
           type = "label";
           label = " {{poll:5000:${lib.getExe scripts.memory}}} GiB";
         }
         { type = "upower"; }
         {
           type = "tray";
-          prefer_theme_icons = false;
+          prefer_theme_icons = true;
         }
       ];
     };

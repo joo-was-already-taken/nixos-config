@@ -3,7 +3,7 @@
 }
 
 #bar {
-  font-family: "IosevkaTermSlab Nerd Font";
+  font-family: "JetBrainsMono Nerd Font";
   font-size: 16px;
 }
 
@@ -15,6 +15,6 @@
   padding: 0 18px;
   background-color: #aaa;
   color: #222;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 700;
 }
