@@ -11,10 +11,9 @@ in {
   };
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    home.packages = [
-      pkgs.ironbar
-      pkgs.upower
-      pkgs.nerd-fonts.iosevka-term-slab
+    home.packages = with pkgs; [
+      ironbar
+      nerd-fonts.iosevka-term-slab
     ];
 
     fonts.fontconfig.enable = true;
@@ -24,19 +23,25 @@ in {
       position = "top";
       height = 28;
       start = [ { type = "workspaces"; } ];
-      center = [ { type = "clock"; } ];
+      center = [
+        {
+          type = "clock";
+          format = "%H:%M";
+          format_popup = "%d/%m/%Y %H:%M:%S";
+        }
+      ];
       end = [
         { type = "volume"; }
         { type = "network_manager"; }
         {
-          type = "sys_info";
-          format = [ " {cpu_percent@sum: <4}%" ];
+          type = "label";
+          label = '' {{poll:5000:top -bn2 | grep -m 1 '%Cpu' | awk '{printf("%.1f", 100 - $8)}'}}%'';
         }
         {
           type = "label";
-          label = " {{poll:5000:${lib.getExe scripts.memory}}}";
+          label = " {{poll:5000:${lib.getExe scripts.memory}}} GiB";
         }
-        # { type = "upower"; }
+        { type = "upower"; }
         {
           type = "tray";
           prefer_theme_icons = false;

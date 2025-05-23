@@ -7,8 +7,12 @@
   font-size: 16px;
 }
 
+.popup {
+  background-color: #222;
+}
+
 .clock {
-  padding: 0 12px;
+  padding: 0 18px;
   background-color: #aaa;
   color: #222;
   font-size: 1.2em;
