@@ -1,8 +1,9 @@
-{ pkgs, config, lib, myLib, ... }:
+{ pkgs, config, lib, myLib, ... }@args:
 let
   moduleName = "ironbar";
   defaultColors = with config.lib.stylix.colors.withHashtag; rec {
   };
+  scripts = import ./scripts args;
 in {
   options.modules.${moduleName} = {
     enable = lib.mkEnableOption moduleName;
@@ -10,10 +11,10 @@ in {
   };
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    home.packages = with pkgs; [
-      ironbar
-      upower
-      nerd-fonts.iosevka-term-slab
+    home.packages = [
+      pkgs.ironbar
+      pkgs.upower
+      pkgs.nerd-fonts.iosevka-term-slab
     ];
 
     fonts.fontconfig.enable = true;
@@ -25,12 +26,15 @@ in {
       start = [ { type = "workspaces"; } ];
       center = [ { type = "clock"; } ];
       end = [
+        { type = "volume"; }
         { type = "network_manager"; }
         {
           type = "sys_info";
-          format = [
-            " {cpu_percent}% |  {memory_used#GB:.1}/{memory_total#GB:.1}GB"
-          ];
+          format = [ " {cpu_percent@sum: <4}%" ];
+        }
+        {
+          type = "label";
+          label = " {{poll:5000:${lib.getExe scripts.memory}}}";
         }
         # { type = "upower"; }
         {
