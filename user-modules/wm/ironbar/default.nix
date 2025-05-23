@@ -23,16 +23,19 @@ in {
       position = "top";
       height = 28;
       start = [ { type = "workspaces"; } ];
-      center = [];
+      center = [ { type = "clock"; } ];
       end = [
+        { type = "network_manager"; }
+        {
+          type = "sys_info";
+          format = [
+            " {cpu_percent}% |  {memory_used#GB:.1}/{memory_total#GB:.1}GB"
+          ];
+        }
+        # { type = "upower"; }
         {
           type = "tray";
           prefer_theme_icons = false;
-        }
-        { type = "upower"; }
-        {
-          type = "clock";
-          format = "%H:%M";
         }
       ];
     };
