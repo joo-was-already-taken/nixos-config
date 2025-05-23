@@ -14,6 +14,7 @@ in {
     home.packages = with pkgs; [
       ironbar
       nerd-fonts.jetbrains-mono
+      scripts.displayHyprWorkspaces
     ];
 
     fonts.fontconfig.enable = true;
@@ -22,7 +23,14 @@ in {
     home.file.".config/ironbar/config.json".text = builtins.toJSON {
       position = "top";
       height = 24;
-      start = [ { type = "workspaces"; } ];
+      start = [
+        {
+          # Hyprland workspaces
+          type = "script";
+          cmd = lib.getExe scripts.displayHyprWorkspaces;
+          mode = "watch";
+        }
+      ];
       center = [
         {
           type = "clock";
