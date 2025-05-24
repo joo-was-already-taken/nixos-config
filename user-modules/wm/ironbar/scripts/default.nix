@@ -10,6 +10,10 @@ in {
     name = "ironbar-memory";
     text = builtins.readFile ./memory.sh;
   };
+  battery = pkgs.writeShellApplication {
+    name = "ironbar-battery";
+    text = builtins.readFile ./battery.sh;
+  };
   displayHyprWorkspaces = pkgs.writeShellApplication {
     name = "display-hypr-workspaces";
     runtimeInputs = [ hyprWorkspaces ];

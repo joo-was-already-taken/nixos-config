@@ -1,20 +1,49 @@
 * {
   all: unset;
+  font-family: "JetBrainsMono Nerd Font";
 }
 
 #bar {
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 16px;
+  font-size: 15px;
+  background-color: @bar_bg;
 }
 
 .popup {
-  background-color: #222;
+  background-color: @bar_bg;
+}
+
+.custom-workspaces {
+  color: @workspaces;
 }
 
 .clock {
-  padding: 0 18px;
-  background-color: #aaa;
-  color: #222;
-  font-size: 1.1em;
+  padding: 0 20px;
+  margin: 5px 0;
+  background-color: @clock_bg;
+  color: @clock_fg;
+  font-size: 1.2em;
   font-weight: 700;
+}
+
+#end .widget {
+  margin-left: 30px;
+}
+
+.volume {
+  color: @volume;
+}
+.custom-cpu {
+  color: @cpu;
+}
+.custom-memory {
+  color: @memory;
+}
+.custom-battery {
+  color: @battery;
+}
+
+.tray {
+  padding: 0 10px;
+  margin: 5px;
+  background-color: @tray_bg;
 }
