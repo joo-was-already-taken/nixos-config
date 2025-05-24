@@ -6,7 +6,7 @@
 (deflisten volume-listen "pulse-volume-listener --json --initial")
 (defpoll brightness-poll :interval "500ms" "brightnessctl get")
 (defpoll time-poll :interval "1s" "date +%H:%M")
-(defpoll battery-poll :interval "10s" "battery")
+(defpoll battery-poll :interval "1s" "battery")
 (defvar show-sidestuff false)
 
 (defwindow bar
@@ -63,11 +63,11 @@
 (defwidget volume []
   (button :tooltip "Sink: ${volume-listen.sink}
 Volume: ${volume-listen.volume}%
-Status: ${volume-listen.mute_status}"
+State: ${volume-listen.mute_state}"
           :onclick "pulsemixer --toggle-mute"
     (box :class "volume"
          :space-evenly false
-      (label :text {volume-listen.mute_status == "Muted" ? "" : ""})
+      (label :text {volume-listen.mute_state == "Muted" ? "" : ""})
       (scale :active false
              :value {volume-listen.volume}
              :min 0

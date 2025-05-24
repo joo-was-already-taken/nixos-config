@@ -17,6 +17,8 @@ in {
       scripts.hyprWorkspaces
       scripts.battery
 
+      scripts.pulseVolume
+
       # fonts
       pkgs.nerd-fonts.iosevka-term-slab
     ];

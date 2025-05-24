@@ -18,4 +18,17 @@ rec {
     name = "battery";
     text = builtins.readFile ./battery.sh;
   };
+  pulseVolume = pkgs.stdenv.mkDerivation {
+    name = "pulse-volume-listener";
+    propagatedBuildInputs = [
+      (pkgs.python3.withPackages (ps: with ps; [
+        pulsectl
+        pulsectl-asyncio
+      ]))
+    ];
+    dontUnpack = true;
+    installPhase = ''
+      install -Dm755 ${./pulse-volume-listener.py} $out/bin/pulse-volume-listener
+    '';
+  };
 }

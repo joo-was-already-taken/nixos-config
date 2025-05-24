@@ -11,7 +11,10 @@
 
   modules.hyprland.enable = lib.mkDefault true;
   modules.waybar.enable = lib.mkDefault false;
-  modules.ironbar.enable = lib.mkDefault true;
+  modules.ironbar.enable = lib.mkDefault false;
   modules.rofi.enable = lib.mkDefault true;
-  modules.eww.enable = lib.mkDefault true;
+  modules.eww = {
+    enable = lib.mkDefault true;
+    bar.enable = lib.mkDefault true;
+  };
 }

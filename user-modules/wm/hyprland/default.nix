@@ -127,6 +127,8 @@ in {
         exec-once = [
           (lib.mkIf config.modules.waybar.enable "waybar")
           (lib.mkIf config.modules.ironbar.enable "ironbar")
+          (lib.mkIf config.modules.eww.enable "eww daemon")
+          (lib.mkIf config.modules.eww.bar.enable "eww open bar")
           "nm-applet &"
           "(sleep 1; blueman-tray) &"
           (lib.mkIf config.modules.alacritty.enable "alacritty -e zsh -c 'neofetch; zsh' &")
