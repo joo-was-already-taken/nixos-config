@@ -74,7 +74,7 @@ in {
         open = "xdg-open";
       };
 
-      initExtra = /*bash*/ '' # jk it's zsh
+      initContent = /*bash*/ '' # jk it's zsh
         # init zsh-fzf-tab
         source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --color=auto $realpath'

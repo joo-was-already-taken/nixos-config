@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, inputs, systemSettings, userSettings, ... }@args:
+{ pkgs, systemSettings, userSettings, ... }@args:
 
 {
   imports = [
@@ -19,11 +19,14 @@
     auto-optimise-store = true
   '';
 
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 8;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 8;
+    };
+    efi.canTouchEfiVariables = true;
+    timeout = 2;
   };
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # blueman
   services.blueman.enable = true;
@@ -48,14 +51,13 @@
   i18n.defaultLocale = "en_DK.UTF-8";
 
   i18n.extraLocaleSettings = {
-    # LC_ALL = "en_DK.UTF-8";
     LC_ADDRESS = "pl_PL.UTF-8";
     LC_IDENTIFICATION = "pl_PL.UTF-8";
-    LC_MEASUREMENT = "pl_PL.UTF-8";
+    LC_MEASUREMENT = "en_DK.UTF-8";
     LC_MONETARY = "pl_PL.UTF-8";
     LC_NAME = "pl_PL.UTF-8";
-    LC_NUMERIC = "pl_PL.UTF-8";
-    LC_PAPER = "pl_PL.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_DK.UTF-8";
     LC_TELEPHONE = "pl_PL.UTF-8";
     LC_TIME = "en_DK.UTF-8";
   };
@@ -68,6 +70,8 @@
   #   };
   #   ibus.engines = with pkgs.ibus-engines; [ mozc ];
   # };
+
+  services.upower.enable = true;
 
   virtualisation.containers.enable = true;
   virtualisation.podman = {
@@ -178,6 +182,8 @@
   # };
 
   programs.hyprland.enable = true;
+  programs.dconf.enable = true;
+  security.polkit.enable = true;
 
   # uninstall nano and xterm
   programs.nano.enable = false;

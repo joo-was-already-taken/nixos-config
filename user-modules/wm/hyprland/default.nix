@@ -1,4 +1,4 @@
-{ pkgs, lib, myLib, inputs, config, systemSettings, sessionVariables, ... }:
+{ pkgs, lib, myLib, config, systemConfig, sessionVariables, ... }:
 let
   moduleName = "hyprland";
   defaultColors = with config.lib.stylix.colors; {
@@ -67,16 +67,6 @@ in {
       wlr-layout-ui
     ];
 
-    # xdg.portal = {
-    #   enable = true;
-    #   extraPortals = with pkgs; [
-    #     xdg-desktop-portal-hyprland
-    #     xdg-desktop-portal-gtk
-    #     # xdg-desktop-portal-kde # waybar doesn't work with this enabled
-    #   ];
-    #   config.common.default = "*";
-    # };
-
     services.mako = {
       enable = true;
       settings.default-timeout = 4000;
@@ -136,8 +126,10 @@ in {
 
         exec-once = [
           (lib.mkIf config.modules.waybar.enable "waybar")
+          (lib.mkIf config.modules.ironbar.enable "ironbar")
           "nm-applet &"
-          "(sleep 2; blueman-tray) &"
+          "(sleep 1; blueman-tray) &"
+          (lib.mkIf config.modules.alacritty.enable "alacritty -e zsh -c 'neofetch; zsh' &")
           # "pypr &"
           # "swayidle -w timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'"
         ];
@@ -232,8 +224,8 @@ in {
           # "float, class:.*"
           # "size ${floatingWindowSize}, class:.*"
 
-          "float, title:Alacritty"
-          "size ${floatingWindowSize}, title:Alacritty*"
+          # "float, title:Alacritty"
+          # "size ${floatingWindowSize}, title:Alacritty*"
           "float, class:nemo"
           "size ${floatingWindowSize}, class:nemo*"
           "float, class:pavucontrol"
@@ -286,7 +278,7 @@ in {
           "$mod, C, killactive"
           "$mod, Q, exit"
           "$mod, E, exec, $fileManager"
-          "$mod, R, exec, $menu"
+          "$mod, D, exec, $menu"
           # "$mod, P, pseudo"
           "$mod, J, togglesplit"
           "$mod, O, fullscreen, 0" # fullscreen
