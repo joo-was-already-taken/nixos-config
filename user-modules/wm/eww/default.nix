@@ -20,7 +20,7 @@ in {
       scripts.pulseVolume
 
       # fonts
-      pkgs.nerd-fonts.iosevka-term-slab
+      pkgs.nerd-fonts.jetbrains-mono
     ];
 
     fonts.fontconfig.enable = true;

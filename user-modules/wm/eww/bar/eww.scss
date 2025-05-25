@@ -1,6 +1,7 @@
 * {
   all: unset;
-  font-family: "IosevkaTermSlab Nerd Font";
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
 }
 
 .workspaces {
@@ -32,37 +33,43 @@ scale trough {
 }
 
 @mixin scale-style($label-padding, $font-size: 0.9em) {
-  > label {
+  .icon {
     padding-right: $label-padding;
     font-size: $font-size;
+  }
+  label {
+    font-size: 0.8em;
   }
 }
 
 .volume {
-  padding-right: 14px;
+  padding-right: 26px;
 
   @include scale-style($label-padding: 14px);
 
-  > scale trough highlight {
-    background-color: #888;
+  .text-progress {
+    color: #0f0;
+    /* font-size: 0.8em; */
   }
 }
 
 .brightness {
-  padding-right: 10px;
+  padding-right: 17px;
 
   @include scale-style($label-padding: 12px);
 
-  > scale trough highlight {
-    background-color: #888;
+  .text-progress {
+    color: #f00;
+    /* font-size: 0.8em; */
   }
 }
 
 .battery {
   @include scale-style($label-padding: 6px, $font-size: 1.15em);
 
-  > scale trough highlight {
-    background-color: #888;
+  .text-progress {
+    color: #00f;
+    /* font-size: 0.8em; */
   }
 }
 

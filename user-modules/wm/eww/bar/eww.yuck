@@ -8,6 +8,8 @@
 (defpoll time-poll :interval "1s" "date +%H:%M")
 (defpoll battery-poll :interval "10s" "battery")
 (defvar show-sidestuff false)
+;; (defvar text-progress-bars '["░░░░░░░░", "▓░░░░░░░", "▓▓░░░░░░", "▓▓▓░░░░░", "▓▓▓▓░░░░", "▓▓▓▓▓░░░", "▓▓▓▓▓▓░░", "▓▓▓▓▓▓▓░", "▓▓▓▓▓▓▓▓"]')
+(defvar text-progress-bars '["░░░░░░░░", "▒░░░░░░░", "▒▒░░░░░░", "▒▒▒░░░░░", "▒▒▒▒░░░░", "▒▒▒▒▒░░░", "▒▒▒▒▒▒░░", "▒▒▒▒▒▒▒░", "▒▒▒▒▒▒▒▒"]')
 
 (defwindow bar
   :monitor 0
@@ -67,29 +69,39 @@ Status: ${volume-listen.mute_status}"
           :onclick "pulsemixer --toggle-mute"
     (box :class "volume"
          :space-evenly false
-      (label :text {volume-listen.mute_status == "Muted" ? "" : ""})
-      (scale :active false
-             :value {volume-listen.volume}
-             :min 0
-             :max 150))))
+      (label :text {volume-listen.mute_status == "Muted" ? "" : ""}
+             :class "icon")
+      (label :text "[")
+      (text-progress :value {volume-listen.volume}
+                     :min-val 0
+                     :max-val 150)
+      (label :text "] ${volume-listen.volume}%"))))
 
 (defwidget brightness []
   (box :tooltip "Backlight: ${brightness-poll} / 96000"
        :class "brightness"
        :space-evenly false
-    (label :text "")
-    (scale :active false
-           :value brightness-poll
-           :min 0
-           :max 96000)))
+    (label :text ""
+           :class "icon")
+    (label :text "[")
+    (text-progress :value brightness-poll
+                   :min-val 0
+                   :max-val 96000)
+    (label :text "] ${brightness-poll / 960}%")))
 
 (defwidget battery []
   (box :class "battery"
        :space-evenly false
        :tooltip "Battery: ${battery-poll.percentage}%
 Status: ${battery-poll.status}"
-    (label :text "")
-    (scale :active false
-           :value {battery-poll.percentage}
-           :min 0
-           :max 100)))
+    (label :text ""
+           :class "icon")
+    (label :text "[")
+    (text-progress :value {battery-poll.percentage}
+                   :min-val 0
+                   :max-val 100)
+    (label :text "] ${battery-poll.percentage}%")))
+
+(defwidget text-progress [value min-val max-val]
+  (label :text {text-progress-bars[round((min(max(value, min-val), max-val) - min-val) / (max-val - min-val) * 8, 0)]}
+         :class "text-progress"))
