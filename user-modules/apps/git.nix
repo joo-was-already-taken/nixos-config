@@ -59,5 +59,7 @@ in {
     home.activation.addGitConfig = lib.hm.dag.entryAfter [ "writeBoundary" "reloadSystemd" ] ''
       run ${pkgs.systemd}/bin/systemctl $VERBOSE_ARG --user start gitconfig-init.service
     '';
-    };
+
+    programs.lazygit.enable = true;
+  };
 }
