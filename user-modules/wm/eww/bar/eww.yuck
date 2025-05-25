@@ -67,7 +67,7 @@ Status: ${volume-listen.mute_status}"
           :onclick "pulsemixer --toggle-mute"
     (box :class "volume"
          :space-evenly false
-      (label :text {volume-listen.mute_status == "Muted" ? "" : ""})
+      (label :text {volume-listen.mute_status == "Muted" ? "" : ""})
       (scale :active false
              :value {volume-listen.volume}
              :min 0
