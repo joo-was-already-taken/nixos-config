@@ -3,7 +3,7 @@
 (deflisten workspaces-nonempty-listen :initial "[]" "hypr-workspaces non-empty")
 (deflisten submap-listen :initial "" "hypr-listen submap")
 (deflisten fullscreen-listen "hypr-fullscreenmode; hypr-listen fullscreen")
-(deflisten volume-listen "pulse-volume-listener --json --initial")
+(deflisten volume-listen "sleep 1; pulse-volume-listener --json --initial")
 (defpoll brightness-poll :interval "500ms" "brightnessctl get")
 (defpoll time-poll :interval "1s" "date +%H:%M")
 (defpoll battery-poll :interval "10s" "battery")
@@ -71,11 +71,10 @@ Status: ${volume-listen.mute_status}"
          :space-evenly false
       (label :text {volume-listen.mute_status == "Muted" ? "" : ""}
              :class "icon")
-      (label :text "[")
       (text-progress :value {volume-listen.volume}
                      :min-val 0
                      :max-val 150)
-      (label :text "] ${volume-listen.volume}%"))))
+      " ${volume-listen.volume}%")))
 
 (defwidget brightness []
   (box :tooltip "Backlight: ${brightness-poll} / 96000"
@@ -83,11 +82,10 @@ Status: ${volume-listen.mute_status}"
        :space-evenly false
     (label :text ""
            :class "icon")
-    (label :text "[")
     (text-progress :value brightness-poll
                    :min-val 0
                    :max-val 96000)
-    (label :text "] ${brightness-poll / 960}%")))
+    " ${brightness-poll / 960}%"))
 
 (defwidget battery []
   (box :class "battery"
@@ -96,12 +94,14 @@ Status: ${volume-listen.mute_status}"
 Status: ${battery-poll.status}"
     (label :text ""
            :class "icon")
-    (label :text "[")
     (text-progress :value {battery-poll.percentage}
                    :min-val 0
                    :max-val 100)
-    (label :text "] ${battery-poll.percentage}%")))
+    " ${battery-poll.percentage}%"))
 
 (defwidget text-progress [value min-val max-val]
-  (label :text {text-progress-bars[round((min(max(value, min-val), max-val) - min-val) / (max-val - min-val) * 8, 0)]}
-         :class "text-progress"))
+  (box :class "text-progress"
+       :space-evenly false
+    "["
+    (label :text {text-progress-bars[round((min(max(value, min-val), max-val) - min-val) / (max-val - min-val) * 8, 0)]})
+    "]"))

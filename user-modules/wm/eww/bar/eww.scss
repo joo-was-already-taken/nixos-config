@@ -38,39 +38,30 @@ scale trough {
     font-size: $font-size;
   }
   label {
-    font-size: 0.8em;
+    font-size: 0.85em;
   }
 }
 
 .volume {
   padding-right: 26px;
 
-  @include scale-style($label-padding: 14px);
+  @include scale-style($label-padding: 12px);
 
-  .text-progress {
-    color: #0f0;
-    /* font-size: 0.8em; */
-  }
+  color: $volume;
 }
 
 .brightness {
   padding-right: 17px;
 
-  @include scale-style($label-padding: 12px);
+  @include scale-style($label-padding: 8px);
 
-  .text-progress {
-    color: #f00;
-    /* font-size: 0.8em; */
-  }
+  color: $brightness;
 }
 
 .battery {
-  @include scale-style($label-padding: 6px, $font-size: 1.15em);
+  @include scale-style($label-padding: 4px, $font-size: 1.15em);
 
-  .text-progress {
-    color: #00f;
-    /* font-size: 0.8em; */
-  }
+  color: $battery;
 }
 
 .tray {
