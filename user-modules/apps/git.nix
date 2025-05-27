@@ -24,6 +24,9 @@ in {
       [includeIf "gitdir:${universityDir}/"]
         path = ~/.config/git/config-university
 
+      [diff]
+        tool = vimdiff
+
       [core]
         askPass = ""
         pager = diff-so-fancy | less -RF
