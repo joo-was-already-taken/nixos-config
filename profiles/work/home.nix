@@ -111,6 +111,12 @@ in {
     # fonts
     ipafont # japanese
     kochi-substitute # japanese
+
+    jetbrains-toolbox
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "jetbrains-toolbox"
   ];
 
   home.username = userSettings.userName;
