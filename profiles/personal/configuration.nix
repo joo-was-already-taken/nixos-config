@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -21,6 +21,15 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     gamescopeSession.enable = true;
+    extraPackages = with pkgs; [
+      # necessery for steam to launch
+      glib
+    ];
+  };
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
   };
 
   services.xserver.videoDrivers = [ "intel" "amdgpu" ];
