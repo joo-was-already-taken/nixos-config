@@ -302,6 +302,7 @@ in {
           "$mod, K, movefocus, u"
           "$mod, J, movefocus, d"
           "$mod, semicolon, cyclenext"
+          "$mod, semicolon, alterzorder, top"
 
           "$mod SHIFT, H, movewindow, l"
           "$mod SHIFT, L, movewindow, r"
