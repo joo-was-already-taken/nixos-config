@@ -86,8 +86,11 @@ in {
       };
 
       settings = {
-        content.blocking.enabled = true;
-        content.pdfjs = true;
+        content = {
+          blocking.enabled = true;
+          pdfjs = true;
+          javascript.clipboard = "access";
+        };
         scrolling.bar = "always";
         tabs.max_width = 240;
         colors = {
