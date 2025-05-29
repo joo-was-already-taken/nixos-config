@@ -82,7 +82,7 @@ in {
 
       aliases = {
         adblock = "set content.blocking.enabled";
-        darkmode = "set colors.webpage.darkmode.enabled";
+        darkmode = "config-cycle colors.webpage.darkmode.enabled true false";
       };
 
       settings = {
