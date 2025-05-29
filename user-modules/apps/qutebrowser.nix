@@ -87,6 +87,7 @@ in {
 
       settings = {
         content.blocking.enabled = true;
+        content.pdfjs = true;
         scrolling.bar = "always";
         tabs.max_width = 240;
         colors = {
