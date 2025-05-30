@@ -99,7 +99,6 @@ in {
     # openshot-qt
     vlc
     gthumb
-    termusic
     calcure
 
     # tldr pages
