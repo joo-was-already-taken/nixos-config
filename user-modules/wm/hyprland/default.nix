@@ -129,7 +129,7 @@ in {
           (lib.mkIf config.modules.ironbar.enable "ironbar")
           "nm-applet &"
           "(sleep 1; blueman-tray) &"
-          (lib.mkIf config.modules.alacritty.enable "alacritty -e zsh -c 'neofetch; zsh' &")
+          "${sessionVariables.TERMINAL} -e zsh -c 'neofetch; zsh' &"
           # "pypr &"
           # "swayidle -w timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'"
         ];

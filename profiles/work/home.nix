@@ -4,7 +4,7 @@ let
     EDITOR = "nvim";
     MANPAGER = "nvim --remote -c 'Man!' -o -";
     FILEMANAGER = "nemo";
-    TERMINAL = "alacritty";
+    TERMINAL = "ghostty";
     BROWSER = "qutebrowser";
   }
     // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {})
