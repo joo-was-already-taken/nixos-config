@@ -114,6 +114,13 @@ in {
     jetbrains-toolbox
   ];
 
+  dconf.settings = {
+    "org/cinnamon/desktop/default-applications/terminal" = {
+      exec = workSessionVars.TERMINAL;
+      exec-arg = "-e";
+    };
+  };
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "jetbrains-toolbox"
   ];

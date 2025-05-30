@@ -22,18 +22,5 @@ in {
     # games
     prismlauncher # minecraft
     superTuxKart
-
-
-    # music
-    unstable.tidal-dl
   ];
-
-  # music player
-  programs.rmpc = {
-    enable = true;
-  };
-  services.mpd = {
-    enable = true;
-    musicDirectory = "$HOME/Music";
-  };
 }

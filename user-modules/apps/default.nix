@@ -4,6 +4,7 @@
   imports = myLib.importAll args [
     ./nvim
     ./tmux
+    ./music
     ./alacritty.nix
     ./ghostty.nix
     ./qutebrowser.nix
@@ -15,6 +16,7 @@
 
   modules = {
     nvim.enable = lib.mkDefault true;
+    music.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;
     alacritty.enable = lib.mkDefault false;
     ghostty.enable = lib.mkDefault true;
