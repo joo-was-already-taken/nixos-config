@@ -98,7 +98,7 @@ in {
     obs-studio
     # openshot-qt
     vlc
-    loupe
+    gthumb
     termusic
     calcure
 
