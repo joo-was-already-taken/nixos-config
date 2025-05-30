@@ -27,4 +27,13 @@ in {
     # music
     unstable.tidal-dl
   ];
+
+  # music player
+  programs.rmpc = {
+    enable = true;
+  };
+  services.mpd = {
+    enable = true;
+    musicDirectory = "$HOME/Music";
+  };
 }
