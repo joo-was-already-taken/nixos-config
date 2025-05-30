@@ -33,4 +33,21 @@
   };
 
   services.xserver.videoDrivers = [ "intel" "amdgpu" ];
+
+  # # DLNA
+  # services.minidlna = {
+  #   enable = true;
+  #   settings = {
+  #     friendly_name = "nixdell-dlna";
+  #     media_dir = [
+  #       "A,/mnt/media/Music"
+  #     ];
+  #     log_level = "error";
+  #     inotify = "yes";
+  #   };
+  # };
+  # environment.systemPackages = [ pkgs.inotify-tools ];
+  # users.users.minidlna = {
+  #   extraGroups = [ "users" ];
+  # };
 }
