@@ -3,9 +3,9 @@
 {
   imports = [
     (import ./hyprland args)
+    (import ./rofi args)
     ./waybar
     ./ironbar
-    ./rofi
   ];
 
   modules.hyprland.enable = lib.mkDefault true;

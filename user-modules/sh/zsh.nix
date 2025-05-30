@@ -91,6 +91,9 @@ in {
         bindkey -rM viins '\ec'
         bindkey -rM emacs '\ec' # just in case, not that I'd use it
 
+        # for ghostty
+        bindkey '^[[91;5u' vi-cmd-mode
+
         export DEFAULT_ZLE_LINE_INIT="$(which zle-line-init)"
         set-pref() {
           case "$#" in

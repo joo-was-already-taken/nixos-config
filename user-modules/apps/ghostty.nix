@@ -10,6 +10,9 @@ in {
     programs.ghostty = {
       enable = true;
 
+      enableZshIntegration = true;
+      clearDefaultKeybinds = true;
+
       settings = {
         gtk-single-instance = true;
         confirm-close-surface = false;
@@ -23,10 +26,6 @@ in {
         font-feature = [
           # disable ligatures
           "-calt" "-liga" "-dlig"
-        ];
-
-        keybind = [
-          "ctrl+left_bracket=unbind"
         ];
       };
     };

@@ -12,6 +12,12 @@ let
     selectedUrgentBackground = stylixColors.base0A;
     border = stylixColors.base0C;
   };
+  enabledTerminalPath = let
+    term = lib.findFirst (term: config.modules.${term}.enable) null [
+      "ghostty"
+      "alacritty"
+    ];
+  in "${pkgs.${term}}/bin/${term}";
 in {
   options.modules.${moduleName} = {
     enable = lib.mkEnableOption "rofi-wayland";
@@ -23,6 +29,11 @@ in {
       rofi-wayland
     ];
     home.file.".config/rofi/config.rasi".text = let
+      settings = ''
+        configuration {
+          terminal: "${enabledTerminalPath}";
+        }
+      '';
       styling = with config.modules.${moduleName}.colors; ''
         * {
           font: "${config.stylix.fonts.monospace.name} 15px";
@@ -38,6 +49,6 @@ in {
           border-color: ${border};
         }
       '';
-    in styling + (builtins.readFile ./config.rasi);
+    in settings + styling + (builtins.readFile ./config.rasi);
   };
 }

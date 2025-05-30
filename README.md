@@ -19,5 +19,5 @@ In *flake.nix* you can specify which host and profile as well as username to use
 ### Highlights
 - WM: [Hyprland](https://hyprland.org)
 - Editor: [Neovim](https://neovim.io)
-- Terminal emulator: [Alacritty](https://alacritty.org)
+- Terminal emulator: [Ghostty](https://alacritty.org)
 - Styling: [Stylix](https://github.com/danth/stylix)
