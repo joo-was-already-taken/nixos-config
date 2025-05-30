@@ -17,6 +17,13 @@ in {
     services.mpd = {
       enable = true;
       musicDirectory = "$HOME/Music";
+      extraConfig = ''
+        audio_output {
+          type       "pulse"
+          name       "PulseAudio Output"
+          mixer_type "software"
+        }
+      '';
     };
   };
 }
