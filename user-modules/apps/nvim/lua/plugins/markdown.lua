@@ -5,7 +5,7 @@ local buffer_width = 90
 require("render-markdown").setup({
   render_modes = true,
   heading = {
-    icons = { "#", "##", "###", "####", "#####", "######" },
+    icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
     position = "inline",
   },
   code = {
