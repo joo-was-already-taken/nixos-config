@@ -23,9 +23,17 @@ in {
 
         foreground = config.lib.stylix.colors.withHashtag.base06;
 
+        font-family = config.stylix.fonts.monospace.name;
         font-feature = [
           # disable ligatures
           "-calt" "-liga" "-dlig"
+        ];
+
+        keybind = [
+          "ctrl+shift+c=copy_to_clipboard"
+          "ctrl+insert=copy_to_clipboard"
+          "ctrl+shift+v=paste_from_clipboard"
+          "shift+insert=paste_from_clipboard"
         ];
       };
     };
