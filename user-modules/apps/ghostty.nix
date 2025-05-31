@@ -23,7 +23,6 @@ in {
 
         foreground = config.lib.stylix.colors.withHashtag.base06;
 
-        font-family = config.stylix.fonts.monospace.name;
         font-feature = [
           # disable ligatures
           "-calt" "-liga" "-dlig"
