@@ -27,7 +27,6 @@ in {
         ripgrep
 
         nil
-        lua-language-server
         tinymist
       ];
       extraLuaConfig = /*lua*/ ''
@@ -38,9 +37,20 @@ in {
         lua = str: "lua << EOF\n${str}\nEOF\n";
       in with pkgs.vimPlugins; [
         tmux-navigator
-        nvim-ts-autotag
         vim-obsession
 
+        {
+          plugin = nvim-surround;
+          config = lua /*lua*/ ''
+            require("nvim-surround").setup({})
+          '';
+        }
+        {
+          plugin = nvim-ts-autotag;
+          config = lua /*lua*/ ''
+            require("nvim-ts-autotag").setup({})
+          '';
+        }
         {
           plugin = typst-preview-nvim;
           config = lua /*lua*/ ''
@@ -195,7 +205,8 @@ in {
             tree-sitter-cpp
             tree-sitter-cmake
             tree-sitter-zig
-            tree-sitter-java
+            tree-sitter-javascript
+            tree-sitter-css
           ]));
           config = lua /*lua*/ ''
             require("nvim-treesitter.configs").setup({
