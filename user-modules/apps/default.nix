@@ -11,6 +11,7 @@
     ./librewolf.nix
     ./git.nix
     ./office.nix
+    ./nemo.nix
     ./vscode.nix
   ];
 
@@ -23,6 +24,7 @@
     qutebrowser.enable = lib.mkDefault true;
     git.enable = lib.mkDefault true;
     office.enable = lib.mkDefault true;
+    nemo.enable = lib.mkDefault true;
     vscode = {
       enable = lib.mkDefault true;
       java.enable = lib.mkDefault false;
