@@ -28,6 +28,7 @@ in {
 
         nil
         lua-language-server
+        tinymist
       ];
       extraLuaConfig = /*lua*/ ''
         require("config")
@@ -40,6 +41,12 @@ in {
         nvim-ts-autotag
         vim-obsession
 
+        {
+          plugin = typst-preview-nvim;
+          config = lua /*lua*/ ''
+            require("typst-preview").setup({})
+          '';
+        }
         {
           plugin = gitsigns-nvim;
           config = lua /*lua*/ ''
@@ -171,6 +178,7 @@ in {
             tree-sitter-python
             tree-sitter-markdown
             tree-sitter-markdown_inline
+            tree-sitter-typst
             tree-sitter-latex
             tree-sitter-make
             tree-sitter-regex

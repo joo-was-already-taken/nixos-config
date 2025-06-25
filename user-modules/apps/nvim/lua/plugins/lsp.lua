@@ -41,6 +41,7 @@ default_setup({
   "gopls",
   "rust_analyzer",
   "zls",
+  "tinymist",
   "ts_ls",
 })
 
