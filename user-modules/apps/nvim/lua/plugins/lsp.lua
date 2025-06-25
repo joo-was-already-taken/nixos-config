@@ -40,7 +40,17 @@ default_setup({
   "pyright",
   "gopls",
   "rust_analyzer",
-  "clangd",
   "zls",
-  "jdtls",
+  "ts_ls",
+})
+
+lspconfig.clangd.setup({
+  cmd = {
+    "clangd",
+    "--clang-tidy",
+    "--background-index",
+    "--completion-style=bundled",
+  },
+  capabalities = capabalities,
+  on_attach = on_attach,
 })
