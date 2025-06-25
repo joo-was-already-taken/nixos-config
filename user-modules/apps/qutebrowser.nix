@@ -88,7 +88,7 @@ in {
       settings = {
         content = {
           blocking.enabled = true;
-          pdfjs = true;
+          pdfjs = false;
           javascript.clipboard = "access";
         };
         scrolling.bar = "always";
