@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, systemSettings, userSettings, ... }@args:
+{ lib, pkgs, systemSettings, userSettings, ... }@args:
 
 {
   imports = [
@@ -81,7 +81,17 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      canon-cups-ufr2
+      cnijfilter2
+    ];
+  };
+  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  #   "canon-cups-ufr2"
+  # ];
+  nixpkgs.config.allowUnfree = true;
 
   # usb
   services.gvfs.enable = true;
@@ -174,6 +184,7 @@
     zip
     unzip
     openrazer-daemon
+    gparted
   ];
 
   # services.ollama = {

@@ -19,7 +19,7 @@ in {
     ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
     ../../user-modules/virtualization.nix
-    (import ../../user-modules/apps <| args // { inherit styleSettings; })
+    (import ../../user-modules/apps <| args // { inherit styleSettings; sessionVariables = workSessionVars; })
     (import ../../user-modules/wm <| args // { sessionVariables = workSessionVars; })
   ];
 
@@ -92,13 +92,13 @@ in {
 
     # sound input/output control
     pavucontrol
-    # file manager
-    nemo
 
     obs-studio
     # openshot-qt
     vlc
     gthumb
+    gimp
+
     calcure
 
     # tldr pages
@@ -112,6 +112,10 @@ in {
     kochi-substitute # japanese
 
     jetbrains-toolbox
+
+    man-pages
+
+    typst
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
