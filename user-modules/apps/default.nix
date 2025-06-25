@@ -19,7 +19,6 @@
     nvim.enable = lib.mkDefault true;
     music.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;
-    alacritty.enable = lib.mkDefault false;
     ghostty.enable = lib.mkDefault true;
     qutebrowser.enable = lib.mkDefault true;
     git.enable = lib.mkDefault true;
@@ -32,5 +31,6 @@
     };
 
     librewolf.enable = lib.mkDefault false;
+    alacritty.enable = lib.mkDefault false;
   };
 }
