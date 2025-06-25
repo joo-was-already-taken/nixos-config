@@ -22,6 +22,9 @@ require("render-markdown").setup({
 require("obsidian").setup({
   ui = { enable = false },
   disable_frontmatter = true,
+  follow_url_func = function(url)
+    vim.fn.jobstart({ "xdg-open", url })
+  end,
   workspaces = {
     {
       name = "wisdom",
