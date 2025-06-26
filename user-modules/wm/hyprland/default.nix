@@ -104,10 +104,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
-      systemd = {
-        enable = true;
-        variables = [ "--all" ];
-      };
+      systemd.enable = false; # conflicts with UWSM
       package = null;
       portalPackage = null;
       # plugins = [
@@ -116,23 +113,21 @@ in {
 
       extraConfig = ''
         $mod = SUPER
-        $keysymMod = Super_L
         $terminal = ${sessionVariables.TERMINAL}
         $fileManager = ${sessionVariables.FILEMANAGER}
         $webBrowser = ${sessionVariables.BROWSER}
         $menu = ${
           if config.modules.rofi.enable then
-            "rofi -show drun -show-icons"
+            "rofi -show drun -show-icons -run-command 'uwsm app -- {cmd}'"
           else
             builtins.throw "No menu enabled (rofi)"
         }
 
-        ${if config.modules.waybar.enable then "exec-once = waybar" else ""}
-        ${if config.modules.ironbar.enable then "exec-once = ironbar" else ""}
-        exec-once = nm-applet &
-        exec-once = (sleep 1; blueman-tray) &
-        exec-once = ${sessionVariables.TERMINAL} -e zsh -c 'neofetch; zsh' &
-        exec-once = pypr &
+        ${if config.modules.waybar.enable then "exec-once = uwsm app -- waybar" else ""}
+        ${if config.modules.ironbar.enable then "exec-once = uwsm app -- ironbar" else ""}
+        exec-once = uwsm app -- nm-applet
+        exec-once = uwsm app -- blueman-tray
+        exec-once = uwsm app -- ${sessionVariables.TERMINAL} -e zsh -c 'neofetch; zsh'
         # exec-once = swayidle -w timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 
         monitor = , preferred, auto, 1
@@ -267,12 +262,12 @@ in {
           workspace_swipe = false
         }
 
-        bind = $mod, F, exec, $webBrowser
-        bind = $mod, return, exec, $terminal
+        bind = $mod, F, exec, uwsm app -- $webBrowser
+        bind = $mod, return, exec, uwsm app -- $terminal
         bind = $mod, C, killactive
         bind = $mod, Q, exit
-        bind = $mod, E, exec, $fileManager
-        bind = $mod, D, exec, $menu
+        bind = $mod, E, exec, uwsm app -- $fileManager
+        bind = $mod, D, exec, uwsm app -- $menu
         # bind = $mod, P, pseudo
         bind = $mod, J, togglesplit
         bind = $mod, O, fullscreen, 0 # fullscreen
@@ -287,9 +282,9 @@ in {
         bind = $mod, space, exec, ${lib.getExe changeKbLayout}
 
         # Take a screenshot of an entire monitor
-        bind = , Print, exec, hyprshot -m output
+        bind = , Print, exec, uwsm app -- hyprshot -m output
         # Take a screenshot of selected region
-        bind = Control_L&Control_R, Print, exec, hyprshot -m region
+        bind = Control_L&Control_R, Print, exec, uwsm app -- hyprshot -m region
 
         bind = $mod, H, movefocus, l
         bind = $mod, L, movefocus, r

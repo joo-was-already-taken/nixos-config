@@ -1,11 +1,11 @@
-{ pkgs, userSettings, session, ... }:
+{ pkgs, userSettings, command, ... }:
 
 {
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${session}";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd '${command}'";
         user = userSettings.userName;
       };
     };

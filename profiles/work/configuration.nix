@@ -8,7 +8,7 @@
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     ../../styling/stylix.nix
-    (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
+    (import ../../system-modules/display-managers/tuigreet.nix (args // { command = "uwsm start hyprland-uwsm.desktop"; }))
     # ../../system-modules/display-managers/sddm.nix
   ];
 
@@ -188,8 +188,13 @@
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
   programs.dconf.enable = true;
   security.polkit.enable = true;
