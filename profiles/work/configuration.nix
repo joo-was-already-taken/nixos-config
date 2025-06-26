@@ -184,10 +184,7 @@
     gparted
   ];
 
-  # services.ollama = {
-  #   enable = true;
-  #   loadModels = [ "codeqwen" ];
-  # };
+  services.dbus.implementation = "broker";
 
   programs.hyprland = {
     enable = true;
