@@ -9,12 +9,14 @@ require("render-markdown").setup({
     position = "inline",
   },
   code = {
+    style = "normal",
+    sign = false,
+    border = "thin",
     width = "block",
     min_width = code_width,
     left_margin = 2,
     left_pad = 2,
     right_pad = 2,
-    language_pad = 0,
   },
   latex = { enable = false },
 })
