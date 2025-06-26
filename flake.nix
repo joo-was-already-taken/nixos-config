@@ -20,7 +20,7 @@
 
     # user inputs
     # pyprland.url = "github:hyprland-community/pyprland";
-    pomidoro.url = "github:joo-was-already-taken/pomidoro";
+    # pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, ... }@inputs:
