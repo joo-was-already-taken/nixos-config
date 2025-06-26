@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, pkgs, systemSettings, userSettings, ... }@args:
+{ pkgs, systemSettings, userSettings, ... }@args:
 
 {
   imports = [
@@ -19,6 +19,8 @@
     auto-optimise-store = true
   '';
 
+  nix.settings.trusted-users = [ "root" userSettings.userName ];
+
   boot.loader = {
     systemd-boot = {
       enable = true;
@@ -27,6 +29,8 @@
     efi.canTouchEfiVariables = true;
     timeout = 2;
   };
+
+  boot.tmp.cleanOnBoot = true;
 
   # blueman
   services.blueman.enable = true;
@@ -84,14 +88,10 @@
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      canon-cups-ufr2
-      cnijfilter2
+      # canon-cups-ufr2
+      # cnijfilter2
     ];
   };
-  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #   "canon-cups-ufr2"
-  # ];
-  nixpkgs.config.allowUnfree = true;
 
   # usb
   services.gvfs.enable = true;
@@ -172,9 +172,6 @@
   #   ];
   # };
 
-  # Allow unfree packages
-  # nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -192,7 +189,11 @@
   #   loadModels = [ "codeqwen" ];
   # };
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
   programs.dconf.enable = true;
   security.polkit.enable = true;
 
