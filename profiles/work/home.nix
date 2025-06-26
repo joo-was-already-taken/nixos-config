@@ -84,8 +84,8 @@ in {
   home.packages = with pkgs; [
     cpulimit
 
-    openrazer-daemon
-    polychromatic
+    # openrazer-daemon
+    # polychromatic
 
     neofetch
 
