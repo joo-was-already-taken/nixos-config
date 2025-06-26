@@ -32,6 +32,8 @@
 
   boot.tmp.cleanOnBoot = true;
 
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+
   # blueman
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
@@ -76,6 +78,9 @@
   # };
 
   services.upower.enable = true;
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ userSettings.userName ];
 
   virtualisation.containers.enable = true;
   virtualisation.podman = {
