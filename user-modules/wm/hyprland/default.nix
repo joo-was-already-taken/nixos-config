@@ -104,7 +104,10 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
-      systemd.enable = true;
+      systemd = {
+        enable = true;
+        variables = [ "--all" ];
+      };
       package = null;
       portalPackage = null;
       # plugins = [
