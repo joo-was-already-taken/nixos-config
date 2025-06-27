@@ -180,8 +180,6 @@
     wget
     zip
     unzip
-    openrazer-daemon
-    gparted
   ];
 
   services.dbus.implementation = "broker";
