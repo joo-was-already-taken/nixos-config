@@ -21,7 +21,7 @@ in {
         battery.disabled = true;
         nix_shell = { # remove 'impure' clatter and additional spaces
           format = ''via [$symbol$state(\($name\))]($style) '';
-          symbol = "❄️";
+          symbol = "";
           impure_msg = "";
         };
       };
