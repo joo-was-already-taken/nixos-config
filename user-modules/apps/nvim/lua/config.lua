@@ -107,16 +107,16 @@ keymap_set("n", "<leader>wt", function()
   vim.fn.setpos(".", cursor)
 end)
 
--- REQUIRE
-local function load_from(dir)
-  local files = vim.fn.readdir(dir)
-  for _, file in ipairs(files) do
-    if file:match("%.lua$") then
-      local chunk, _ = loadfile(dir .. "/" .. file)
-      if chunk then chunk() end
-    end
-  end
-end
-
-require("insert_command")
-load_from(vim.fn.stdpath("config") .. "/lua/plugins")
+-- -- REQUIRE
+-- local function load_from(dir)
+--   local files = vim.fn.readdir(dir)
+--   for _, file in ipairs(files) do
+--     if file:match("%.lua$") then
+--       local chunk, _ = loadfile(dir .. "/" .. file)
+--       if chunk then chunk() end
+--     end
+--   end
+-- end
+--
+-- require("insert_command")
+-- load_from(vim.fn.stdpath("config") .. "/lua/plugins")

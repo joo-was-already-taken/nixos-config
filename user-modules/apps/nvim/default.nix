@@ -18,6 +18,7 @@ in {
 
     programs.neovim = {
       enable = true;
+      package = pkgs.unstable.neovim-unwrapped;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
@@ -29,46 +30,46 @@ in {
         nil
         tinymist
       ];
-      extraLuaConfig = /*lua*/ ''
+      extraLuaConfig = let
+        packpathDirs = pkgs.vimUtils.packDir
+          config.programs.neovim.finalPackage.passthru.packpathDirs;
+      in /*lua*/ ''
         require("config")
+
+        require("lazy").setup({
+          defaults = { version = false },
+
+          performance = {
+            reset_packpath = false,
+            rtp = { reset = false },
+          },
+          dev = {
+            path = "${packpathDirs}/pack/myNeovimPackages/start",
+            patterns = { "" },
+          },
+          install = { missing = false },
+
+          spec = {
+            { import = "plugins" },
+          },
+        })
       '';
 
       plugins = let
         lua = str: "lua << EOF\n${str}\nEOF\n";
-      in with pkgs.vimPlugins; [
+      in with pkgs.unstable.vimPlugins; [
+        lazy-nvim
+
+        plenary-nvim
+
         tmux-navigator
         vim-obsession
-
-        {
-          plugin = nvim-surround;
-          config = lua /*lua*/ ''
-            require("nvim-surround").setup({})
-          '';
-        }
-        {
-          plugin = nvim-ts-autotag;
-          config = lua /*lua*/ ''
-            require("nvim-ts-autotag").setup({})
-          '';
-        }
-        {
-          plugin = typst-preview-nvim;
-          config = lua /*lua*/ ''
-            require("typst-preview").setup({})
-          '';
-        }
-        {
-          plugin = gitsigns-nvim;
-          config = lua /*lua*/ ''
-            require("gitsigns").setup({})
-          '';
-        }
-        {
-          plugin = comment-nvim;
-          config = lua /*lua*/ ''
-            require("Comment").setup({})
-          '';
-        }
+        nvim-surround
+        nvim-ts-autotag
+        typst-preview-nvim
+        gitsigns-nvim
+        comment-nvim
+        nvim-autopairs
 
         {
           plugin = catppuccin-nvim;
@@ -108,32 +109,19 @@ in {
           '';
         }
 
-        {
-          plugin = nvim-autopairs;
-          config = lua ''require("nvim-autopairs").setup({})'';
-        }
-
         # plugins/telescope.lua
         telescope-nvim
         # plugins/lualine.lua
         lualine-nvim
         # plugins/harpoon.lua
-        harpoon2
+        { plugin = harpoon2; config = ""; }
         # plugins/conform.lua
         conform-nvim
 
         # plugins/lsp.lua
         nvim-lspconfig
         # dependencies:
-        {
-          plugin = lspsaga-nvim;
-          config = lua /*lua*/ ''
-            require("lspsaga").setup({
-              ui = { code_action = "" },
-              symbol_in_winbar = { enable = false },
-            })
-          '';
-        }
+        lspsaga-nvim
 
         # plugins/cmp.lua
         nvim-cmp
@@ -141,88 +129,52 @@ in {
         cmp-nvim-lsp
         cmp-buffer
         cmp-path
+        cmp_luasnip
         luasnip
+        friendly-snippets
 
-        {
-          plugin = noice-nvim;
-          config = lua /*lua*/ ''
-            require("noice").setup({})
-          '';
-        }
+        noice-nvim
         # plugins/notify.lua
         nvim-notify
 
-        {
-          plugin = indent-blankline-nvim;
-          config = lua /*lua*/ ''
-            require("ibl").setup({
-              scope = { enabled = false },
-            })
-          '';
-        }
+        indent-blankline-nvim
 
         # plugins/neotree.lua
         neo-tree-nvim
         # dependencies:
         nvim-web-devicons
 
-        {
-          plugin = nvim-highlight-colors;
-          config = lua /*lua*/ ''
-            require("nvim-highlight-colors").setup({
-              render = "virtual",
-              virtual_symbol = "●",
-              virtual_symbol_prefix = " ",
-              virtual_symbol_suffix = "",
-              virtual_symbol_position = "eol",
-            })
-          '';
-        }
+        nvim-highlight-colors
 
-        {
-          plugin = (nvim-treesitter.withPlugins (plugins: with plugins; [
-            tree-sitter-nix
-            tree-sitter-lua
-            tree-sitter-bash
-            tree-sitter-gitignore
-            tree-sitter-python
-            tree-sitter-markdown
-            tree-sitter-markdown_inline
-            tree-sitter-typst
-            tree-sitter-latex
-            tree-sitter-make
-            tree-sitter-regex
-            tree-sitter-toml
-            tree-sitter-yaml
-            tree-sitter-json
-            tree-sitter-vim
-            tree-sitter-vimdoc
-            tree-sitter-rust
-            tree-sitter-haskell
-            tree-sitter-go
-            tree-sitter-html
-            tree-sitter-c
-            tree-sitter-cpp
-            tree-sitter-cmake
-            tree-sitter-zig
-            tree-sitter-javascript
-            tree-sitter-css
-          ]));
-          config = lua /*lua*/ ''
-            require("nvim-treesitter.configs").setup({
-              auto_install = false,
-              highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-              },
-              indent = { enable = true },
-              context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-              },
-            })
-          '';
-        }
+        (nvim-treesitter.withPlugins (plugins: with plugins; [
+          tree-sitter-nix
+          tree-sitter-lua
+          tree-sitter-bash
+          tree-sitter-gitignore
+          tree-sitter-python
+          tree-sitter-markdown
+          tree-sitter-markdown_inline
+          tree-sitter-typst
+          tree-sitter-latex
+          tree-sitter-typst
+          tree-sitter-make
+          tree-sitter-regex
+          tree-sitter-toml
+          tree-sitter-yaml
+          tree-sitter-json
+          tree-sitter-vim
+          tree-sitter-vimdoc
+          tree-sitter-rust
+          tree-sitter-haskell
+          tree-sitter-go
+          tree-sitter-html
+          tree-sitter-c
+          tree-sitter-cpp
+          tree-sitter-cmake
+          tree-sitter-zig
+          tree-sitter-javascript
+          tree-sitter-css
+        ]))
 
         # plugins/markdown.lua
         render-markdown-nvim
