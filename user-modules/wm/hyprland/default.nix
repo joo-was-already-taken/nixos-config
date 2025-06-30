@@ -115,6 +115,8 @@ in {
       # ];
 
       extraConfig = ''
+        debug:disable_logs = false
+
         $mod = SUPER
         $keysymMod = Super_L
         $terminal = ${sessionVariables.TERMINAL}

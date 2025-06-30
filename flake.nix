@@ -18,6 +18,8 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland/047ea02";
+
     # user inputs
     # pyprland.url = "github:hyprland-community/pyprland";
     # pomidoro.url = "github:joo-was-already-taken/pomidoro";

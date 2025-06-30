@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, systemSettings, userSettings, ... }@args:
+{ inputs, pkgs, systemSettings, userSettings, ... }@args:
 
 {
   imports = [
@@ -12,14 +12,16 @@
     # ../../system-modules/display-managers/sddm.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-    auto-optimise-store = true
-  '';
-
-  nix.settings.trusted-users = [ "root" userSettings.userName ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+    keep-outputs = true;
+    keep-derivations = true;
+    auto-optimise-store = true;
+    trusted-users = [ "root" userSettings.userName ];
+    # substituters = [ "https://hyprland.cachix.org" ];
+    # trusted-substituters = [ "https://hyprland.cachix.org" ];
+    # trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  };
 
   boot.loader = {
     systemd-boot = {
@@ -182,10 +184,14 @@
 
   services.dbus.implementation = "broker";
 
-  programs.hyprland = {
+  programs.hyprland = let
+    hyprlandOverlay = inputs.hyprland.packages.${systemSettings.system}.hyprland.overrideAttrs (old: {
+      buildInputs = (old.buildInputs or []) ++ [ pkgs.libgbm ];
+    });
+  in {
     enable = true;
-    package = pkgs.hyprland;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    package = hyprlandOverlay;
+    portalPackage = inputs.hyprland.packages.${systemSettings.system}.xdg-desktop-portal-hyprland;
   };
   programs.dconf.enable = true;
   security.polkit.enable = true;
