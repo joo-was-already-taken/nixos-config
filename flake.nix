@@ -86,5 +86,13 @@
           };
         };
       };
+
+      devShells.${systemSettings.system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          nil
+          bash-language-server
+          lua-language-server
+        ];
+      };
     };
 }
