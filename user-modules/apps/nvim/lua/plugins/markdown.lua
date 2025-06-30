@@ -5,26 +5,33 @@ local buffer_width = 90
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {
-      render_modes = true,
-      heading = {
-        icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
-        position = "inline",
-      },
-      code = {
-        style = "normal",
-        sign = false,
-        border = "thin",
-        width = "block",
-        min_width = code_width,
-        left_margin = 2,
-        left_pad = 2,
-        right_pad = 2,
-      },
-      latex = { enable = false },
+    ft = "markdown",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "shortcuts/no-neck-pain.nvim",
     },
     setup = function()
+      require("render-markdown").setup({
+        render_modes = true,
+        heading = {
+          icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+          position = "inline",
+        },
+        code = {
+          style = "normal",
+          sign = false,
+          border = "thin",
+          width = "block",
+          min_width = code_width,
+          left_margin = 2,
+          left_pad = 2,
+          right_pad = 2,
+        },
+        latex = { enable = false },
+      })
+
+      vim.treesitter.language.register("markdown", "vimwiki")
+
       vim.api.nvim_create_autocmd("BufReadPost", {
         pattern = "*.md",
         callback = function()
@@ -37,9 +44,7 @@ return {
 
   {
     "epwalsh/obsidian.nvim",
-    lazy = true,
-    ft = "markdown",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = false,
     opts = {
       ui = { enable = false },
       disable_frontmatter = true,

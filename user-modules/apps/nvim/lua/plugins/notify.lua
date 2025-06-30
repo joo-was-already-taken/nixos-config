@@ -1,9 +1,5 @@
-local function notify_config()
-  local notify = require("notify")
-  local opts = { noremap = true, silent = true }
-  vim.keymap.set("n", "<leader>cn", function()
-    notify.dismiss({ silent = true, padding = true })
-  end, opts)
+local function dismiss_notifications()
+  require("notify").dismiss({ silent = true, padding = true })
 end
 
 return {
@@ -18,7 +14,9 @@ return {
         render = "compact",
         top_down = false,
       },
-      config = notify_config,
+      keys = {
+        { "<leader>cn", dismiss_notifications },
+      },
     },
   },
 }

@@ -17,9 +17,9 @@ return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     name = "harpoon2",
-    config = config,
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    config = config,
   },
 }

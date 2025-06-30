@@ -1,8 +1,8 @@
-local function config()
+local function opts()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
 
-  cmp.setup({
+  return {
     completion = {
       completeopt = "menu,menuone,preview",
     },
@@ -27,7 +27,7 @@ local function config()
       { name = "buffer" },
       { name = "path" },
     }),
-  })
+  }
 end
 
 return {
@@ -47,6 +47,6 @@ return {
         },
       },
     },
-    config = config,
+    opts = opts,
   },
 }
