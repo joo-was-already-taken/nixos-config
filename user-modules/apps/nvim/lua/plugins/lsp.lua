@@ -1,4 +1,12 @@
 local function config()
+  vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = true,
+    severity_sort = true,
+  })
+
   local function on_attach(_, bufnr)
     local function keymap_set(mode, new, prev)
       local opts = { noremap = true, silent = true, buffer = bufnr }
