@@ -8,5 +8,8 @@
       numpy
       scipy
     ]))
+
+    # linux c man pages
+    man-pages
   ];
 }

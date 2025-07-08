@@ -112,8 +112,6 @@ in {
 
     jetbrains-toolbox
 
-    man-pages
-
     typst
   ];
 
