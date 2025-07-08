@@ -82,10 +82,6 @@ in {
       };
     };
 
-    home.sessionVariables = {
-      HYPRSHOT_DIR = config.home.homeDirectory + "/Pictures/Screenshots";
-    };
-
     stylix.targets.hyprland.enable = false;
 
     wayland.windowManager.hyprland = {
@@ -128,6 +124,8 @@ in {
 
         env = XCURSOR_SIZE, ${builtins.toString config.stylix.cursor.size}
         env = HYPRCURSOR_SIZE, ${builtins.toString config.stylix.cursor.size}
+
+        env = HYPRSHOT_DIR, ${config.home.homeDirectory}/Pictures/screenshots
 
         general {
           gaps_in = 5
