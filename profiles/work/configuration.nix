@@ -18,9 +18,6 @@
     keep-derivations = true;
     auto-optimise-store = true;
     trusted-users = [ "root" userSettings.userName ];
-    # substituters = [ "https://hyprland.cachix.org" ];
-    # trusted-substituters = [ "https://hyprland.cachix.org" ];
-    # trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   boot.loader = {
@@ -184,15 +181,7 @@
 
   services.dbus.implementation = "broker";
 
-  programs.hyprland = let
-    hyprlandOverlay = inputs.hyprland.packages.${systemSettings.system}.hyprland.overrideAttrs (old: {
-      buildInputs = (old.buildInputs or []) ++ [ pkgs.libgbm ];
-    });
-  in {
-    enable = true;
-    package = hyprlandOverlay;
-    portalPackage = inputs.hyprland.packages.${systemSettings.system}.xdg-desktop-portal-hyprland;
-  };
+  programs.hyprland.enable = true;
   programs.dconf.enable = true;
   security.polkit.enable = true;
 

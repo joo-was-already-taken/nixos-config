@@ -1,4 +1,4 @@
-{ pkgs, lib, myLib, config, systemConfig, sessionVariables, ... }:
+{ pkgs, lib, myLib, config, sessionVariables, ... }:
 let
   moduleName = "hyprland";
   defaultColors = with config.lib.stylix.colors; {
@@ -81,19 +81,6 @@ in {
         wallpaper = [ ", ${wallpaper}" ];
       };
     };
-
-    # home.file.".config/hypr/pyprland.toml".text = /*toml*/ ''
-    #   [pyprland]
-    #   plugins = [
-    #     "shift_monitors"
-    #   ]
-    #   # plugins = [
-    #   #   "workspaces_follow_focus"
-    #   # ]
-    #   #
-    #   # [workspaces_follow_focus]
-    #   # max_workspaces = 0
-    # '';
 
     home.sessionVariables = {
       HYPRSHOT_DIR = config.home.homeDirectory + "/Pictures/Screenshots";
@@ -360,7 +347,7 @@ in {
         bind = , escape, submap, reset
         bind = Control_L, bracketleft, submap, reset
         bind = , catchall, submap, reset
-        submap = group
+        submap = reset
       '';
     };
   };
