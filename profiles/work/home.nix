@@ -98,6 +98,8 @@ in {
     gthumb
     gimp
 
+    scrcpy
+
     calcure
 
     # tldr pages

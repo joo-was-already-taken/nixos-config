@@ -181,6 +181,8 @@
 
   services.dbus.implementation = "broker";
 
+  programs.adb.enable = true;
+
   programs.hyprland.enable = true;
   programs.dconf.enable = true;
   security.polkit.enable = true;
