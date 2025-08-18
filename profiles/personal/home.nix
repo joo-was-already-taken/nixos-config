@@ -1,4 +1,4 @@
-{ pkgs, config, ... }@args:
+{ pkgs, lib, config, ... }@args:
 let
   sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
@@ -22,5 +22,17 @@ in {
     # games
     prismlauncher # minecraft
     superTuxKart
+    vintagestory
   ];
+
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "vintagestory"
+      "jetbrains-toolbox"
+    ];
+    permittedInsecurePackages = [
+      "dotnet-runtime-wrapped-7.0.20"
+      "dotnet-runtime-7.0.20"
+    ];
+  };
 }
