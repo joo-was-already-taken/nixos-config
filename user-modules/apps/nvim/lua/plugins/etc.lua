@@ -1,6 +1,7 @@
 return {
   "tpope/vim-obsession",
   { "lewis6991/gitsigns.nvim", opts = {} },
+  { "akinsho/git-conflict.nvim", version = "*", config = true },
   {
     "Enter-tainer/typst-preview",
     name = "typst-preview.nvim",

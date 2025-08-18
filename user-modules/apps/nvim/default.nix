@@ -68,6 +68,7 @@ in {
         nvim-ts-autotag
         typst-preview-nvim
         gitsigns-nvim
+        git-conflict-nvim
         comment-nvim
         nvim-autopairs
 
