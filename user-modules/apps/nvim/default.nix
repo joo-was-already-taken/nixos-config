@@ -147,35 +147,7 @@ in {
 
         nvim-highlight-colors
 
-        (nvim-treesitter.withPlugins (plugins: with plugins; [
-          tree-sitter-nix
-          tree-sitter-lua
-          tree-sitter-bash
-          tree-sitter-gitignore
-          tree-sitter-python
-          tree-sitter-markdown
-          tree-sitter-markdown_inline
-          tree-sitter-typst
-          tree-sitter-latex
-          tree-sitter-typst
-          tree-sitter-make
-          tree-sitter-regex
-          tree-sitter-toml
-          tree-sitter-yaml
-          tree-sitter-json
-          tree-sitter-vim
-          tree-sitter-vimdoc
-          tree-sitter-rust
-          tree-sitter-haskell
-          tree-sitter-go
-          tree-sitter-html
-          tree-sitter-c
-          tree-sitter-cpp
-          tree-sitter-cmake
-          tree-sitter-zig
-          tree-sitter-javascript
-          tree-sitter-css
-        ]))
+        nvim-treesitter.withAllGrammars
 
         # plugins/markdown.lua
         render-markdown-nvim
