@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, myLib, pkgs, ... }:
 let
   moduleName = "nvim";
 in {
@@ -56,8 +56,10 @@ in {
       '';
 
       plugins = let
-        lua = str: "lua << EOF\n${str}\nEOF\n";
-      in with pkgs.unstable.vimPlugins; [
+        vimPlugins = pkgs.unstable.vimPlugins;
+      in with vimPlugins; [
+        (myLib.styling.importNvimColorscheme vimPlugins)
+
         lazy-nvim
 
         plenary-nvim
@@ -71,44 +73,6 @@ in {
         git-conflict-nvim
         comment-nvim
         nvim-autopairs
-
-        {
-          plugin = catppuccin-nvim;
-          config = lua /*lua*/ ''
-            require("catppuccin").setup({
-              flavour = "macchiato",
-              transparent_background = false,
-              show_end_of_buffer = true,
-              term_colors = true,
-              background = {
-                dark = "macchiato",
-                light = "latte",
-              },
-              default_integrations = true,
-              integrations = {
-                cmp = true,
-                gitsigns = true,
-                neotree = true,
-                treesitter = true,
-                telescope = { enabled = true },
-                native_lsp = { enabled = true },
-              },
-              highlight_overrides = {
-                macchiato = function(macchiato)
-                  return {
-                    LineNr = { fg = macchiato.lavender },
-                    CursorLineNr = { fg = macchiato.sky },
-                  }
-                end
-              },
-            })
-            vim.cmd.colorscheme("catppuccin")
-            -- local macchiato = require("catppuccin.palettes").get_palette "macchiato"
-            -- for k, v in pairs(macchiato) do
-            --   print(k .. ", " .. v)
-            -- end
-          '';
-        }
 
         # plugins/telescope.lua
         telescope-nvim

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, ... }@args:
 
 let
   mkAttrOptionMatchingStr = str: let
@@ -20,7 +20,7 @@ in
 
   importAll = args: paths: map (p: import p args) paths;
 
-  styling = import ./styling.nix;
+  styling = import ./styling.nix args;
 
   fromYAML = str: {}; # TODO
 } 

@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.cmd.colorscheme("catppuccin")
-
 -- OPTIONS
 local opt = vim.opt
 
