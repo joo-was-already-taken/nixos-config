@@ -106,9 +106,12 @@ in {
         $terminal = ${sessionVariables.TERMINAL}
         $fileManager = ${sessionVariables.FILEMANAGER}
         $webBrowser = ${sessionVariables.BROWSER}
-        $menu = ${
+        ${
           if config.modules.rofi.enable then
-            "rofi -show drun -show-icons"
+            ''
+              $menu = rofi -show drun -show-icons
+              $commandMenu = rofi -show run
+            ''
           else
             builtins.throw "No menu enabled (rofi)"
         }
@@ -261,6 +264,7 @@ in {
         bind = $mod, Q, exit
         bind = $mod, E, exec, $fileManager
         bind = $mod, D, exec, $menu
+        bind = $mod, R, exec, $commandMenu
         # bind = $mod, P, pseudo
         bind = $mod, J, togglesplit
         bind = $mod, O, fullscreen, 0 # fullscreen
