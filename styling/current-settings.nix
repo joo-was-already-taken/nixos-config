@@ -1,2 +1,2 @@
 # choose your style
-import ./styles/tokyonight.nix
+import ./styles/gruvbox.nix
