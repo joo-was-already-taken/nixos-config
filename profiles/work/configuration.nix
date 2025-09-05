@@ -20,6 +20,13 @@
     trusted-users = [ "root" userSettings.userName ];
   };
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
+
   boot.loader = {
     systemd-boot = {
       enable = true;

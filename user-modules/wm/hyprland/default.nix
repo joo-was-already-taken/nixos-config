@@ -65,6 +65,7 @@ in {
       libnotify
       swayidle
       wlr-layout-ui
+      wl-color-picker
     ];
 
     services.mako = {
@@ -105,9 +106,12 @@ in {
         $terminal = ${sessionVariables.TERMINAL}
         $fileManager = ${sessionVariables.FILEMANAGER}
         $webBrowser = ${sessionVariables.BROWSER}
-        $menu = ${
+        ${
           if config.modules.rofi.enable then
-            "rofi -show drun -show-icons"
+            ''
+              $menu = rofi -show drun -show-icons
+              $commandMenu = rofi -show run
+            ''
           else
             builtins.throw "No menu enabled (rofi)"
         }
@@ -260,6 +264,7 @@ in {
         bind = $mod, Q, exit
         bind = $mod, E, exec, $fileManager
         bind = $mod, D, exec, $menu
+        bind = $mod, R, exec, $commandMenu
         # bind = $mod, P, pseudo
         bind = $mod, J, togglesplit
         bind = $mod, O, fullscreen, 0 # fullscreen
@@ -277,6 +282,9 @@ in {
         bind = , Print, exec, hyprshot -m output
         # Take a screenshot of selected region
         bind = Control_L&Control_R, Print, exec, hyprshot -m region
+
+        # Color picker
+        bind = $mod, minus, exec, wl-color-picker
 
         bind = $mod, H, movefocus, l
         bind = $mod, L, movefocus, r
