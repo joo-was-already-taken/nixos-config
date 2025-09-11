@@ -4,7 +4,7 @@ let
 in {
   colors = colorschemes.miasma;
   editorColors = colorschemes.miasma;
-  wallpaper = ../wallpapers/nicola-samori-nature-of-fear.jpg;
+  wallpaper = ../wallpapers/frederic-church-the-parthenon.jpg;
   polarity = "dark";
 
   nvim = vimPlugins: {
