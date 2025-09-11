@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, ... }@args:
 let
-  style = import ./current-settings.nix;
+  style = import ./current-settings.nix args;
 in {
   stylix = {
     enable = true;

@@ -1,13 +1,9 @@
+args:
 let
-  colorschemes = import ../colors.nix;
-  addHash = colors: builtins.mapAttrs (_name: val: "#${val}") colors;
-in rec {
+  colorschemes = import ../colors.nix args;
+in {
   colors = colorschemes.gruvbox;
   editorColors = colorschemes.gruvbox;
-  withHash = {
-    colors = addHash colors;
-    editorColors = addHash editorColors;
-  };
   wallpaper = ../wallpapers/nicola-samori-nature-of-fear.jpg;
   polarity = "dark";
 

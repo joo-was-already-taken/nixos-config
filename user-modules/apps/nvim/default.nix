@@ -1,6 +1,29 @@
 { config, lib, myLib, pkgs, ... }:
 let
   moduleName = "nvim";
+  nvimPkgs = pkgs.unstable;
+  colorscheme = myLib.styling.importNvimColorscheme nvimPkgs.vimPlugins;
+  lushThemes = let
+    themesDir = ../../../styling/nvim;
+    dir = builtins.readDir themesDir;
+    fileNames = builtins.attrNames (lib.filterAttrs (_: type: type == "regular") dir);
+  in map (fileName: rec {
+      inherit fileName;
+      name = builtins.replaceStrings [ ".lua" ] [ "" ] fileName;
+      path = "${themesDir}/${fileName}";
+      content = builtins.readFile path;
+    }) fileNames;
+
+  # shipwright-nvim = pkgs.vimUtils.buildVimPlugin {
+  #   pname = "shipwright-nvim";
+  #   version = "";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "rktjmp";
+  #     repo = "shipwright.nvim";
+  #     rev = "e596ab4";
+  #     sha256 = "sha256-xh/2m//Cno5gPucjOYih79wVZj3X1Di/U3/IQhKXjc0=";
+  #   };
+  # };
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
@@ -9,16 +32,31 @@ in {
   ];
 
   config = lib.mkIf config.modules.${moduleName}.enable {
-    home.file.".config/nvim/lua" = {
-      source = ./lua;
-      recursive = true;
-    };
-
     stylix.targets.neovim.enable = false;
+
+    home.file = {
+      ".config/nvim/lua" = {
+          source = ./lua;
+          recursive = true;
+        };
+      ".config/nvim/lua/colorschemes/colorscheme.lua".text = colorscheme.config;
+    }
+      // builtins.listToAttrs (map (theme: {
+        name = ".config/nvim/lua/lush_themes/${theme.fileName}";
+        value.text = theme.content;
+      }) lushThemes)
+      // builtins.listToAttrs (map (theme: {
+        name = ".config/nvim/colors/${theme.fileName}";
+        value.text = /*lua*/ ''
+          local theme = require("lush_themes.${theme.name}")
+          require("lush")(theme)
+          return theme
+        '';
+      }) lushThemes);
 
     programs.neovim = {
       enable = true;
-      package = pkgs.unstable.neovim-unwrapped;
+      package = nvimPkgs.neovim-unwrapped;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
@@ -51,14 +89,14 @@ in {
 
           spec = {
             { import = "plugins" },
+            { import = "colorschemes" },
           },
         })
       '';
 
-      plugins = let
-        vimPlugins = pkgs.unstable.vimPlugins;
-      in with vimPlugins; [
-        (myLib.styling.importNvimColorscheme vimPlugins)
+      plugins = with nvimPkgs.vimPlugins; [
+        lush-nvim
+        # shipwright-nvim
 
         lazy-nvim
 
@@ -118,7 +156,7 @@ in {
         obsidian-nvim
         markdown-preview-nvim
         no-neck-pain-nvim
-      ];
+      ] ++ colorscheme.plugins;
     };
   };
 }

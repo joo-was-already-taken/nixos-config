@@ -1,2 +1,2 @@
 # choose your style
-import ./styles/gruvbox.nix
+import ./styles/miasma.nix
