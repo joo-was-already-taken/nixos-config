@@ -161,8 +161,8 @@ in {
 
           blur {
             enabled = true
-            size = 4
-            passes = 2
+            size = 5
+            passes = 3
 
             vibrancy = 0.4
           }
