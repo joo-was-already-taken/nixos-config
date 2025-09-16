@@ -108,6 +108,8 @@ in {
     anki
     super-productivity
 
+    freecad
+
     # fonts
     ipafont # japanese
     kochi-substitute # japanese
