@@ -112,12 +112,15 @@ in {
         comment-nvim
         nvim-autopairs
 
+        # AI
+        cmp-ai
+
         # plugins/telescope.lua
         telescope-nvim
         # plugins/lualine.lua
         lualine-nvim
         # plugins/harpoon.lua
-        { plugin = harpoon2; config = ""; }
+        harpoon2
         # plugins/conform.lua
         conform-nvim
 

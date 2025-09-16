@@ -21,6 +21,7 @@ local function opts()
       ["<C-y>"] = cmp.mapping.confirm({ select = false }),
     }),
     sources = cmp.config.sources({
+      { name = "cmp_ai" },
       { name = "nvim_lsp" },
       { name = "render-markdown" },
       { name = "luasnip" },
@@ -37,6 +38,7 @@ return {
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "tzachar/cmp-ai",
       {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
@@ -48,5 +50,25 @@ return {
       },
     },
     opts = opts,
+  },
+  {
+    "tzachar/cmp-ai",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("cmp_ai.config"):setup({
+        max_lines = 100,
+        provider = "OpenAI",
+        provider_options = {
+          model = "gpt-oss-120b",
+          -- api_key = os.getenv("OPENROUTER_API_KEY"),
+          endpoint = "https://openrouter.ai/v1/completions",
+        },
+        run_on_every_keystroke = true,
+        notify = true,
+        notify_callback = vim.notify,
+      })
+    end,
   },
 }
