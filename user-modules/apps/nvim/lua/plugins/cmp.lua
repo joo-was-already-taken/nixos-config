@@ -59,11 +59,10 @@ return {
     config = function()
       require("cmp_ai.config"):setup({
         max_lines = 100,
-        provider = "OpenAI",
+        provider = "Ollama",
         provider_options = {
-          model = "gpt-oss-120b",
-          -- api_key = os.getenv("OPENROUTER_API_KEY"),
-          endpoint = "https://openrouter.ai/v1/completions",
+          model = "starcoder:1b",
+          auto_unload = true,
         },
         run_on_every_keystroke = true,
         notify = true,

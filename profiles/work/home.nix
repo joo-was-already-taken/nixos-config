@@ -19,6 +19,7 @@ in {
     ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
     ../../user-modules/virtualization.nix
+    ../../user-modules/ai.nix
     (import ../../user-modules/apps <| args // { inherit styleSettings; sessionVariables = workSessionVars; })
     (import ../../user-modules/wm <| args // { sessionVariables = workSessionVars; })
   ];
