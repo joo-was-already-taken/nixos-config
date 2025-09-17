@@ -44,27 +44,6 @@ return {
   },
 
   {
-    "epwalsh/obsidian.nvim",
-    lazy = false,
-    opts = {
-      ui = { enable = false },
-      disable_frontmatter = true,
-      follow_url_func = function(url)
-        vim.fn.jobstart({ "xdg-open", url })
-      end,
-      workspaces = {
-        {
-          name = "wisdom",
-          path = "~/wisdom",
-        },
-      },
-      templates = {
-        folder = ".templates",
-      },
-    },
-  },
-
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },

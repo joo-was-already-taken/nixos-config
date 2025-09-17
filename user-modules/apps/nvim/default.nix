@@ -117,7 +117,7 @@ in {
         # plugins/lualine.lua
         lualine-nvim
         # plugins/harpoon.lua
-        { plugin = harpoon2; config = ""; }
+        harpoon2
         # plugins/conform.lua
         conform-nvim
 
@@ -153,7 +153,6 @@ in {
 
         # plugins/markdown.lua
         render-markdown-nvim
-        obsidian-nvim
         markdown-preview-nvim
         no-neck-pain-nvim
       ] ++ colorscheme.plugins;
