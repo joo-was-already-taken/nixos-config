@@ -2,7 +2,7 @@
 let
   moduleName = "nvim";
   nvimPkgs = pkgs.unstable;
-  colorscheme = myLib.styling.importNvimColorscheme nvimPkgs.vimPlugins;
+  colorscheme = myLib.styling.importNvimColorscheme nvimPkgs;
   lushThemes = let
     themesDir = ../../../styling/nvim;
     dir = builtins.readDir themesDir;

@@ -1,2 +1,2 @@
 # choose your style
-import ./styles/miasma.nix
+import ./styles/evergarden.nix
