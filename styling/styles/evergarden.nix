@@ -4,7 +4,7 @@ let
 in {
   colors = colorschemes.evergarden;
   editorColors = colorschemes.evergarden;
-  wallpaper = ../wallpapers/white-mountain.jpg;
+  wallpaper = ../wallpapers/white-mountain-cold.jpg;
   polarity = "dark";
 
   nvim = pkgs: {
