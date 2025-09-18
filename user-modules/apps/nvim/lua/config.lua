@@ -27,6 +27,8 @@ opt.scrolloff = 5
 opt.completeopt = "menuone,noinsert,noselect"
 opt.cursorline = true
 opt.cursorlineopt = "number"
+opt.conceallevel = 2
+opt.concealcursor = nil
 -- Behaviour
 opt.hidden = true
 opt.errorbells = false

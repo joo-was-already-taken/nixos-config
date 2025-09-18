@@ -68,6 +68,7 @@ in {
         nil
         tinymist
       ];
+
       extraLuaConfig = let
         packpathDirs = pkgs.vimUtils.packDir
           config.programs.neovim.finalPackage.passthru.packpathDirs;
@@ -75,7 +76,10 @@ in {
         require("config")
 
         require("lazy").setup({
-          defaults = { version = false },
+          defaults = {
+              version = false,
+              lazy = false,
+            },
 
           performance = {
             reset_packpath = false,
@@ -149,12 +153,45 @@ in {
 
         nvim-highlight-colors
 
-        nvim-treesitter.withAllGrammars
+        (nvim-treesitter.withPlugins (plugins: with plugins; [
+          tree-sitter-nix
+          tree-sitter-lua
+          tree-sitter-bash
+          tree-sitter-gitignore
+          tree-sitter-python
+          tree-sitter-markdown
+          tree-sitter-markdown_inline
+          tree-sitter-norg
+          tree-sitter-norg-meta
+          tree-sitter-typst
+          tree-sitter-latex
+          tree-sitter-typst
+          tree-sitter-make
+          tree-sitter-regex
+          tree-sitter-toml
+          tree-sitter-yaml
+          tree-sitter-json
+          tree-sitter-vim
+          tree-sitter-vimdoc
+          tree-sitter-rust
+          tree-sitter-haskell
+          tree-sitter-go
+          tree-sitter-html
+          tree-sitter-c
+          tree-sitter-cpp
+          tree-sitter-cmake
+          tree-sitter-zig
+          tree-sitter-javascript
+          tree-sitter-css
+        ]))
 
         # plugins/markdown.lua
         render-markdown-nvim
         markdown-preview-nvim
         no-neck-pain-nvim
+
+        # plugins/neorg.lua
+        neorg
       ] ++ colorscheme.plugins;
     };
   };
