@@ -5,7 +5,7 @@ local buffer_width = 90
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = "markdown",
+    ft = { "markdown", "vimwiki" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "shortcuts/no-neck-pain.nvim",
