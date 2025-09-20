@@ -6,7 +6,7 @@ return {
   config = function()
     vim.api.nvim_set_hl(0, "CodeiumSuggestion", { link = "Comment" })
 
-    local codeium_enabled = false
+    vim.g.codeium_enabled = false
 
     vim.api.nvim_create_user_command("EnableCodeium", function()
       require("codeium").setup({
@@ -24,14 +24,14 @@ return {
         },
       })
 
-      codeium_enabled = true
+      vim.g.codeium_enabled = true
       print("Codeium enabled")
     end, {})
 
     vim.api.nvim_create_user_command("DisableCodeium", function()
-      if codeium_enabled then
+      if vim.g.codeium_enabled then
         vim.cmd("Codeium Toggle")
-        codeium_enabled = false
+        vim.g.codeium_enabled = false
       end
     end, {})
   end,
