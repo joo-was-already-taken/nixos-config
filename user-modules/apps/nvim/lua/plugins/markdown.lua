@@ -5,7 +5,7 @@ local buffer_width = 90
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = "markdown",
+    ft = { "markdown", "vimwiki" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "shortcuts/no-neck-pain.nvim",
@@ -41,27 +41,6 @@ return {
         end,
       })
     end,
-  },
-
-  {
-    "epwalsh/obsidian.nvim",
-    lazy = false,
-    opts = {
-      ui = { enable = false },
-      disable_frontmatter = true,
-      follow_url_func = function(url)
-        vim.fn.jobstart({ "xdg-open", url })
-      end,
-      workspaces = {
-        {
-          name = "wisdom",
-          path = "~/wisdom",
-        },
-      },
-      templates = {
-        folder = ".templates",
-      },
-    },
   },
 
   {

@@ -1,18 +1,17 @@
-{ userSettings, ... }:
+{ pkgs, ... }:
 
 {
+  environment.systemPackages = with pkgs; [
+    sddm-astronaut
+  ];
+
   services.displayManager.sddm = {
     enable = true;
-
-    settings = {
-      DefaultSession = "hyprland.desktop";
-      User = userSettings.userName;
-
-      Wayland = {
-        CompositorCommand = "Hyprland";
-        EnableHiDPI = true;
-        SessionDir = /usr/share/wayland-sessions;
-      };
-    };
+    wayland.enable = true;
+    package = pkgs.kdePackages.sddm;
+    theme = "sddm-astronaut-theme";
+    extraPackages = with pkgs.kdePackages; [
+      qtmultimedia
+    ];
   };
 }

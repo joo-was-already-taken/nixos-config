@@ -7,8 +7,10 @@ in {
   wallpaper = ../wallpapers/nicola-samori-nature-of-fear.jpg;
   polarity = "dark";
 
-  nvim = vimPlugins: {
-    plugin = vimPlugins.gruvbox-material-nvim;
+  nvim = pkgs: {
+    plugins = with pkgs.vimPlugins; [
+      gruvbox-material-nvim
+    ];
     config = /*lua*/ ''
       require("gruvbox-material").setup({
         contrast = "soft",

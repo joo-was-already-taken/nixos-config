@@ -2,14 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, systemSettings, userSettings, ... }@args:
+{ pkgs, systemSettings, userSettings, ... }@args:
 
 {
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     ../../styling/stylix.nix
-    (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
-    # ../../system-modules/display-managers/sddm.nix
+    # (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
+    ../../system-modules/display-managers/sddm.nix
   ];
 
   nix.settings = {

@@ -7,8 +7,10 @@ in {
   wallpaper = ../wallpapers/pompeii.png;
   polarity = "dark";
 
-  nvim = vimPlugins: {
-    plugin = vimPlugins.catppuccin-nvim;
+  nvim = pkgs: {
+    plugins = with pkgs.vimPlugins; [
+      catppuccin-nvim
+    ];
     config = /*lua*/ ''
       require("catppuccin").setup({
         flavour = "macchiato",

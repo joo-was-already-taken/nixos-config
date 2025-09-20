@@ -4,19 +4,15 @@ let
 in {
   colors = colorschemes.miasma;
   editorColors = colorschemes.miasma;
-  wallpaper = ../wallpapers/frederic-church-the-parthenon.jpg;
+  wallpaper = ../wallpapers/misty-forest.jpg;
   polarity = "dark";
 
-  nvim = vimPlugins: {
-    plugins = [ vimPlugins.lush-nvim ];
+  nvim = pkgs: {
+    plugins = with pkgs.vimPlugins; [
+      lush-nvim
+    ];
     config = /*lua*/ ''
-      return {
-        "rktjmp/lush.nvim",
-        lazy = false,
-        config = function()
-          vim.cmd.colorscheme("miasma")
-        end,
-      }
+      vim.cmd.colorscheme("miasma2")
     '';
   };
 }
