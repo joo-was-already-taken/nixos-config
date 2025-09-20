@@ -4,7 +4,6 @@ return {
     dependencies = {
       { "nvim-tree/nvim-web-devicons", opt = true },
       "folke/noice.nvim",
-      "nomnivore/ollama.nvim",
     },
     opts = function(_, _)
       local noice = require("noice")
@@ -41,19 +40,6 @@ return {
             },
           },
           lualine_x = {
-            {
-              function()
-                local status = require("ollama").status()
-                if status == "IDLE" then
-                  return "󱙺" -- nf-md-robot-outline
-                elseif status == "WORKING" then
-                  return "󰚩" -- nf-md-robot
-                end
-              end,
-              cond = function()
-                return package.loaded["ollama"] and require("ollama").status() ~= nil
-              end,
-            },
             "encoding",
             "fileformat",
             "filetype",

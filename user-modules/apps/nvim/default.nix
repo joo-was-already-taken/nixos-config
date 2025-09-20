@@ -117,7 +117,7 @@ in {
         nvim-autopairs
 
         # AI
-        cmp-ai
+        windsurf-nvim
 
         # plugins/telescope.lua
         telescope-nvim
