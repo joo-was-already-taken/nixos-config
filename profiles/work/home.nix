@@ -119,10 +119,6 @@ in {
     typst
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "jetbrains-toolbox"
-  ];
-
   home.username = userSettings.userName;
   home.homeDirectory = "/home" + ("/" + userSettings.userName);
 

@@ -36,11 +36,19 @@
       };
       lib = nixpkgs.lib;
       myLib = import ./my-lib { inherit lib; };
+      unfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "jetbrains-toolbox"
+        "codeium"
+      ];
       pkgs = import nixpkgs {
         system = systemSettings.system;
+        config.allowUnfreePredicate = unfreePredicate;
         overlays = [
           (final: prev: {
-            unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+            unstable = import nixpkgs-unstable {
+              system = systemSettings.system;
+              config.allowUnfreePredicate = unfreePredicate;
+            };
           })
         ];
       };
