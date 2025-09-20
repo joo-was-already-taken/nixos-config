@@ -16,7 +16,8 @@ return {
           enabled = true,
           idle_delay = 0,
           key_bindings = {
-            accept = "<C-l>",
+            accept = "<C-u>",
+            accept_line = "<C-l>",
           },
           accept_fallback = function()
             require("codeium.virtual_text").complete()
