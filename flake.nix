@@ -19,6 +19,11 @@
     };
 
     # user inputs
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "";
+    };
+
     # pyprland.url = "github:hyprland-community/pyprland";
     # pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
@@ -75,6 +80,7 @@
           inherit pkgs;
           modules = [
             stylix.homeModules.stylix
+            inputs.nix-doom-emacs-unstraightened.homeModule
             (profilePath + "/home.nix")
           ];
           extraSpecialArgs = let
