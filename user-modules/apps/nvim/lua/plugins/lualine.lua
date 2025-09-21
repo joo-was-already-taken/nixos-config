@@ -1,7 +1,7 @@
 local codeium_status = {
   function()
     if vim.g.codeium_enabled then
-      return "󰚩 codeium"
+      return "󰚩 roger roger"
     else
       return "󱚢 no clankers"
     end
