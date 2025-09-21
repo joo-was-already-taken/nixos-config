@@ -46,6 +46,7 @@ return {
       virtual_symbol_prefix = " ",
       virtual_symbol_suffix = "",
       virtual_symbol_position = "eol",
+      enable_named_colors = false,
     },
   },
   {
