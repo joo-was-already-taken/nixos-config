@@ -46,11 +46,7 @@ opt.modifiable = true
 opt.encoding = "UTF-8"
 
 
--- KEYMAPS
-local function keymap_set(mode, new, prev)
-  local opts = { noremap = true, silent = true }
-  vim.keymap.set(mode, new, prev, opts)
-end
+local keymap_set = require("utils").keymap_set
 
 -- Exiting
 keymap_set("n", "<leader>qq", "<cmd>qa<CR>")
@@ -76,14 +72,7 @@ keymap_set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
 keymap_set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>")
 keymap_set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
 
--- Window Management
-keymap_set("n", "<leader>s-", "<cmd>split<CR>")
-keymap_set("n", "<leader>s|", "<cmd>vsplit<CR>")
-keymap_set("n", "<leader>s+", "<C-w>+")
-keymap_set("n", "<leader>s-", "<C-w>-")
-keymap_set("n", "<leader>s>", "<C-w>>")
-keymap_set("n", "<leader>s<", "<C-w><")
-keymap_set("n", "<leader>s=", "<C-w>=")
+-- Window Management is configured with smart-splits.nvim)
 
 -- Indenting
 keymap_set("v", "<", "<gv")

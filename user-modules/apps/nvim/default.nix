@@ -119,6 +119,8 @@ in {
         # AI
         windsurf-nvim
 
+        smart-splits-nvim
+
         # plugins/telescope.lua
         telescope-nvim
         # plugins/lualine.lua
