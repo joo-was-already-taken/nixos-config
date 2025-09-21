@@ -150,6 +150,7 @@ in {
         nvim-notify
 
         indent-blankline-nvim
+        undotree
 
         # plugins/neotree.lua
         neo-tree-nvim
