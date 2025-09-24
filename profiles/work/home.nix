@@ -1,6 +1,7 @@
-{ pkgs, lib, config, userSettings, inputs, sessionVariables ? {}, ... }@args:
+{ pkgs, lib, config, userSettings, inputs, ... }@args:
 let
-  workSessionVars = {
+  passedSessionVars = args.sessionVariables or {};
+  sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "nvim --remote -c 'Man!' -o -";
     FILEMANAGER = "nemo";
@@ -8,19 +9,19 @@ let
     BROWSER = "qutebrowser";
   }
     // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {})
-    // sessionVariables;
+    // passedSessionVars;
 
   styleSettings = import ../../styling/current-settings.nix;
 in {
   imports = [
     ../../styling/home-style.nix
     inputs.sops-nix.homeManagerModules.sops
-    (import ../../user-modules/sh <| args // { sessionVariables = workSessionVars; })
+    (import ../../user-modules/sh (args // { inherit sessionVariables; }))
     ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
     ../../user-modules/virtualization.nix
-    (import ../../user-modules/apps <| args // { inherit styleSettings; sessionVariables = workSessionVars; })
-    (import ../../user-modules/wm <| args // { sessionVariables = workSessionVars; })
+    (import ../../user-modules/apps (args // { inherit styleSettings sessionVariables; }))
+    (import ../../user-modules/wm (args // { inherit sessionVariables; }))
   ];
 
   modules.vscode.java.enable = true; # :(
