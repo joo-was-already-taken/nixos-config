@@ -14,7 +14,7 @@
   ];
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+    experimental-features = [ "nix-command" "flakes" ];
     keep-outputs = true;
     keep-derivations = true;
     auto-optimise-store = true;
