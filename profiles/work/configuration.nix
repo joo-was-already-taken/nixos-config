@@ -94,7 +94,7 @@
   # usb
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "exfat" ];
 
   # Enable WiFi printing
   services.avahi = {

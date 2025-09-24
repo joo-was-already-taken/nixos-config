@@ -118,6 +118,9 @@ in {
     jetbrains-toolbox
 
     typst
+
+    # mkfs commands
+    e2fsprogs
   ];
 
   home.username = userSettings.userName;
