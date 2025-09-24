@@ -12,6 +12,10 @@
       };
       listener = [
         {
+          timout = 8 * 60 - 20;
+          on-timeout = "notify-send 'Your computer is about to lock'";
+        }
+        {
           timeout = 8 * 60;
           on-timeout = "hyprlock";
         }
