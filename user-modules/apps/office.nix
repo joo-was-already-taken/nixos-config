@@ -23,14 +23,5 @@ in {
       hunspellDicts.pl_PL
       hunspellDicts.de_DE
     ];
-
-    xdg = {
-      desktopEntries = {
-        zathura = {
-          name = "Zathura";
-          exec = "${config.programs.zathura.package}/bin/zathura";
-        };
-      };
-    };
   };
 }
