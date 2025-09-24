@@ -31,14 +31,25 @@ in {
   xdg = {
     mimeApps = {
       enable = true;
-      defaultApplications = {
-        "application/pdf" = "zathura.desktop";
+      defaultApplications = let
+        pdf = "zathura.desktop";
+        browser = "qutebrowser.desktop";
+        image = "org.gnome.gThumb.desktop";
+      in {
+        "application/pdf" = pdf;
 
-        "text/html" = "qutebrowser.desktop";
-        "x-scheme-handler/http" = "qutebrowser.desktop";
-        "x-scheme-handler/https" = "qutebrowser.desktop";
-        "x-scheme-handler/about" = "qutebrowser.desktop";
-        "x-scheme-handler/unknown" = "qutebrowser.desktop";
+        "text/html" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "x-scheme-handler/about" = browser;
+        "x-scheme-handler/unknown" = browser;
+
+        "image/jpeg" = image;
+        "image/png" = image;
+        "image/gif" = image;
+        "image/webp" = image;
+        "image/tiff" = image;
+        "image/bmp" = image;
       };
     };
   };
