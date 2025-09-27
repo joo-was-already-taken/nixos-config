@@ -6,6 +6,7 @@ let hyprWorkspaces = pkgs.writeShellApplication {
     text = builtins.readFile ./hypr-workspaces.sh;
   };
 in {
+  cpu = pkgs.writers.writeLuaBin "ironbar-cpu" {} (builtins.readFile ./cpu.lua);
   memory = pkgs.writeShellApplication {
     name = "ironbar-memory";
     text = builtins.readFile ./memory.sh;

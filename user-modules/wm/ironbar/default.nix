@@ -68,7 +68,7 @@ in {
           # CPU percentage
           type = "label";
           class = "custom-cpu";
-          label = '' {{poll:5000:top -bn2 | awk '/^%Cpu/ {printf("%.1f\n", 100 - $8); exit}'}}%'';
+          label = " {{poll:5000:${lib.getExe scripts.cpu}}}";
         }
         {
           # Memory usage
