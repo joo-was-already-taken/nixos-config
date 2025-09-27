@@ -116,6 +116,11 @@ in {
         comment-nvim
         nvim-autopairs
 
+        # AI
+        windsurf-nvim
+
+        smart-splits-nvim
+
         # plugins/telescope.lua
         telescope-nvim
         # plugins/lualine.lua
@@ -145,6 +150,7 @@ in {
         nvim-notify
 
         indent-blankline-nvim
+        undotree
 
         # plugins/neotree.lua
         neo-tree-nvim

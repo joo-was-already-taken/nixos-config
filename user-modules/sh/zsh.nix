@@ -54,7 +54,7 @@ in {
 
       history = rec {
         ignoreAllDups = true;
-        share = false; # share history between zsh sessions
+        share = true; # share history between zsh sessions
         extended = true; # save timestamps
         size = 5000;
         save = size;

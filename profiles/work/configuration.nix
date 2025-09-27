@@ -7,13 +7,14 @@
 {
   imports = [
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
+    (../../hosts + ("/" + systemSettings.host) + "/loader.nix")
     ../../styling/stylix.nix
     # (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
     ../../system-modules/display-managers/sddm.nix
   ];
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+    experimental-features = [ "nix-command" "flakes" ];
     keep-outputs = true;
     keep-derivations = true;
     auto-optimise-store = true;
@@ -26,15 +27,6 @@
       size = 16 * 1024;
     }
   ];
-
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 8;
-    };
-    efi.canTouchEfiVariables = true;
-    timeout = 2;
-  };
 
   boot.tmp.cleanOnBoot = true;
 
@@ -102,7 +94,7 @@
   # usb
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "exfat" ];
 
   # Enable WiFi printing
   services.avahi = {

@@ -1,3 +1,23 @@
+local codeium_status = {
+  function()
+    if vim.g.codeium_enabled then
+      return "󰚩 roger roger"
+    else
+      return "󱚢 no clankers"
+    end
+  end,
+  color = function()
+    if vim.g.codeium_enabled then
+      local function get_fg(hl_group)
+        return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(hl_group)), "fg#")
+      end
+      return { fg = get_fg("Keyword") }
+    else
+      return nil
+    end
+  end,
+}
+
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -38,6 +58,12 @@ return {
                 hint = "H",
               },
             },
+          },
+          lualine_x = {
+            codeium_status,
+            "encoding",
+            "fileformat",
+            "filetype",
           },
         },
       }

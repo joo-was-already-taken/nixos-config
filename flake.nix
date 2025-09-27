@@ -10,12 +10,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     stylix = {
       url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
 
     # user inputs
@@ -41,11 +43,19 @@
       };
       lib = nixpkgs.lib;
       myLib = import ./my-lib { inherit lib; };
+      unfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "jetbrains-toolbox"
+        "codeium"
+      ];
       pkgs = import nixpkgs {
         system = systemSettings.system;
+        config.allowUnfreePredicate = unfreePredicate;
         overlays = [
           (final: prev: {
-            unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+            unstable = import nixpkgs-unstable {
+              system = systemSettings.system;
+              config.allowUnfreePredicate = unfreePredicate;
+            };
           })
         ];
       };

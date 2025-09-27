@@ -1,6 +1,7 @@
-{ pkgs, lib, config, userSettings, inputs, sessionVariables ? {}, ... }@args:
+{ pkgs, lib, config, userSettings, inputs, ... }@args:
 let
-  workSessionVars = {
+  passedSessionVars = args.sessionVariables or {};
+  sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "nvim --remote -c 'Man!' -o -";
     FILEMANAGER = "nemo";
@@ -8,19 +9,19 @@ let
     BROWSER = "qutebrowser";
   }
     // (if config.modules.hyprland.enable then { NIXOS_OZONE_WL = "1"; } else {})
-    // sessionVariables;
+    // passedSessionVars;
 
   styleSettings = import ../../styling/current-settings.nix;
 in {
   imports = [
     ../../styling/home-style.nix
     inputs.sops-nix.homeManagerModules.sops
-    (import ../../user-modules/sh <| args // { sessionVariables = workSessionVars; })
+    (import ../../user-modules/sh (args // { inherit sessionVariables; }))
     ../../user-modules/dev.nix
     ../../user-modules/bluetooth.nix
     ../../user-modules/virtualization.nix
-    (import ../../user-modules/apps <| args // { inherit styleSettings; sessionVariables = workSessionVars; })
-    (import ../../user-modules/wm <| args // { sessionVariables = workSessionVars; })
+    (import ../../user-modules/apps (args // { inherit styleSettings sessionVariables; }))
+    (import ../../user-modules/wm (args // { inherit sessionVariables; }))
   ];
 
   modules.vscode.java.enable = true; # :(
@@ -30,14 +31,25 @@ in {
   xdg = {
     mimeApps = {
       enable = true;
-      defaultApplications = {
-        "application/pdf" = "zathura.desktop";
+      defaultApplications = let
+        pdf = "zathura.desktop";
+        browser = "qutebrowser.desktop";
+        image = "org.gnome.gThumb.desktop";
+      in {
+        "application/pdf" = pdf;
 
-        "text/html" = "qutebrowser.desktop";
-        "x-scheme-handler/http" = "qutebrowser.desktop";
-        "x-scheme-handler/https" = "qutebrowser.desktop";
-        "x-scheme-handler/about" = "qutebrowser.desktop";
-        "x-scheme-handler/unknown" = "qutebrowser.desktop";
+        "text/html" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "x-scheme-handler/about" = browser;
+        "x-scheme-handler/unknown" = browser;
+
+        "image/jpeg" = image;
+        "image/png" = image;
+        "image/gif" = image;
+        "image/webp" = image;
+        "image/tiff" = image;
+        "image/bmp" = image;
       };
     };
   };
@@ -117,10 +129,9 @@ in {
     jetbrains-toolbox
 
     typst
-  ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "jetbrains-toolbox"
+    # mkfs commands
+    e2fsprogs
   ];
 
   home.username = userSettings.userName;
