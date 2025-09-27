@@ -6,26 +6,24 @@ let
     # create shell window
     tmux new-window -t "$session_name"
     # create git window
-    tmux new-window -t "$session_name"
-    tmux rename-window -t "$session_name" git
+    tmux new-window -t "$session_name" -n git
     ${
       if config.modules.zsh.enable then
-        ''tmux send-keys -t "$session_name" 'set-pref git; clear' C-m''
+        ''tmux send-keys -t "$session_name" lazygit C-m''
       else
         ""
     }
   '';
-in
-[
+
   # create a new coding session from outside of tmux
-  (pkgs.writeShellApplication {
+  newDev = pkgs.writeShellApplication {
     name = "tmux-new-dev";
     runtimeInputs = [ pkgs.tmux ];
 
     text = ''
       if [[ "$#" -ne 1 ]]; then
         echo 'Error: Expected exactly one argument' >&2
-        return 1
+        exit 1
       fi
 
       session_name="$1"
@@ -41,35 +39,27 @@ in
         tmux attach-session -t "$session_name"
       fi
     '';
-  })
-  
+  };
+
   # reinit the current session
-  # TODO
-  (pkgs.writeShellApplication {
-    name = "tmux-init-dev";
+  reinitDev = pkgs.writeShellApplication {
+    name = "tmux-reinit-dev";
     runtimeInputs = [ pkgs.tmux ];
 
     text = ''
-      current_session="$(tmux display-message -p '#S')"
-      case "$#" in
-        0) session_name="$current_session";;
-        1) session_name="$1";;
-        *)
-          echo 'Error: At most one argument expected' >&2
-          return 1
-          ;;
-      esac
+      session_name="$(tmux display-message -p '#S')"
 
-      current_dir="$(tmux display-message -p '#{pane_current_path}')"
-      tmux detach
-      tmux kill-session -t "$current_session"
-      cd "$current_dir"
-      tmux new-session -d -s "$session_name"
+      if [ -e 'Session.vim' ]; then
+        start_nvim='nvim -S'
+      else
+        start_nvim='nvim .'
+      fi
 
-      ${populateCodingSession}
-
-      tmux select-window -t "$session_name":1
-      tmux attach-session -t "$session_name"
+      tmux send-keys -t "$session_name":1 "$start_nvim" C-m
+      tmux send-keys -t "$session_name":3 lazygit C-m
     '';
-  })
+  };
+in [
+  newDev
+  reinitDev
 ]
