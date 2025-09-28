@@ -261,6 +261,7 @@ in {
           bind = $mod, F, exec, $webBrowser
           bind = $mod, return, exec, $terminal
           bind = $mod, C, killactive
+          bind = SUPER_SHIFT, C, forcekillactive
           bind = $mod, Q, exit
           bind = $mod, E, exec, $fileManager
           bind = $mod, D, exec, $menu

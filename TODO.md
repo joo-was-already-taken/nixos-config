@@ -5,6 +5,6 @@
     - [ ] jupyter
 - [ ] emoji picker
 - [ ] lock screen capslock icon
-- [ ] xkill functionality
+- [x] xkill functionality
 - [x] cmp-nvim priorities
 - [ ] flatpack
