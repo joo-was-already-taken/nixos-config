@@ -24,6 +24,7 @@ let
   #     sha256 = "sha256-xh/2m//Cno5gPucjOYih79wVZj3X1Di/U3/IQhKXjc0=";
   #   };
   # };
+
 in {
   options.modules.${moduleName}.enable = lib.mkEnableOption moduleName;
 
@@ -195,9 +196,6 @@ in {
         render-markdown-nvim
         markdown-preview-nvim
         no-neck-pain-nvim
-
-        # plugins/neorg.lua
-        neorg
       ] ++ colorscheme.plugins;
     };
   };
