@@ -26,7 +26,7 @@
     office.enable = lib.mkDefault true;
     nemo.enable = lib.mkDefault true;
     vscode = {
-      enable = lib.mkDefault true;
+      enable = lib.mkDefault false;
       java.enable = lib.mkDefault false;
       jupyter.enable = lib.mkDefault false;
     };

@@ -24,8 +24,6 @@ in {
     (import ../../user-modules/wm (args // { inherit sessionVariables; }))
   ];
 
-  modules.vscode.java.enable = true; # :(
-  modules.vscode.jupyter.enable = true;
   modules.librewolf.enable = true;
 
   xdg = {
