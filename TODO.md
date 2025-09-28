@@ -6,5 +6,5 @@
 - [ ] emoji picker
 - [ ] lock screen capslock icon
 - [ ] xkill functionality
-- [ ] cmp-nvim priorities
+- [x] cmp-nvim priorities
 - [ ] flatpack
