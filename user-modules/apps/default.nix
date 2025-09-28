@@ -9,6 +9,7 @@
     ./ghostty.nix
     ./qutebrowser.nix
     ./librewolf.nix
+    ./firefox
     ./git.nix
     ./office.nix
     ./nemo.nix
@@ -31,6 +32,7 @@
     };
 
     librewolf.enable = lib.mkDefault false;
+    firefox.enable = lib.mkDefault false;
     alacritty.enable = lib.mkDefault false;
   };
 }
