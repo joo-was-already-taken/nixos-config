@@ -83,14 +83,19 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
-  # Enable CUPS to print documents.
+  programs.system-config-printer.enable = true;
+  services.system-config-printer.enable = true;
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      # canon-cups-ufr2
-      # cnijfilter2
+      canon-cups-ufr2
+      cnijfilter2
     ];
   };
+  unfreePackages = [
+    "canon-cups-ufr2"
+    "cnijfilter2"
+  ];
 
   # usb
   services.gvfs.enable = true;
