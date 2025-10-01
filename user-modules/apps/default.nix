@@ -3,6 +3,7 @@
 {
   imports = myLib.importAll args [
     ./nvim
+    ./emacs
     ./tmux
     ./music
     ./alacritty.nix
@@ -18,6 +19,7 @@
 
   modules = {
     nvim.enable = lib.mkDefault true;
+    emacs.enable = lib.mkDefault true;
     music.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;
     ghostty.enable = lib.mkDefault true;

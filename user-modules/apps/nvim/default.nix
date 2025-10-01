@@ -182,6 +182,7 @@ in {
           tree-sitter-vimdoc
           tree-sitter-rust
           tree-sitter-haskell
+          tree-sitter-elisp
           tree-sitter-go
           tree-sitter-html
           tree-sitter-c
