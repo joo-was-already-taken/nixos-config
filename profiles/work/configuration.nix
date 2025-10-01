@@ -2,10 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, systemSettings, userSettings, ... }@args:
+{ pkgs, lib, systemSettings, userSettings, inputs, ... }:
 
 {
   imports = [
+    ../../system-modules/unfree-packages.nix
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     (../../hosts + ("/" + systemSettings.host) + "/loader.nix")
     ../../styling/stylix.nix
