@@ -29,13 +29,12 @@ local function config()
     keymap_set("n", "<leader>xk", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
   end
 
-  local lspconfig = require("lspconfig")
   local capabalities = vim.lsp.protocol.make_client_capabilities()
   capabalities = require("cmp_nvim_lsp").default_capabilities(capabalities)
 
   local function default_setup(servers)
     for _, server in ipairs(servers) do
-      lspconfig[server].setup({
+      vim.lsp.config(server, {
         capabalities = capabalities,
         on_attach = on_attach,
       })
@@ -54,7 +53,7 @@ local function config()
     "ts_ls",
   })
 
-  lspconfig.clangd.setup({
+  vim.lsp.config("clangd", {
     cmd = {
       "clangd",
       "--clang-tidy",
