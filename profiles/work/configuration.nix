@@ -9,6 +9,7 @@
     ../../system-modules/unfree-packages.nix
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     (../../hosts + ("/" + systemSettings.host) + "/loader.nix")
+    "${inputs.nix-mineral}/nix-mineral.nix"
     ../../styling/stylix.nix
     # (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
     ../../system-modules/display-managers/sddm.nix

@@ -158,6 +158,22 @@
         "type": "github"
       }
     },
+    "nix-mineral": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1757365535,
+        "narHash": "sha256-s4YK7Ey2LJFLIAONWVXM3X+xdAIbjFgdK2s6lxmMIrQ=",
+        "owner": "cynicsketch",
+        "repo": "nix-mineral",
+        "rev": "b76cc19351f159cd360d8ceea3ba9aff8fce6c6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cynicsketch",
+        "repo": "nix-mineral",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1758346548,
@@ -219,6 +235,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nix-mineral": "nix-mineral",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
