@@ -13,6 +13,7 @@ return {
       opts = {
         render = "compact",
         top_down = false,
+        background_color = "Normal",
       },
       keys = {
         { "<leader>cn", dismiss_notifications },
