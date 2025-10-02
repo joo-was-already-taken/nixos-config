@@ -38,4 +38,8 @@ function M.create_submap(mode, callbacks)
   return function() submap(mode, callbacks) end
 end
 
+function M.get_hl_property(hl, property)
+  return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(hl)), property)
+end
+
 return M
