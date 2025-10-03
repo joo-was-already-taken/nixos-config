@@ -15,6 +15,15 @@ in {
       };
     };
 
+    xdg = {
+      desktopEntries = {
+        zathura = {
+          name = "Zathura";
+          exec = "${config.programs.zathura.package}/bin/zathura";
+        };
+      };
+    };
+
     home.packages = with pkgs; [
       libreoffice-qt
       # spellcheckers for libreoffice
