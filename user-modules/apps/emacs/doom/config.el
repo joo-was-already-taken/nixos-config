@@ -91,6 +91,7 @@
   '(org-level-7 :inherit outline-3 :height 1.0)
   '(org-level-8 :inherit outline-3 :height 1.0))
 
+(setq org-preview-latex-default-process 'dvisvgm)
 
 (after! org
         (map! :map org-mode-map :localleader "j" #'org-toggle-inline-images))
