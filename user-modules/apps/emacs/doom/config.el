@@ -82,18 +82,62 @@
 (custom-theme-set-faces!
   'everforest-hard-dark
   '(org-document-title :height 1.8 :bold t underline nil)
-  '(org-level-1 :inherit outline-1 :height 1.6)
-  '(org-level-2 :inherit outline-2 :height 1.5)
-  '(org-level-3 :inherit outline-3 :height 1.4)
-  '(org-level-4 :inherit outline-3 :height 1.3)
-  '(org-level-5 :inherit outline-3 :height 1.2)
-  '(org-level-6 :inherit outline-3 :height 1.1)
-  '(org-level-7 :inherit outline-3 :height 1.0)
-  '(org-level-8 :inherit outline-3 :height 1.0))
+  '(org-level-1 :inherit outline-1 :weight medium :height 1.5)
+  '(org-level-2 :inherit outline-2 :weight medium :height 1.35)
+  '(org-level-3 :inherit outline-3 :weight medium :height 1.2)
+  '(org-level-4 :inherit outline-3 :weight medium :height 1.1)
+  '(org-level-5 :inherit outline-3 :weight medium :height 1.05)
+  '(org-level-6 :inherit outline-3 :weight medium :height 1.0)
+  '(org-level-7 :inherit outline-3 :weight medium :height 1.0)
+  '(org-level-8 :inherit outline-3 :weight medium :height 1.0))
 
 (setq org-preview-latex-default-process 'dvisvgm)
 
+(use-package! org-modern
+              :config
+              (setq org-modern-star nil
+                    org-modern-hide-stars nil)
+              (set-face-attribute 'org-ellipsis nil :inherit 'default :box nil))
+
+(use-package! org-appear
+              :config
+              (setq org-appear-autoemphasis t
+                    org-appear-autolinks t
+                    org-appear-autosubmarkers t
+                    org-appear-autoentities t
+                    org-appear-autokeywords t
+                    org-appear-inside-latex t))
+
+(use-package! openwith
+              :config
+              (setq openwith-associations
+                    (list
+                      (list (openwith-make-extension-regexp
+                              '("pdf"))
+                            "xdg-open"
+                            '(file))))
+              (openwith-mode 1))
+
 (after! org
-        (map! :map org-mode-map :localleader "j" #'org-toggle-inline-images))
+        (global-org-modern-mode)
+        (add-hook 'org-mode-hook 'org-appear-mode)
+        (add-hook 'org-mode-hook 'toc-org-enable))
+
+(add-hook 'text-mode-hook (lambda () (hl-line-mode -1)))
+
+;; keybindings
+(global-unset-key (kbd "c-h"))
+(global-set-key (kbd "c-?") #'help-command)
+
+(map! :n "c-h" #'evil-window-left
+      :n "c-j" #'evil-window-down
+      :n "c-k" #'evil-window-up
+      :n "c-l" #'evil-window-right)
+
+(map! :leader
+      :desc "split window vertically"   "s|" #'evil-window-vsplit
+      :desc "split window horizontally" "s-" #'evil-window-split)
+
 (after! org
-        (setq org-link-descriptive nil))
+        (map! :map org-mode-map :desc "toggle inline images"
+              :localleader "j" #'org-toggle-inline-images))

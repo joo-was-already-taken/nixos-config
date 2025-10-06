@@ -53,6 +53,13 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
+(package! evil-snipe :disable t)
+
 (package! everforest
   :recipe (:host github :repo "Theory-of-Everything/everforest-emacs")
   :pin "ba61a881b5d57810eef76baae01c951d1e6c2ceb")
+
+(package! org-modern)
+(package! toc-org)
+(package! org-appear)
+(package! openwith)

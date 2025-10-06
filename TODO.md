@@ -1,8 +1,8 @@
 # TODO
 - [ ] quickshell bar
 - [ ] emacs
-    - [ ] orgmode
-    - [ ] jupyter
+    - [x] orgmode
+    - [-] jupyter
 - [ ] emoji picker
 - [ ] lock screen capslock icon
 - [x] xkill functionality
