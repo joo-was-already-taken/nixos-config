@@ -30,9 +30,9 @@ in {
     mimeApps = {
       enable = true;
       defaultApplications = let
-        pdf = "zathura.desktop";
-        browser = "qutebrowser.desktop";
-        image = "org.gnome.gThumb.desktop";
+        pdf = [ "zathura.desktop" ];
+        browser = [ "qutebrowser.desktop" ];
+        image = [ "org.gnome.gThumb.desktop" ];
       in {
         "application/pdf" = pdf;
 
