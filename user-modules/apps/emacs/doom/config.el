@@ -125,6 +125,16 @@
 
 (add-hook 'text-mode-hook (lambda () (hl-line-mode -1)))
 
+(use-package! evil-numbers
+  :after evil
+  :config
+  (map! :n "g C-a" #'evil-numbers/inc-at-pt-incremental
+        :n "g C-x" #'evil-numbers/dec-at-pt-incremental
+        :v "g C-a" #'evil-numbers/inc-at-pt-incremental
+        :v "g C-x" #'evil-numbers/dec-at-pt-incremental
+        :n "C-c +" #'evil-numbers/inc-at-pt
+        :n "C-c -" #'evil-numbers/dec-at-pt))
+
 ;; keybindings
 (global-unset-key (kbd "c-h"))
 (global-set-key (kbd "c-?") #'help-command)

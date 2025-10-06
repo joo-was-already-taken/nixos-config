@@ -59,6 +59,7 @@
   :recipe (:host github :repo "Theory-of-Everything/everforest-emacs")
   :pin "ba61a881b5d57810eef76baae01c951d1e6c2ceb")
 
+(package! evil-numbers)
 (package! org-modern)
 (package! toc-org)
 (package! org-appear)
