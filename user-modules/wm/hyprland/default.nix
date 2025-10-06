@@ -120,7 +120,7 @@ in {
           ${if config.modules.ironbar.enable then "exec-once = ironbar" else ""}
           exec-once = nm-applet &
           exec-once = (sleep 1; blueman-tray) &
-          exec-once = ${sessionVariables.TERMINAL} -e zsh -c 'neofetch; zsh' &
+          # exec-once = ${sessionVariables.TERMINAL} -e zsh -c 'neofetch; zsh' &
           exec-once = pypr &
           exec-once = hypridle
 
