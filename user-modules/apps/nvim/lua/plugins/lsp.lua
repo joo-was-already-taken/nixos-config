@@ -33,7 +33,11 @@ local function config()
   capabalities = require("cmp_nvim_lsp").default_capabilities(capabalities)
 
   local function default_setup(servers)
+    vim.lsp.config("*", {
+      root_markers = { ".git" },
+    })
     for _, server in ipairs(servers) do
+      vim.lsp.enable(server)
       vim.lsp.config(server, {
         capabalities = capabalities,
         on_attach = on_attach,
@@ -53,13 +57,17 @@ local function config()
     "ts_ls",
   })
 
+  vim.lsp.enable("clangd")
   vim.lsp.config("clangd", {
     cmd = {
       "clangd",
       "--clang-tidy",
       "--background-index",
       "--completion-style=bundled",
+      "--offset-encoding=utf-8",
     },
+    root_markers = { ".clangd", "compile_commands.json" },
+    filetypes = { "c", "cpp" },
     capabalities = capabalities,
     on_attach = on_attach,
   })
