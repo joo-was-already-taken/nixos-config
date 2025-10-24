@@ -72,6 +72,7 @@ in {
         grep = "grep --color=auto";
         ip = "ip -color=auto";
         open = "xdg-open";
+        j = "just";
       };
 
       initContent = /*bash*/ '' # jk it's zsh
