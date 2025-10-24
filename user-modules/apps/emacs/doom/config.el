@@ -143,6 +143,9 @@
       :n "c-j" #'evil-window-down
       :n "c-k" #'evil-window-up
       :n "c-l" #'evil-window-right)
+(after! vterm
+        (dolist (key '("c-h" "c-j" "c-k" "c-l"))
+          (delete key vterm-keymap-exceptions)))
 
 (map! :leader
       :desc "split window vertically"   "s|" #'evil-window-vsplit
