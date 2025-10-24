@@ -63,6 +63,17 @@ in {
       run ${pkgs.systemd}/bin/systemctl $VERBOSE_ARG --user start gitconfig-init.service
     '';
 
-    programs.lazygit.enable = true;
+    programs.lazygit = {
+      enable = true;
+      settings.git = {
+        autoFetch = false;
+        autoRefresh = false;
+        mainBranches = [
+          "main"
+          "master"
+          "trunk"
+        ];
+      };
+    };
   };
 }
