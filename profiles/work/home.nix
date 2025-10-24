@@ -134,6 +134,8 @@ in {
 
     # mkfs commands
     e2fsprogs
+
+    just
   ];
 
   home.username = userSettings.userName;
