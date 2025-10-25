@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, lib, systemSettings, userSettings, inputs, ... }:
+{ pkgs, systemSettings, userSettings, inputs, ... }:
 
 {
   imports = [
@@ -21,6 +21,10 @@
     keep-derivations = true;
     auto-optimise-store = true;
     trusted-users = [ "root" userSettings.userName ];
+
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   swapDevices = [
@@ -189,7 +193,11 @@
 
   programs.adb.enable = true;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${systemSettings.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${systemSettings.system}.xdg-desktop-portal-hyprland;
+  };
   programs.dconf.enable = true;
   security.polkit.enable = true;
 

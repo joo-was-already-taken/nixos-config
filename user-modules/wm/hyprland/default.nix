@@ -100,6 +100,7 @@ in {
 
         extraConfig = ''
           debug:disable_logs = true
+          ecosystem:no_update_news = true
 
           $mod = SUPER
           $keysymMod = Super_L
@@ -255,7 +256,7 @@ in {
           }
 
           gestures {
-            workspace_swipe = false
+            workspace_swipe_touch = false
           }
 
           bind = $mod, F, exec, $webBrowser
