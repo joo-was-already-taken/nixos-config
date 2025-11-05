@@ -117,6 +117,8 @@ in {
         mkzdir() {
           mkdir -p -- "$1" && z "$1/"
         }
+
+        export PATH="$HOME/.local/bin:$PATH"
       '';
     };
   };

@@ -5,4 +5,6 @@
     kvmtool
     qemu_full
   ];
+
+  programs.distrobox.enable = true;
 }

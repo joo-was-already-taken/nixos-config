@@ -26,6 +26,10 @@ in {
 
   modules.librewolf.enable = true;
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
   xdg = {
     mimeApps = {
       enable = true;
