@@ -193,6 +193,9 @@ in {
           tree-sitter-css
         ]))
 
+        # plugins/url.lua
+        url-open
+
         # plugins/markdown.lua
         render-markdown-nvim
         markdown-preview-nvim
