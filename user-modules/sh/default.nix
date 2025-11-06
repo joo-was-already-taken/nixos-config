@@ -8,7 +8,7 @@
 
   modules.zsh.enable = true;
   modules.atuin = {
-    enable = true;
+    enable = false;
     enableZshIntegration = true;
   };
 }
