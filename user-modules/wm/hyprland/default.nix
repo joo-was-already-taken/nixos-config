@@ -369,11 +369,31 @@ in {
           bind = , K, exec, hyprctl dispatch submap reset; hyprctl dispatch moveintogroup u
           bind = , J, exec, hyprctl dispatch submap reset; hyprctl dispatch moveintogroup d
           bind = , O, exec, hyprctl dispatch submap reset; hyprctl dispatch moveoutofgroup
-          bind = , N, exec, hyprctl dispatch submap reset; hyprctl dispatch movegroupwindow n
-          bind = , P, exec, hyprctl dispatch submap reset; hyprctl dispatch movegroupwindow b
+          bind = , N, exec, hyprctl dispatch submap reset; hyprctl dispatch changegroupactive n
+          bind = , P, exec, hyprctl dispatch submap reset; hyprctl dispatch changegroupactive b
+
+          bind = $mod, N, changegroupactive, n
+          bind = $mod, P, changegroupactive, b
+
+          bind = , M, submap, move_group_window
+          bind = $mod, M, submap, move_group_window
+
           bind = , escape, submap, reset
           bind = Control_L, bracketleft, submap, reset
           bind = , catchall, submap, reset
+          submap = reset
+
+          # move_group_window submap
+          bind = $mod SHIFT, G, submap, move_group_window
+          submap = move_group_window
+          bind = , N, exec, hyprctl dispatch submap reset; hyprctl dispatch movegroupwindow n
+          bind = , P, exec, hyprctl dispatch submap reset; hyprctl dispatch movegroupwindow b
+          bind = SHIFT, N, movegroupwindow, n
+          bind = SHIFT, P, movegroupwindow, b
+
+          bind = , escape, submap, reset
+          bind = Control_L, bracketleft, submap, reset
+          bind = SHIFT, catchall, submap, reset
           submap = reset
         '';
       };
