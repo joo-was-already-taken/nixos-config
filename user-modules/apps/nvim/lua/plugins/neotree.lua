@@ -12,6 +12,11 @@ return {
       enable_git_status = true,
       enable_diagnostics = true,
 
+      default_component_configs = {
+        last_modified = { format = "%Y-%m-%d %H:%M" },
+        created = { format = "%Y-%m-%d %H:%M" },
+      },
+
       filesystem = {
         filtered_items = {
           visible = false,
