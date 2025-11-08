@@ -5,6 +5,7 @@ let
     activeBorder1 = base0D;
     activeBorder2 = base0C;
     inactiveBorder = base04;
+    groupActive = base0E;
   };
 
   floatingWindowSize = "1300 800";
@@ -98,7 +99,7 @@ in {
         #   inputs.hyprland-plugins.packages.${systemSettings.system}.hyprexpo
         # ];
 
-        extraConfig = ''
+        extraConfig = with config.modules.${moduleName}.colors; ''
           debug:disable_logs = true
           ecosystem:no_update_news = true
 
@@ -137,13 +138,9 @@ in {
             gaps_out = 20
             border_size = 2
 
-            col.active_border = ${
-              "rgb(${config.modules.${moduleName}.colors.activeBorder1})"
-                + " rgb(${config.modules.${moduleName}.colors.activeBorder2})"
-                + " 45deg"
-            }
+            col.active_border = rgb(${activeBorder1}) rgb(${activeBorder2}) 45deg
             col.inactive_border = ${
-              "rgba(${config.modules.${moduleName}.colors.inactiveBorder}${
+              "rgba(${inactiveBorder}${
                 if config.modules.${moduleName}.invisibleInactiveBorder then "00" else "ff"
               })"
             }
@@ -328,6 +325,28 @@ in {
 
           bindm = $mod, mouse:272, movewindow
 
+          group {
+            col.border_active = rgb(${groupActive})
+            col.border_inactive = rgba(${groupActive}80)
+            col.border_locked_active = rgb(${groupActive})
+            col.border_locked_inactive = rgba(${groupActive}80)
+
+            groupbar {
+              font_size = 13
+              font_family = monospace
+              font_weight_active = heavy
+              font_weight_inactive = normal
+              indicator_gap = 0
+              height = 22
+              gaps_in = 5
+              gaps_out = 0
+
+              col.active = rgb(${groupActive})
+              col.inactive = rgba(${groupActive}80)
+              col.locked_active = rgb(${groupActive})
+              col.locked_inactive = rgba(${groupActive}80)
+            }
+          }
 
           # resize submap
           bind = $mod, S, submap, resize
