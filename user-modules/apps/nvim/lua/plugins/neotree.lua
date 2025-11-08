@@ -25,11 +25,16 @@ return {
         },
       },
 
+      buffers = {
+        show_unloaded = true,
+      },
+
       window = { position = "current" },
     },
     keys = {
       { "<leader>e", "<cmd>Neotree filesystem toggle reveal float<CR>" },
       { "<leader>g", "<cmd>Neotree git_status toggle reveal float<CR>" },
+      { "<leader>b", "<cmd>Neotree buffers toggle reveal float<CR>" },
     },
   },
 }
