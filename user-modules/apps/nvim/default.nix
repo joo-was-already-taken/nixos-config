@@ -69,6 +69,7 @@ in {
 
         nil
         tinymist
+        bash-language-server
       ];
 
       extraLuaConfig = let
