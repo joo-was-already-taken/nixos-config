@@ -65,6 +65,7 @@ in {
       extraPackages = with pkgs; [
         wl-clipboard
         ripgrep
+        fd
 
         nil
         tinymist
