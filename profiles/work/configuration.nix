@@ -168,8 +168,13 @@
   users.users.${userSettings.userName} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "docker" ];
     packages = [];
+  };
+
+  users.groups = {
+    # for winboat
+    docker = {};
   };
 
   # programs.nix-ld = {

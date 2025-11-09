@@ -139,6 +139,11 @@ in {
     # mkfs commands
     e2fsprogs
 
+    transmission_4-gtk
+
+    # TODO: use stable in 25.11
+    unstable.winboat
+
     just
   ];
 
