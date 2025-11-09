@@ -16,7 +16,7 @@ in {
     protonup
 
     unstable.heroic # for EpicGames and GOG games
-    bottles # for Windows apps
+    (bottles.override { removeWarningPopup = true; }) # for Windows apps
     dosbox # for MS DOS apps
 
     # games
