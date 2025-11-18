@@ -47,6 +47,7 @@
 
   networking.hostName = systemSettings.hostName;
   networking.networkmanager.enable = true;
+  services.resolved.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
