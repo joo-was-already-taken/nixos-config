@@ -18,8 +18,12 @@ let
       for kb in $(hyprctl devices | awk '/Keyboard at/ {getline; print $1}'); do
         hyprctl switchxkblayout "$kb" next
       done
-      value="$(hyprctl devices | grep -i at-translated-set-2-keyboard -A 2 | tail -n1 | cut -f3-5 -d' ')"
-      notify-send "Keyboard layout: $value"
+      layout_info="$(hyprctl devices | grep -i at-translated-set-2-keyboard -A 2)"
+      cur_layout_idx="$(echo "$layout_info" | tail -n1 | cut -f4 -d' ')"
+      langs="$(echo "$layout_info" | grep -o 'l "[^"]*"' | grep -o '"[^"]*"' | tr -d '"')"
+      IFS=',' read -r -a lang_arr <<< "$langs"
+      cur_lang=''${lang_arr[$cur_layout_idx]}
+      notify-send "Keyboard layout: $cur_lang"
     '';
   };
   toggleMainDisplay = pkgs.writeShellApplication {
@@ -240,8 +244,8 @@ in {
           }
 
           input {
-            kb_layout = pl, de
-            kb_variant = , us # use sane german
+            kb_layout = pl,de
+            kb_variant = ,us # use sane german
             # kb_options = grp:win_space_toggle # already have a script for that
 
             follow_mouse = 1
