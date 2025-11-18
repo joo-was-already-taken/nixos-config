@@ -98,14 +98,23 @@ in {
         } // config.modules.${moduleName}.colors;
       };
 
-      # extraConfig = /*python*/ ''
-      #   import os
-      #   default_file_manager = os.environ.get('FILEMANAGER', 'nemo')
-      #   c.fileselect.handler = 'external'
-      #   c.fileselect.single_file.command = [default_file_manager]
-      #   c.fileselect.multiple_files.command = [default_file_manager]
-      #   c.fileselect.folder.command = [default_file_manager]
-      # '';
+      extraConfig = /*python*/ ''
+        # import os
+        # default_file_manager = os.environ.get('FILEMANAGER', 'nemo')
+        # c.fileselect.handler = 'external'
+        # c.fileselect.single_file.command = [default_file_manager]
+        # c.fileselect.multiple_files.command = [default_file_manager]
+        # c.fileselect.folder.command = [default_file_manager]
+
+        # Here and not in settings, because in `programs.qutebrowser.settings`
+        # it gets formatted with nix dot syntax: `c.bindings.commands.command.'<Ctrl-N>' = ...`
+        c.bindings.commands = {
+          'command': {
+            '<Ctrl-N>': 'completion-item-focus next',
+            '<Ctrl-P>': 'completion-item-focus prev',
+          },
+        }
+      '';
     };
 
     xdg = {
