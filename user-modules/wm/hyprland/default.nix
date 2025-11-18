@@ -236,6 +236,7 @@ in {
 
           cursor {
             inactive_timeout = 16
+            no_warps = true
           }
 
           input {
