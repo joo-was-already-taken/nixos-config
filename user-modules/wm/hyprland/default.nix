@@ -214,23 +214,24 @@ in {
             vfr = true
           }
 
+          ${
+            let
+              floating = [
+                "nemo"
+                "org.pulseaudio.pavucontrol"
+                ".blueman-manager-wrapped"
+                "WLR Layout"
+              ];
+              lines = map
+                (cls: "windowrule = match:class ${cls}, float on, center on, size ${floatingWindowSize}")
+                floating;
+            in builtins.concatStringsSep "\n" lines
+          }
+
           workspace = w[tv1], gapsout:0, gapsin:0
           workspace = f[1], gapsout:0, gapsin:0
-
-          windowrulev2 = float, class:nemo
-          windowrulev2 = size ${floatingWindowSize}, class:nemo*
-          windowrulev2 = float, class:pavucontrol
-          windowrulev2 = size ${floatingWindowSize}, class:pavucontrol*
-          windowrulev2 = float, class:blueman, title:Bluetooth Devices
-          windowrulev2 = size ${floatingWindowSize}, title:Bluetooth Devices*
-          windowrulev2 = float, class:.*, title:WLR Layout
-          windowrulev2 = size ${floatingWindowSize}, title:WLR Layout*
-          windowrulev2 = center, class:.*, title:WLR Layout
-
-          windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
-          windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
-          windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
-          windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
+          windowrule = match:workspace w[tv1], match:float false, border_size 0, rounding 0
+          windowrule = match:workspace f[1], match:float false, border_size 0, rounding 0
 
 
           cursor {
