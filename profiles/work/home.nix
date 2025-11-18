@@ -142,7 +142,10 @@ in {
     transmission_4-gtk
 
     # TODO: use stable in 25.11
-    unstable.winboat
+    (unstable.winboat.overrideAttrs (old: {
+      # doesn't build without this
+      npmFlags = old.npmFlags or [] ++ [ "--legacy-peer-deps" ];
+    }))
 
     just
   ];
