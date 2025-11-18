@@ -82,6 +82,12 @@
 
   services.upower.enable = true;
 
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableKvm = true;
+    addNetworkInterface = false;
+  };
+
   virtualisation.containers.enable = true;
   virtualisation.podman = {
     enable = true;
@@ -169,7 +175,7 @@
   users.users.${userSettings.userName} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = [ "networkmanager" "wheel" "input" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "input" "docker" "vboxusers" ];
     packages = [];
   };
 
