@@ -336,6 +336,8 @@ in {
           bindm = $mod, mouse:272, movewindow
 
           group {
+            auto_group = false
+
             col.border_active = rgb(${groupActive})
             col.border_inactive = rgba(${groupActive}80)
             col.border_locked_active = rgb(${groupActive})
