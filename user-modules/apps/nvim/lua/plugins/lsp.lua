@@ -24,10 +24,19 @@ local function config()
     keymap_set("n", "<leader>ca", buf.code_action)
     keymap_set("n", "gR", "<cmd>Telescope lsp_references<CR>")
 
-    keymap_set("n", "<leader>xd", "<cmd>Lspsaga show_line_diagnostics<CR><cmd>set wrap<CR>")
+    keymap_set("n", "<leader>xd", "<cmd>Lspsaga show_line_diagnostics<CR>")
     keymap_set("n", "<leader>xj", "<cmd>Lspsaga diagnostic_jump_next<CR>")
     keymap_set("n", "<leader>xk", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
   end
+
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "LspsagaDiagnostic",
+    callback = function()
+      vim.opt_local.wrap = true
+      vim.opt_local.breakindent = true
+    end,
+    group = vim.api.nvim_create_augroup("LspSagaWrap", { clear = true }),
+  })
 
   local capabalities = vim.lsp.protocol.make_client_capabilities()
   capabalities = require("cmp_nvim_lsp").default_capabilities(capabalities)
