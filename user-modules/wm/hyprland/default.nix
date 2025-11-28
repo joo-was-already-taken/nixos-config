@@ -105,7 +105,11 @@ in {
 
         extraConfig = with config.modules.${moduleName}.colors; ''
           debug:disable_logs = true
-          ecosystem:no_update_news = true
+
+          ecosystem {
+            no_update_news = true
+            no_donation_nag = true
+          }
 
           $mod = SUPER
           $keysymMod = Super_L
