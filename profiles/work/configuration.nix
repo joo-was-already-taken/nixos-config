@@ -175,7 +175,7 @@
   users.users.${userSettings.userName} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = [ "wheel" "networkmanager" "input" "docker" "vboxusers" ];
+    extraGroups = [ "wheel" "networkmanager" "input" "uinput" "docker" "vboxusers" ];
     packages = [];
   };
 

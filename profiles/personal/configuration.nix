@@ -27,6 +27,12 @@
     ];
   };
 
+  services.udev.packages = with pkgs; [
+    game-devices-udev-rules
+  ];
+  hardware.uinput.enable = true;
+  environment.etc."modules-load.d/uinput.conf".text = "uinput";
+
   programs.appimage = {
     enable = true;
     binfmt = true;
