@@ -13,7 +13,7 @@ in {
     # cpu, gpu, fps, etc. monitor
     mangohud
 
-    protonup
+    protonup-ng
 
     unstable.heroic # for EpicGames and GOG games
     (bottles.override { removeWarningPopup = true; }) # for Windows apps

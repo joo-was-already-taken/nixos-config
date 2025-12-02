@@ -26,7 +26,7 @@ in {
 
   config = lib.mkIf config.modules.${moduleName}.enable {
     home.packages = with pkgs; [
-      rofi-wayland
+      rofi
     ];
     home.file.".config/rofi/config.rasi".text = let
       settings = ''
