@@ -49,8 +49,9 @@ opt.encoding = "UTF-8"
 local keymap_set = require("utils").keymap_set
 
 -- Exiting
-keymap_set("n", "<leader>qq", "<cmd>qa<CR>")
-keymap_set("n", "<leader>qw", "<cmd>wa<CR><cmd>qa<CR>")
+keymap_set("n", "<leader>qq", "<cmd>q<CR>")
+keymap_set("n", "<leader>qa", "<cmd>qa<CR>")
+keymap_set("n", "<leader>qw", "<cmd>qwa<CR>")
 
 -- Navigation
 keymap_set({ "n", "v" }, "<C-d>", "<C-d>zz")
@@ -95,6 +96,8 @@ keymap_set("n", "<leader>wt", function()
   pcall(function() vim.cmd([[%s/\s\+$//e]]) end)
   vim.fn.setpos(".", cursor)
 end)
+
+keymap_set("n", "<leader>nh", "<cmd>nohlsearch<CR>")
 
 -- -- REQUIRE
 -- local function load_from(dir)
