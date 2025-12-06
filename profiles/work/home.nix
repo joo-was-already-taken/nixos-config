@@ -134,7 +134,9 @@ in {
 
     jetbrains-toolbox
 
-    typst
+    (typst.withPackages (ps: with ps; [
+      cetz
+    ]))
 
     # mkfs commands
     e2fsprogs
