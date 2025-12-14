@@ -149,6 +149,8 @@ in {
       npmFlags = old.npmFlags or [] ++ [ "--legacy-peer-deps" ];
     }))
 
+    file
+
     just
   ];
 
