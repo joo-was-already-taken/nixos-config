@@ -31,6 +31,8 @@ in {
       hunspellDicts.en-us
       hunspellDicts.pl_PL
       hunspellDicts.de_DE
+
+      pdftk
     ];
   };
 }
