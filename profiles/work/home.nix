@@ -151,6 +151,7 @@ in {
     }))
 
     file
+    ncdu
 
     just
   ];
