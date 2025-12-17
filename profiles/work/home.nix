@@ -136,6 +136,7 @@ in {
 
     (typst.withPackages (ps: with ps; [
       cetz
+      cetz-plot
     ]))
 
     # mkfs commands
