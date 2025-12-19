@@ -147,6 +147,8 @@ in {
     # TODO: use stable in 25.11
     (unstable.winboat.overrideAttrs (old: {
       # doesn't build without this
+    appimage-run
+
       npmFlags = old.npmFlags or [] ++ [ "--legacy-peer-deps" ];
     }))
 
