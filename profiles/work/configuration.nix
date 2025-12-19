@@ -199,6 +199,7 @@
     wget
     zip
     unzip
+    podman-compose
   ];
 
   services.dbus.implementation = "broker";
