@@ -33,7 +33,10 @@
       jupyter.enable = lib.mkDefault false;
     };
 
-    librewolf.enable = lib.mkDefault false;
+    librewolf = {
+      flatpak.enable = lib.mkDefault false;
+      nixpkgs.enable = lib.mkDefault false;
+    };
     firefox.enable = lib.mkDefault false;
     alacritty.enable = lib.mkDefault false;
   };

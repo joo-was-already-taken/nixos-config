@@ -24,7 +24,7 @@ in {
     (import ../../user-modules/wm (args // { inherit sessionVariables; }))
   ];
 
-  modules.librewolf.enable = true;
+  modules.librewolf.flatpak.enable = true;
 
   home.sessionPath = [
     "$HOME/.local/bin"
