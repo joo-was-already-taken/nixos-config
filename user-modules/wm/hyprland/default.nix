@@ -64,6 +64,7 @@ in {
         # inputs.pyprland.packages.${systemSettings.system}.pyprland
         wl-clipboard
         pulsemixer
+        pavucontrol
         wlr-randr
         hyprshot
         brightnessctl
@@ -281,7 +282,6 @@ in {
           bind = $mod, I, exec, ${lib.getExe toggleFloating}
           bind = $mod, Y, fullscreenstate, 0 3
 
-          # bind = $mod, M, exec, pypr shift_monitors +1
           bind = $mod, backslash, exec, ${lib.getExe toggleMainDisplay}
 
           # change keyboard layout
@@ -291,6 +291,9 @@ in {
           bind = , Print, exec, hyprshot -m output
           # Take a screenshot of selected region
           bind = Control_L&Control_R, Print, exec, hyprshot -m region
+
+          # Volume Control
+          bind = $mod, M, exec, pavucontrol
 
           # Color picker
           bind = $mod, minus, exec, wl-color-picker

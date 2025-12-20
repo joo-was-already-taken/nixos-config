@@ -107,9 +107,6 @@ in {
     htop
     pdfgrep
 
-    # sound input/output control
-    pavucontrol
-
     obs-studio
     # openshot-qt
     vlc
