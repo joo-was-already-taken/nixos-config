@@ -69,10 +69,6 @@ in {
     };
   };
 
-  # certain ports are open in profiles/work/configuration.nix
-  # TODO: theme qt backend
-  services.kdeconnect.enable = true;
-
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";

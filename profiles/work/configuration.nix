@@ -258,12 +258,7 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  networking.firewall = rec {
-    # for kdeconnect
-    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-  };
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
