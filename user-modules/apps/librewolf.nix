@@ -21,7 +21,7 @@ let
     };
   };
   nixpkgsConfig = {
-    home.packages = [ pkgs.librewolf ];
+    home.packages = [ pkgs.unstable.librewolf ];
     home.file.".librewolf/librewolf.overrides.cfg".text = librewolfSettings;
   };
   flatpakConfig = let
