@@ -33,6 +33,8 @@
       inputs.nixpkgs.follows = "";
     };
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
     # pyprland.url = "github:hyprland-community/pyprland";
     # pomidoro.url = "github:joo-was-already-taken/pomidoro";
   };
@@ -49,11 +51,6 @@
         userName = "joo";
       };
       lib = nixpkgs.lib;
-      myLib = import ./my-lib { inherit lib; };
-      unfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "jetbrains-toolbox"
-        "codeium"
-      ];
       pkgs = import nixpkgs {
         system = systemSettings.system;
         config.allowUnfreePredicate = unfreePredicate;
@@ -66,6 +63,11 @@
           })
         ];
       };
+      myLib = import ./my-lib { inherit lib pkgs; };
+      unfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "jetbrains-toolbox"
+        "codeium"
+      ];
       profilePath = ./. + "/profiles" + ("/" + systemSettings.profile);
     in {
       nixosConfigurations = {
@@ -97,6 +99,7 @@
           inherit pkgs;
           modules = [
             stylix.homeModules.stylix
+            inputs.nix-flatpak.homeManagerModules.nix-flatpak
             inputs.nix-doom-emacs-unstraightened.homeModule
             (profilePath + "/home.nix")
           ];

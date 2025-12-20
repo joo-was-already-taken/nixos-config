@@ -95,6 +95,8 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
+  services.flatpak.enable = true;
+
   programs.system-config-printer.enable = true;
   services.system-config-printer.enable = true;
   services.printing = {
