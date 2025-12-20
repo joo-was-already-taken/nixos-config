@@ -10,7 +10,29 @@ let
   in
     (colors: builtins.mapAttrs mapFn colors);
 in
-{
+rec {
+  mergeElse = set1: set2: elseFn: let
+    conflicts = builtins.intersectAttrs set1 set2;
+  in if conflicts == [] then set1 // set2 else elseFn conflicts;
+  mergeElseThrow = set1: set2: let
+    errMsgFn = conflicts: let
+      conflictsStr = conflicts
+        |> builtins.attrNames
+        |> builtins.concatStringsSep ", ";
+    in throw "Attribute conflict detected for keys: ${conflictsStr}";
+  in mergeElse set1 set2 errMsgFn;
+
+  selectExclusiveElse = set1: set2: elseFn:
+    if set1 == {} || set1 == null then set2
+    else if set2 == {} || set2 == null then set1
+    else elseFn set1 set2;
+  selectExclusiveElseThrow = set1: set2:
+    selectExclusiveElse set1 set2 (_: _: throw "Both sets are non-empty");
+
+  emptyIfNot = condition: attr:
+    if condition then attr
+    else {};
+
   mkColorsOption = mkAttrOptionMatchingStr "^(([0-9A-Za-z]{3})|([0-9A-Za-z]{6}))$";
   mkHashColorsOption = mkAttrOptionMatchingStr "^#(([0-9A-Za-z]{3})|([0-9A-Za-z]{6}))$";
 
