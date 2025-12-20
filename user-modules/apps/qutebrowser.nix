@@ -1,9 +1,67 @@
-{ lib, pkgs, config, ... }:
+{ lib, myLib, pkgs, config, ... }:
 let
   moduleName = "qutebrowser";
+  cfg = config.modules.${moduleName};
+
+  colorsPy = cfg.colors
+    |> myLib.flattenAttrs
+    |> map ({ path, value }: "c.colors.${path} = '${value}'")
+    |> builtins.concatStringsSep "\n";
+  configPy = /*python*/ ''
+    config.load_autoconfig(True)
+
+    c.aliases['adblock'] = 'set content.blocking.enabled'
+    c.aliases['darkmode'] = 'config-cycle colors.webpage.darkmode.enabled true false'
+
+    c.content.blocking.enabled = True
+    c.content.pdfjs = False
+    c.scrolling.bar = 'when-searching'
+    c.tabs.max_width = 240
+    c.colors.webpage.darkmode.enabled = False
+
+    c.content.javascript.clipboard = 'access'
+
+    c.bindings.commands = {
+      'command': {
+        '<Ctrl-N>': 'completion-item-focus next',
+        '<Ctrl-P>': 'completion-item-focus prev',
+      },
+    }
+  '' + colorsPy;
+
+  commonConfig = {
+    stylix.targets.qutebrowser.enable = false;
+    xdg.configFile."qutebrowser/config.py".text = configPy;
+  };
+  nixpkgsConfig = {
+    home.packages = [ pkgs.unstable.qutebrowser ];
+  };
+  flatpakConfig = let
+    qutebrowserId = "org.qutebrowser.qutebrowser";
+  in {
+    services.flatpak = {
+      enable = true;
+      packages = [ qutebrowserId ];
+      overrides.${qutebrowserId} = {
+        Context.filesystems = [
+          "/nix/store:ro"
+          "/run/current-system/sw/share/X11/fonts:ro"
+          "xdg-data/fonts:ro"
+          "xdg-config/qutebrowser"
+        ];
+        Environment.QT_QPA_PLATFORM = "wayland";
+      };
+    };
+    home.packages = [
+      (pkgs.writeShellScriptBin "qutebrowser" ''
+        exec flatpak run ${qutebrowserId} "$@"
+      '')
+    ];
+  };
 in {
   options.modules.${moduleName} = {
-    enable = lib.mkEnableOption moduleName;
+    nixpkgs.enable = lib.mkEnableOption "enable nixpkgs version of ${moduleName}";
+    flatpak.enable = lib.mkEnableOption "enable flatpak version of ${moduleName}";
     
     # default colors from stylix
     colors = with config.lib.stylix.colors.withHashtag; lib.mkOption {
@@ -73,57 +131,17 @@ in {
     };
   };
 
-  config = lib.mkIf config.modules.${moduleName}.enable {
-    stylix.targets.qutebrowser.enable = false;
-
-    programs.qutebrowser = {
-      enable = true;
-      package = pkgs.qutebrowser;
-
-      aliases = {
-        adblock = "set content.blocking.enabled";
-        darkmode = "config-cycle colors.webpage.darkmode.enabled true false";
-      };
-
-      settings = {
-        content = {
-          blocking.enabled = true;
-          pdfjs = false;
-          javascript.clipboard = "access";
-        };
-        scrolling.bar = "always";
-        tabs.max_width = 240;
-        colors = {
-          webpage.darkmode.enabled = false;
-        } // config.modules.${moduleName}.colors;
-      };
-
-      extraConfig = /*python*/ ''
-        # import os
-        # default_file_manager = os.environ.get('FILEMANAGER', 'nemo')
-        # c.fileselect.handler = 'external'
-        # c.fileselect.single_file.command = [default_file_manager]
-        # c.fileselect.multiple_files.command = [default_file_manager]
-        # c.fileselect.folder.command = [default_file_manager]
-
-        # Here and not in settings, because in `programs.qutebrowser.settings`
-        # it gets formatted with nix dot syntax: `c.bindings.commands.command.'<Ctrl-N>' = ...`
-        c.bindings.commands = {
-          'command': {
-            '<Ctrl-N>': 'completion-item-focus next',
-            '<Ctrl-P>': 'completion-item-focus prev',
-          },
+  config = lib.mkMerge [
+    {
+      assertions = [
+        {
+          assertion = !(cfg.nixpkgs.enable && cfg.flatpak.enable);
+          message = "nixpkgs and flatpak versions of qutebrowser cannot coexist";
         }
-      '';
-    };
-
-    xdg = {
-      desktopEntries = {
-        qutebrowser = {
-          name = "qutebrowser";
-          exec = "${config.programs.qutebrowser.package}/bin/qutebrowser";
-        };
-      };
-    };
-  };
+      ];
+    }
+    commonConfig
+    (lib.mkIf cfg.nixpkgs.enable nixpkgsConfig)
+    (lib.mkIf cfg.flatpak.enable flatpakConfig)
+  ];
 }

@@ -33,6 +33,19 @@ rec {
     if condition then attr
     else {};
 
+  _flattenAttrsRec = prefix: set: let
+    concatFn = key: let
+      value = set.${key};
+      path = if prefix == "" then key else "${prefix}.${key}";
+    in
+      if builtins.isAttrs value && !lib.isDerivation value then
+        _flattenAttrsRec path value
+      else
+        [ { inherit path value; } ];
+  in
+    lib.concatMap concatFn (builtins.attrNames set);
+  flattenAttrs = _flattenAttrsRec "";
+
   mkColorsOption = mkAttrOptionMatchingStr "^(([0-9A-Za-z]{3})|([0-9A-Za-z]{6}))$";
   mkHashColorsOption = mkAttrOptionMatchingStr "^#(([0-9A-Za-z]{3})|([0-9A-Za-z]{6}))$";
 

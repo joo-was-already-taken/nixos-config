@@ -23,7 +23,6 @@
     music.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;
     ghostty.enable = lib.mkDefault true;
-    qutebrowser.enable = lib.mkDefault true;
     git.enable = lib.mkDefault true;
     office.enable = lib.mkDefault true;
     nemo.enable = lib.mkDefault true;
@@ -33,6 +32,10 @@
       jupyter.enable = lib.mkDefault false;
     };
 
+    qutebrowser = {
+      flatpak.enable = lib.mkDefault false;
+      nixpkgs.enable = lib.mkDefault true;
+    };
     librewolf = {
       flatpak.enable = lib.mkDefault false;
       nixpkgs.enable = lib.mkDefault false;
