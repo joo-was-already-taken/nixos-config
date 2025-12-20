@@ -27,6 +27,18 @@ let
         '<Ctrl-P>': 'completion-item-focus prev',
       },
     }
+
+    font_setting = '10pt monospace'
+    c.fonts.statusbar = font_setting
+    c.fonts.tabs.selected = font_setting
+    c.fonts.tabs.unselected = font_setting
+    c.fonts.hints = f'bold {font_setting}'
+    c.fonts.keyhint = font_setting
+    c.fonts.messages.info = font_setting
+    c.fonts.messages.warning = font_setting
+    c.fonts.messages.error = font_setting
+    c.fonts.completion.entry = font_setting
+    c.fonts.completion.category = f'bold {font_setting}'
   '' + colorsPy;
 
   commonConfig = {
