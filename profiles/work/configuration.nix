@@ -80,6 +80,18 @@
   #   ibus.engines = with pkgs.ibus-engines; [ mozc ];
   # };
 
+  fonts = {
+    fontconfig.enable = true;
+    # required by flatpak
+    fontDir.enable = true;
+    packages = with pkgs; [ # additional fonts, defaults are installed with stylix
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      roboto
+    ];
+  };
+
   services.upower.enable = true;
 
   virtualisation.virtualbox.host = {

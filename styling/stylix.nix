@@ -17,8 +17,6 @@ in {
 
     fonts = {
       monospace = {
-        # package = pkgs.nerd-fonts.dejavu-sans-mono;
-        # name = "DejaVuSansM Nerd Font";
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
