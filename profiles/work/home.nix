@@ -119,7 +119,7 @@ in {
     anki
     super-productivity
 
-    freecad
+    kdePackages.kdenlive
 
     # fonts
     ipafont # japanese
