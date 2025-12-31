@@ -2,10 +2,10 @@
 
 {
   imports = myLib.importAll args [
-    ./nvim
     ./emacs
     ./tmux
     ./music
+    ./neovim.nix
     ./alacritty.nix
     ./ghostty.nix
     ./qutebrowser.nix
@@ -18,7 +18,7 @@
   ];
 
   modules = {
-    nvim.enable = lib.mkDefault true;
+    neovim.enable = lib.mkDefault true;
     emacs.enable = lib.mkDefault true;
     music.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;

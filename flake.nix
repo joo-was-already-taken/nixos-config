@@ -28,6 +28,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # user inputs
+    neovim-penultimum.url = "github:joo-was-already-taken/neovim-penultimum";
+
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "";
@@ -100,6 +102,7 @@
           modules = [
             stylix.homeModules.stylix
             inputs.nix-flatpak.homeManagerModules.nix-flatpak
+            inputs.neovim-penultimum.homeManagerModules.default
             inputs.nix-doom-emacs-unstraightened.homeModule
             (profilePath + "/home.nix")
           ];
