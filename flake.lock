@@ -678,11 +678,11 @@
         "nvim-tmux-navigation": "nvim-tmux-navigation"
       },
       "locked": {
-        "lastModified": 1767197259,
-        "narHash": "sha256-leTB0Ln6QZAJQYLVNsFmrF4rua+HHIhDXEd/25ak4TA=",
+        "lastModified": 1767709909,
+        "narHash": "sha256-+q1b8KnOxI7/gZ2iZpvmCmvBHRxLGCiLja0femxmbEc=",
         "owner": "joo-was-already-taken",
         "repo": "neovim-penultimum",
-        "rev": "8c985ff6e7d24f2bdeba5623614704b0bc79a24c",
+        "rev": "7cb0e65f5d667b49f4f0b7a55b25ac9b0337791c",
         "type": "github"
       },
       "original": {
