@@ -34,6 +34,7 @@ in {
 
       [credential]
         helper = cache --timeout=7200
+        useHttpPath = true
 
       [alias]
         a = add
