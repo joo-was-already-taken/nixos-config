@@ -10,10 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-mineral = {
-      url = "github:cynicsketch/nix-mineral";
-      flake = false;
-    };
+    nix-mineral.url = "github:cynicsketch/nix-mineral";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -76,6 +73,7 @@
         ${systemSettings.hostName} = lib.nixosSystem {
           system = systemSettings.system;
           modules = [
+            inputs.nix-mineral.nixosModules.nix-mineral
             stylix.nixosModules.stylix
             # home-manager.nixosModules.home-manager
             (profilePath + "/configuration.nix")

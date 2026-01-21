@@ -9,7 +9,6 @@
     ../../system-modules/unfree-packages.nix
     (../../hosts + ("/" + systemSettings.host) + "/hardware-configuration.nix")
     (../../hosts + ("/" + systemSettings.host) + "/loader.nix")
-    "${inputs.nix-mineral}/nix-mineral.nix"
     ../../styling/stylix.nix
     # (import ../../system-modules/display-managers/tuigreet.nix (args // { session = "Hyprland"; }))
     ../../system-modules/display-managers/sddm.nix
@@ -48,6 +47,13 @@
   networking.hostName = systemSettings.hostName;
   networking.networkmanager.enable = true;
   services.resolved.enable = true;
+
+  nix-mineral = {
+    enable = false;
+    settings = {
+      network.ip-forwarding = true;
+    };
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
