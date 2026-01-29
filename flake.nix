@@ -59,6 +59,9 @@
               system = systemSettings.system;
               config.allowUnfreePredicate = unfreePredicate;
             };
+            llvm = prev.llvm.overrideAttrs (oldAttrs: {
+              doCheck = false;
+            });
           })
         ];
       };
