@@ -134,6 +134,8 @@ in {
           # exec-once = ${sessionVariables.TERMINAL} -e zsh -c 'neofetch; zsh' &
           exec-once = pypr &
           exec-once = hypridle
+          exec-once = fcitx5 -d -r
+          exec-once = fcitx5-remote -r
 
           monitor = , preferred, auto, 1
 

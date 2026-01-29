@@ -77,14 +77,35 @@
     LC_TIME = "en_DK.UTF-8";
   };
 
-  # i18n.inputMethod = {
-  #   enabled = "fcitx5";
-  #   fcitx5 = {
-  #     addons = with pkgs; [ fcitx5-configtool fcitx5-mozc ];
-  #     waylandFrontend = true;
-  #   };
-  #   ibus.engines = with pkgs.ibus-engines; [ mozc ];
-  # };
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-mozc-ut
+        fcitx5-gtk
+      ];
+      settings.inputMethod = {
+        "Groups/0" = {
+          "Name" = "Default";
+          "Default Layout" = "us";
+          "DefaultIM" = "mozc"; # Tells Fcitx to prefer Mozc
+        };
+        "Groups/0/Items/0" = {
+          "Name" = "keyboard-us"; # Your fallback English layout
+          "Layout" = null;
+        };
+        "Groups/0/Items/1" = {
+          "Name" = "mozc"; # The actual Japanese engine
+          "Layout" = null;
+        };
+        "GroupOrder" = {
+          "0" = "Default";
+        };
+      };
+    };
+  };
 
   fonts = {
     fontconfig.enable = true;
@@ -92,6 +113,7 @@
     fontDir.enable = true;
     packages = with pkgs; [ # additional fonts, defaults are installed with stylix
       noto-fonts
+      noto-fonts-cjk-serif
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       roboto
@@ -122,6 +144,8 @@
     drivers = with pkgs; [
       canon-cups-ufr2
       cnijfilter2
+      cups-bjnp
+      gutenprint
     ];
   };
   unfreePackages = [
