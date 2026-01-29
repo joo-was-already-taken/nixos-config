@@ -66,6 +66,7 @@
       unfreePredicate = pkg: builtins.elem (lib.getName pkg) [
         "jetbrains-toolbox"
         "codeium"
+        "widevine-cdm"
       ];
       profilePath = ./. + "/profiles" + ("/" + systemSettings.profile);
     in {

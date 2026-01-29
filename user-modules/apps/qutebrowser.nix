@@ -46,7 +46,9 @@ let
     xdg.configFile."qutebrowser/config.py".text = configPy;
   };
   nixpkgsConfig = {
-    home.packages = [ pkgs.unstable.qutebrowser ];
+    home.packages = [
+      (pkgs.unstable.qutebrowser.override { enableWideVine = true; })
+    ];
   };
   flatpakConfig = let
     qutebrowserId = "org.qutebrowser.qutebrowser";
