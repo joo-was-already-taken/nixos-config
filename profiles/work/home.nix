@@ -31,11 +31,12 @@ in {
   ];
 
   xdg = {
+    enable = true;
     mimeApps = {
       enable = true;
       defaultApplications = let
         pdf = [ "zathura.desktop" ];
-        browser = [ "qutebrowser.desktop" ];
+        browser = [ "org.qutebrowser.qutebrowser.desktop" ];
         image = [ "org.gnome.gThumb.desktop" ];
       in {
         "application/pdf" = pdf;
