@@ -278,7 +278,7 @@ in {
           bind = $mod, D, exec, $menu
           bind = $mod, R, exec, $commandMenu
           # bind = $mod, P, pseudo
-          bind = $mod, J, togglesplit
+          bind = $mod, J, layoutmsg, togglesplit
           bind = $mod, O, fullscreen, 0 # fullscreen
           bind = $mod, U, fullscreen, 1 # maximize
           bind = $mod, I, exec, ${lib.getExe toggleFloating}
