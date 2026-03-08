@@ -26,6 +26,12 @@ in
           useOSProber = true;
         };
 
+        services.logind = {
+          lidSwitch = "ignore";
+          lidSwitchExternalPower = "ignore";
+          lidSwitchDocked = "ignore";
+        };
+
         services.xserver.xkb = {
           layout = "pl";
           variant = "";
@@ -38,6 +44,8 @@ in
           extraGroups = [ "networkmanager" "wheel" ];
           packages = with pkgs; [];
         };
+
+        services.openssh.enable = true;
 
         nixpkgs.config.allowUnfree = true;
 
@@ -55,6 +63,7 @@ in
     inputs.home-manager-unstable.lib.homeManagerConfiguration {
       pkgs = self'.legacyPackages.unstable;
       modules = with inputs.self.modules.homeManager; [
+        git
         tmux
         {
           programs.home-manager.enable = true;

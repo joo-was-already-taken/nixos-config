@@ -19,6 +19,12 @@ in
         description = "Preferred file manager";
       };
     };
+
+    university.enable = lib.mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable university stuff";
+    };
   };
 
   options.flake.capabilities = {
