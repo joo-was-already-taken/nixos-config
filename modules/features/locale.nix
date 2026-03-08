@@ -1,8 +1,8 @@
-{ config, ... }:
+{ ... }:
 
 {
-  flake.nixosModules.locale = { lib, ... }: {
-    time.timeZone = lib.mkDefault config.flake.settings.timeZone;
+  flake.modules.nixos.locale = { lib, settings, ... }: {
+    time.timeZone = lib.mkDefault settings.timeZone;
 
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {

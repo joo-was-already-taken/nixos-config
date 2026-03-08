@@ -1,10 +1,9 @@
-{ ... }:
 {
-  flake.nixosModules.bluetooth = {
+  flake.modules.nixos.bluetooth = {
     services.blueman.enable = true;
     hardware.bluetooth.enable = true;
   };
-  flake.homeModules.bluetooth = { pkgs, ... }: {
+  flake.modules.homeManager.bluetooth = { pkgs, ... }: {
     home.packages = [ pkgs.bluez ];
   };
 }

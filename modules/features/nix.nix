@@ -1,13 +1,13 @@
-{ config, ... }:
+{ ... }:
 
 {
-  flake.nixosModules.nix = {
+  flake.modules.nixos.nix = { settings, ... }: {
     nix.settings = {
       experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
       keep-outputs = true;
       keep-derivations = true;
       auto-optimise-store = true;
-      trusted-users = [ "root" config.flake.settings.primaryUser ];
+      trusted-users = [ "root" settings.primaryUser ];
 
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-substituters = [ "https://hyprland.cachix.org" ];
@@ -17,7 +17,7 @@
     nix.daemonIOSchedClass = "idle";
   };
 
-  flake.homeModules.hyprland = {
+  flake.modules.homeManager.nix = {
     nix = {
       gc = {
         automatic = true;

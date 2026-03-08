@@ -5,19 +5,6 @@ let
 in
 {
   options.flake.settings = {
-    hostName = lib.mkOption {
-      type = types.str;
-      description = "Name of a host machine";
-    };
-    primaryUser = lib.mkOption {
-      type = types.str;
-      description = "The main user account name";
-    };
-    timeZone = lib.mkOption {
-      type = types.str;
-      default = "Europe/Warsaw";
-    };
-
     guiApps = {
       terminal = lib.mkOption {
         type = types.str;
