@@ -17,6 +17,7 @@ in
       nix
       locale
       networking
+      zsh
       ({ pkgs, ... }: {
         imports = [ ./_hardware.nix ];
 
@@ -67,6 +68,7 @@ in
         git
         tmux
         neovim
+        zsh
         {
           programs.home-manager.enable = true;
           home = rec {
