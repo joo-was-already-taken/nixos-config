@@ -62,9 +62,11 @@ in
   flake.homeConfigurations.${settings.primaryUser} = withSystem system ({ self', ... }:
     inputs.home-manager-unstable.lib.homeManagerConfiguration {
       pkgs = self'.legacyPackages.unstable;
+      extraSpecialArgs = { inherit inputs; };
       modules = with inputs.self.modules.homeManager; [
         git
         tmux
+        neovim
         {
           programs.home-manager.enable = true;
           home = rec {

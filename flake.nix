@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    neovim-penultimum.url = "github:joo-was-already-taken/neovim-penultimum";
   };
   outputs = { flake-parts, import-tree, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
