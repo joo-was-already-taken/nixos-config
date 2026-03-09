@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/0002f14"; # 0.54.0
 
     # user inputs
     neovim-penultimum.url = "github:joo-was-already-taken/neovim-penultimum";

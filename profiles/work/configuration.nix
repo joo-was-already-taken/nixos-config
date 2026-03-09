@@ -21,9 +21,18 @@
     auto-optimise-store = true;
     trusted-users = [ "root" userSettings.userName ];
 
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    substituters = [
+      "https://joo-was-already-taken.cachix.org"
+      "https://hyprland.cachix.org"
+    ];
+    trusted-substituters = [
+      "https://joo-was-already-taken.cachix.org"
+      "https://hyprland.cachix.org"
+    ];
+    trusted-public-keys = [
+      "joo-was-already-taken.cachix.org-1:AYY8fXIpeK+jciPUMGWmUpp9zwP7zoruz0/mJ/N1BoQ="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
   };
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
