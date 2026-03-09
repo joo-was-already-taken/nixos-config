@@ -1,82 +1,34 @@
-{ inputs, withSystem, ... }:
+{ inputs, withSystem, ... }@args:
 
 let
-  settings = {
-    hostName = "rednub";
-    primaryUser = "joo";
-    timeZone = "Europe/Warsaw";
-  };
+  createHost = (import ./../_utils.nix args).createHost;
+  bundles = import ../_bundles.nix;
   system = "x86_64-linux";
-  inherit (inputs.nixpkgs-unstable) lib;
-in
-{
-  flake.nixosConfigurations.${settings.hostName} = lib.nixosSystem {
-    inherit system;
-    specialArgs = { inherit inputs settings; };
-    modules = with inputs.self.modules.nixos; [
-      nix
-      locale
-      networking
-      zsh
-      ({ pkgs, ... }: {
-        imports = [ ./_hardware.nix ];
-
+in {
+  flake = withSystem system ({ self', ... }: createHost {
+    inherit inputs system;
+    name = "rednub";
+    primaryUser = "joo";
+    nixpkgs = inputs.nixpkgs-unstable;
+    home-manager = inputs.home-manager-unstable;
+    pkgs = self'.legacyPackages.unstable;
+    stateVersion = "25.11";
+    modules = bundles.core.modules ++ [ "neovim" ];
+    extraNixosModules = [
+      { imports = [ ./_hardware.nix ]; }
+      {
         boot.loader.grub = {
           enable = true;
           device = "/dev/sda";
           useOSProber = true;
         };
-
         services.logind = {
           lidSwitch = "ignore";
           lidSwitchExternalPower = "ignore";
           lidSwitchDocked = "ignore";
         };
-
-        services.xserver.xkb = {
-          layout = "pl";
-          variant = "";
-        };
-        console.keyMap = "pl2";
-
-        users.users.${settings.primaryUser} = {
-          isNormalUser = true;
-          description = settings.primaryUser;
-          extraGroups = [ "networkmanager" "wheel" ];
-          packages = with pkgs; [];
-        };
-
-        services.openssh.enable = true;
-
-        nixpkgs.config.allowUnfree = true;
-
-        environment.systemPackages = with pkgs; [
-          vim
-          git
-        ];
-
-        system.stateVersion = "25.11";
-      })
+      }
+      { services.openssh.enable = true; }
     ];
-  };
-
-  flake.homeConfigurations.${settings.primaryUser} = withSystem system ({ self', ... }:
-    inputs.home-manager-unstable.lib.homeManagerConfiguration {
-      pkgs = self'.legacyPackages.unstable;
-      extraSpecialArgs = { inherit inputs; };
-      modules = with inputs.self.modules.homeManager; [
-        git
-        tmux
-        neovim
-        zsh
-        {
-          programs.home-manager.enable = true;
-          home = rec {
-            username = settings.primaryUser;
-            homeDirectory = "/home/${username}";
-            stateVersion = "25.11";
-          };
-        }
-      ];
-    });
+  });
 }

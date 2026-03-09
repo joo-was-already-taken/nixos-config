@@ -13,8 +13,9 @@
     nix.daemonIOSchedClass = "idle";
   };
 
-  flake.modules.homeManager.nix = {
+  flake.modules.homeManager.nix = { pkgs, ... }: {
     nix = {
+      package = pkgs.nix;
       gc = {
         automatic = true;
         dates = "weekly";
