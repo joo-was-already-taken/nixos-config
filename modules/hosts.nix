@@ -17,6 +17,7 @@
       git
       tmux
       user-dirs
+      neovim
     ];
   };
 
@@ -26,10 +27,6 @@
       base._.nix
       base._.locale
       base._.networking
-      zsh
-      git
-      tmux
-      user-dirs
     ];
 
     nixos = {

@@ -13,6 +13,8 @@
     import-tree.url = "github:vic/import-tree";
     flake-aspects.url = "github:vic/flake-aspects";
     den.url = "github:vic/den";
+
+    neovim-penultimum.url = "github:joo-was-already-taken/neovim-penultimum";
   };
 
   outputs = inputs:
