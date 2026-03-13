@@ -1,9 +1,0 @@
-keys:
-  - &laptop age1nul6phllaqcnreym7zyneklgxz3xsuaf98mwqfelpgly43hk5ykqln8pg0
-  - &old-thinkpad age12hjs80kxzurwvggdw4drr49drarax4yt8mgdgawn2addu3rqcdwsa0em90
-creation_rules:
-  - path_regex: secrets/secrets.yaml$
-    key_groups:
-    - age:
-      - *laptop
-      - *old-thinkpad
