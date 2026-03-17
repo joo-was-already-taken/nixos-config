@@ -14,7 +14,12 @@
     flake-aspects.url = "github:vic/flake-aspects";
     den.url = "github:vic/den";
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     neovim-penultimum.url = "github:joo-was-already-taken/neovim-penultimum";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = inputs:

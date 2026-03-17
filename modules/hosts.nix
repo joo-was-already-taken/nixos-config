@@ -1,9 +1,14 @@
-{ den, ... }:
-{
+{ den, ... }: {
   den.hosts.x86_64-linux.rednub = {
     stateVersion = "26.05";
     users.joo = {
       trusted = true;
+      hasGui = true;
+      guiApps = {
+        terminal = "alacritty";
+        fileManager = "nemo";
+        browser = "qutebrowser";
+      };
     };
   };
 
@@ -18,7 +23,15 @@
       tmux
       user-dirs
       neovim
+      hyprland
+      styling
+      alacritty
+      ghostty
     ];
+
+    homeManager = { pkgs, ... }: {
+      home.packages = with pkgs; [ nemo qutebrowser ];
+    };
   };
 
   den.aspects.rednub = {
@@ -27,6 +40,9 @@
       base._.nix
       base._.locale
       base._.networking
+      sddm
+      styling
+      hyprland
     ];
 
     nixos = {

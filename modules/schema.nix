@@ -1,5 +1,17 @@
 { inputs, ... }:
-{
+let
+  styleOption = lib: let
+    inherit (lib) types;
+  in lib.mkOption {
+    type = types.nullOr <| types.submodule {
+      options = {
+        colors = lib.mkOption { type = types.attrsOf types.str; };
+        wallpaper = lib.mkOption { type = types.path; };
+        polarity = lib.mkOption { type = types.enum [ "dark" "light" ]; };
+      };
+    };
+  };
+in {
   den.schema.host = { host, lib, ... }: let
     inherit (lib) types;
   in {
@@ -7,6 +19,9 @@
       type = types.str;
       description = "When this machine was first built";
     };
+
+    options.style = styleOption lib;
+    config.style = lib.mkDefault (import ./_styles lib).evergarden;
 
     options.timeZone = lib.mkOption {
       type = types.str;
@@ -30,10 +45,22 @@
   den.schema.user = { user, lib, ... }: let
     inherit (lib) types;
   in {
-    config.classes = lib.mkDefault [ "nixos" "homeManager" ];
+    config.classes = lib.mkDefault [ "homeManager" ];
 
     options.trusted = lib.mkOption { type = types.bool; };
     config.trusted = lib.mkDefault false;
+
+    options.style = styleOption lib;
+    config.style = lib.mkDefault null;
+
+    options.hasGui = lib.mkOption { type = types.bool; };
+    config.hasGui = lib.mkDefault false;
+
+    options.guiApps = {
+      terminal = lib.mkOption { type = types.str; };
+      fileManager = lib.mkOption { type = types.str; };
+      browser = lib.mkOption { type = types.str; };
+    };
 
     options.university = {
       enable = lib.mkOption {
