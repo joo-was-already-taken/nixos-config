@@ -27,10 +27,12 @@
       styling
       alacritty
       ghostty
+      qutebrowser
+      librewolf
     ];
 
     homeManager = { pkgs, ... }: {
-      home.packages = with pkgs; [ nemo qutebrowser ];
+      home.packages = with pkgs; [ nemo ];
     };
   };
 
