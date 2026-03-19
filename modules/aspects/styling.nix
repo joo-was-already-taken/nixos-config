@@ -6,7 +6,22 @@ let
   in {
     enable = true;
     autoEnable = false;
-    targets.font-packages.enable = true;
+
+    icons = {
+      enable = true;
+      package = pkgs.papirus-icon-theme.override { color = "black"; };
+      dark = "Papirus-Dark";
+      light = "Papirus-Light";
+    };
+
+    targets = {
+      font-packages.enable = true;
+      gtk.enable = true;
+      qt = {
+        enable = true;
+        platform = "qtct";
+      };
+    };
 
     base16Scheme = style.colors;
     image = style.wallpaper;
@@ -46,10 +61,10 @@ in {
   den.aspects.styling = { host, user }: {
     config.lib = { inherit getStyle; };
 
-    nixos = { lib, pkgs, ... }@args: {
-      imports = [ inputs.stylix.nixosModules.stylix ];
-      stylix = stylixConf { isHomeManager = false; inherit host user; } args;
-    };
+    # nixos = { lib, pkgs, ... }@args: {
+    #   imports = [ inputs.stylix.nixosModules.stylix ];
+    #   stylix = stylixConf { isHomeManager = false; inherit host user; } args;
+    # };
     homeManager = { lib, pkgs, ... }@args: {
       imports = [ inputs.stylix.homeManagerModules.stylix ];
       stylix = stylixConf { isHomeManager = true; inherit host user; } args;
