@@ -5,20 +5,18 @@
     ./stylix.nix
   ];
 
-  gtk = {
+  stylix.icons = {
     enable = true;
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme.override {
-        color = "black";
-      };
-    };
+    package = pkgs.papirus-icon-theme.override { color = "black"; };
+    dark = "Papirus-Dark";
+    light = "Papirus-Light";
   };
 
-  # stylix.targets.qt.enable = true; # TODO: wait for stabilization
-  qt = {
-    enable = true;
-    # platformTheme.name = "qt5ct";
-    # style.name = "kvantum";
+  stylix.targets = {
+    gtk.enable = true;
+    qt = {
+      enable = true;
+      platform = "qtct";
+    };
   };
 }
