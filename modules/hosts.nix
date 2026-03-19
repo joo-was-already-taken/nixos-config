@@ -29,11 +29,8 @@
       ghostty
       qutebrowser
       librewolf
+      nemo
     ];
-
-    homeManager = { pkgs, ... }: {
-      home.packages = with pkgs; [ nemo ];
-    };
   };
 
   den.aspects.rednub = {
