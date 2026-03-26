@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, systemSettings, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   moduleName = "neovim";
@@ -8,13 +8,12 @@ in {
     stylix.targets.neovim.enable = false;
 
     programs.neovim = {
-      enable = true;
-      package = inputs.neovim-penultimum.packages.${systemSettings.system}.neovim;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
+      extraPackages = [ pkgs.wl-clipboard ];
     };
-    programs.neovim-penultimum.enable = true;
+    neovim-penultimum.enable = true;
 
     home.packages = with pkgs; [
       bash-language-server

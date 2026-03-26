@@ -101,7 +101,7 @@
           modules = [
             stylix.homeModules.stylix
             inputs.nix-flatpak.homeManagerModules.nix-flatpak
-            inputs.neovim-penultimum.homeManagerModules.default
+            inputs.neovim-penultimum.homeModules.default
             inputs.nix-doom-emacs-unstraightened.homeModule
             (profilePath + "/home.nix")
           ];
