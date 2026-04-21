@@ -15,7 +15,7 @@ let
 
     c.content.blocking.enabled = True
     c.content.pdfjs = False
-    c.scrolling.bar = 'when-searching'
+    c.scrolling.bar = 'always'
     c.tabs.max_width = 240
     c.colors.webpage.darkmode.enabled = False
 

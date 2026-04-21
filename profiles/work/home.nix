@@ -140,13 +140,13 @@ in {
 
     appimage-run
 
-    # As of 17.12.2025 unstable version with podman support is broken.
-    # When podman support is fixed, remove docker group, otherwise needed
-    # for winboat.
-    # An additional npm flag is needed.
-    (winboat.overrideAttrs (old: {
-      npmFlags = old.npmFlags or [] ++ [ "--legacy-peer-deps" ];
-    }))
+    # # As of 17.12.2025 unstable version with podman support is broken.
+    # # When podman support is fixed, remove docker group, otherwise needed
+    # # for winboat.
+    # # An additional npm flag is needed.
+    # (winboat.overrideAttrs (old: {
+    #   npmFlags = old.npmFlags or [] ++ [ "--legacy-peer-deps" ];
+    # }))
 
     file
     ncdu

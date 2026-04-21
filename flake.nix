@@ -51,16 +51,21 @@
       pkgs = import nixpkgs {
         system = systemSettings.system;
         config.allowUnfreePredicate = unfreePredicate;
-        overlays = [
+        overlays = let
+          myOverlays = final: prev: {
+            llvm = prev.llvm.overrideAttrs (oldAttrs: {
+              doCheck = false;
+            });
+          };
+        in [
           (final: prev: {
             unstable = import nixpkgs-unstable {
               system = systemSettings.system;
               config.allowUnfreePredicate = unfreePredicate;
+              overlays = [ myOverlays ];
             };
-            llvm = prev.llvm.overrideAttrs (oldAttrs: {
-              doCheck = false;
-            });
           })
+          myOverlays
         ];
       };
       myLib = import ./my-lib { inherit lib pkgs; };
