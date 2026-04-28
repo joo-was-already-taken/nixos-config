@@ -15,6 +15,7 @@
     ./office.nix
     ./nemo.nix
     ./vscode.nix
+    ./yazi.nix
   ];
 
   modules = {
@@ -31,6 +32,7 @@
       java.enable = lib.mkDefault false;
       jupyter.enable = lib.mkDefault false;
     };
+    yazi.enable = lib.mkDefault true;
 
     qutebrowser = {
       flatpak.enable = lib.mkDefault false;
