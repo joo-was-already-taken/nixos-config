@@ -25,6 +25,7 @@ in {
   ];
 
   modules.librewolf.flatpak.enable = true;
+  modules.emacs.enable = false;
 
   home.sessionPath = [
     "$HOME/.local/bin"
