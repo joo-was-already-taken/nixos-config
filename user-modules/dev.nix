@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # python
-    (python313.withPackages (ps: with ps; [
+    (python314.withPackages (ps: with ps; [
       matplotlib
       numpy
       scipy
