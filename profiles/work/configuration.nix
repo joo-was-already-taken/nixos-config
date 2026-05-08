@@ -37,6 +37,7 @@
   nix.daemonCPUSchedPolicy = "idle";
   nix.daemonIOSchedClass = "idle";
 
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   swapDevices = [
     {
