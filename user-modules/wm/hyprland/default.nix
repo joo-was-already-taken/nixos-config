@@ -298,7 +298,7 @@ in {
           bind = $mod, M, exec, pavucontrol
 
           # Color picker
-          bind = $mod, minus, exec, wl-color-picker
+          bind = $mod, grave, exec, wl-color-picker
 
           bind = $mod, H, movefocus, l
           bind = $mod, L, movefocus, r
@@ -333,6 +333,9 @@ in {
           binde = , XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5 --max-volume 155
           binde = , XF86AudioLowerVolume, exec, pulsemixer --change-volume -5
           binde = , XF86AudioMute, exec, pulsemixer --toggle-mute
+          # binde = $mod, equal, exec, pulsemixer --change-volume +5 --max-volume 155
+          # binde = $mod, minus, exec, pulsemixer --change-volume -5
+          binde = $mod, bracketleft, exec, pulsemixer --toggle-mute
 
           # brightness controls (backlight)
           binde = , XF86MonBrightnessUP, exec, brightnessctl set +10%
