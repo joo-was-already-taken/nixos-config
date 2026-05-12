@@ -102,6 +102,8 @@ in {
 
     neofetch
 
+    unrar-free
+
     htop
     pdfgrep
 
